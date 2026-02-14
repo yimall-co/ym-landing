@@ -1,0 +1,43 @@
+@import 'tailwindcss';
+@import 'tailwind-scrollbar-hide/v4';
+
+@plugin 'tailwindcss-animate';
+
+@theme {
+    --color-light-100: #ffffff;
+    --color-light-200: #f0f0f0;
+    --color-light-300: #eceff4;
+    --color-light-400: #F2F0EF;
+    --color-light-500: #e5e9f0;
+    --color-light-600: #d8dee9;
+    --color-light-700: #c3cfe2;
+    --color-light-800: #b3b9cc;
+    --color-light-900: #a2aebd;
+
+    --color-light: var(--color-light-400);
+
+    --color-dark-400: #121212;
+    --color-dark-500: #1e1e1e;
+    --color-dark-600: #1a1a1a;
+    --color-dark-700: #2e2e2e;
+    --color-dark-800: #363636;
+    --color-dark-900: #3e3e3e;
+
+    --color-dark: var(--color-dark-400);
+
+    --color-primary-400: #1d4ed8;
+    --color-primary-500: #1d4ed8;
+    --color-primary-600: #2559eb;
+    --color-primary-700: #1e3a8a;
+    --color-primary-800: #3b6cf6;
+    --color-primary-900: #93affd;
+
+    --color-primary: var(--color-primary-400);
+
+    --color-instagram: radial-gradient(circle at 30% 107%,
+            #fdf497 0%,
+            #fdf497 5%,
+            #fd5949 45%,
+            #d6249f 60%,
+            #285aeb 90%);
+}

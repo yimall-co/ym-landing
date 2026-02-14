@@ -1,0 +1,86 @@
+{
+    "name": "@yimall/ui",
+    "version": "0.1.0",
+    "private": true,
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "module": "./dist/index.mjs",
+    "files": [
+        "dist"
+    ],
+    "sideEffects": [
+        "**/*.css"
+    ],
+    "exports": {
+        ".": {
+            "default": "./src/index.ts",
+            "import": {
+                "types": "./dist/index.d.mts",
+                "default": "./dist/index.mjs"
+            },
+            "require": {
+                "types": "./dist/index.d.ts",
+                "default": "./dist/index.js"
+            }
+        },
+        "./text": {
+            "development": "./src/text/index.tsx",
+            "import": {
+                "types": "./dist/text/index.d.mts",
+                "default": "./dist/text/index.mjs"
+            }
+        },
+        "./utils": {
+            "development": "./src/utils.ts",
+            "import": {
+                "types": "./dist/utils.d.mts",
+                "default": "./dist/utils.mjs"
+            }
+        },
+        "./webgl": {
+            "default": "./src/webgl/index.ts",
+            "import": {
+                "types": "./dist/webgl/index.d.mts",
+                "default": "./dist/webgl/index.mjs"
+            }
+        },
+        "./styles.css": "./dist/index.css"
+    },
+    "scripts": {
+        "type-check": "tsc --noEmit",
+        "build:styles": "tailwindcss -i ./src/styles.css -o ./dist/index.css",
+        "build:components": "pnpm type-check && pnpm build:styles && tsc",
+        "dev:styles": "tailwindcss -i ./src/styles.css -o ./dist/index.css --watch",
+        "dev:components": "tsc --watch",
+        "lint": "eslint . --max-warnings 0",
+        "lint:fix": "eslint . --fix"
+    },
+    "dependencies": {
+        "clsx": "catalog:",
+        "three": "catalog:",
+        "motion": "catalog:",
+        "gsap": "catalog:",
+        "tailwind-merge": "catalog:",
+        "tailwind-variants": "catalog:",
+        "@base-ui/react": "catalog:",
+        "@gsap/react": "catalog:"
+    },
+    "peerDependencies": {
+        "react": "catalog:react-19",
+        "react-dom": "catalog:react-19"
+    },
+    "devDependencies": {
+        "@yimall/tailwind-config": "workspace:*",
+        "@yimall/typescript-config": "workspace:*",
+        "@yimall/eslint-config": "workspace:*",
+        "@tailwindcss/cli": "catalog:",
+        "@tailwindcss/postcss": "catalog:",
+        "@types/react": "catalog:react-19",
+        "@types/react-dom": "catalog:react-19",
+        "@types/three": "catalog:types",
+        "autoprefixer": "catalog:",
+        "tailwindcss": "catalog:",
+        "bunchee": "catalog:",
+        "typescript": "catalog:"
+    }
+}

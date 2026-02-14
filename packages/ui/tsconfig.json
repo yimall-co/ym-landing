@@ -1,0 +1,12 @@
+{
+    "extends": "@yimall/typescript-config",
+    "compilerOptions": {
+        "outDir": "./dist",
+        "resolveJsonModule": true
+    },
+    "include": ["src", "global.d.ts"],
+    "exclude": [
+        "dist",
+        "node_modules"
+    ]
+}

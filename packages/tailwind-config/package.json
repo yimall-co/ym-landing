@@ -1,0 +1,19 @@
+{
+    "name": "@yimall/tailwind-config",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {},
+    "dependencies": {
+        "tailwindcss-animate": "catalog:",
+        "tailwind-scrollbar-hide": "catalog:"
+    },
+    "devDependencies": {
+        "postcss": "catalog:",
+        "tailwindcss": "catalog:"
+    },
+    "exports": {
+        ".": "./shared-style.css",
+        "./postcss": "./postcss.config.js"
+    }
+}

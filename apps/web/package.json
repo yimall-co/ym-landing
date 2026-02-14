@@ -1,0 +1,37 @@
+{
+    "name": "web",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix"
+    },
+    "dependencies": {
+        "@next/env": "catalog:next-16",
+        "@tailwindcss/postcss": "catalog:",
+        "@t3-oss/env-nextjs": "catalog:",
+        "next": "catalog:next-16",
+        "next-intl": "catalog:next-16",
+        "next-themes": "catalog:next-16",
+        "react": "catalog:react-19",
+        "react-dom": "catalog:react-19",
+        "zod": "catalog:",
+        "date-fns": "catalog:",
+        "tailwindcss": "catalog:",
+        "postcss": "catalog:"
+    },
+    "devDependencies": {
+        "@yimall/ui": "workspace:*",
+        "@yimall/eslint-config": "workspace:*",
+        "@yimall/typescript-config": "workspace:*",
+        "@yimall/tailwind-config": "workspace:*",
+        "@types/node": "catalog:node-20",
+        "@types/react": "catalog:react-19",
+        "@types/react-dom": "catalog:react-19",
+        "babel-plugin-react-compiler": "catalog:",
+        "typescript": "catalog:"
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "private": true,
+    "packageManager": "pnpm@10.0.0",
+    "scripts": {
+        "build": "turbo run build",
+        "dev": "turbo run dev",
+        "lint": "turbo run lint",
+        "lint:fix": "turbo run lint:fix"
+    },
+    "devDependencies": {
+        "turbo": "latest"
+    }
+}
