@@ -3,6 +3,7 @@
     "packageManager": "pnpm@10.0.0",
     "scripts": {
         "build": "turbo run build",
+        "start": "turbo run start",
         "dev": "turbo run dev",
         "lint": "turbo run lint",
         "lint:fix": "turbo run lint:fix"

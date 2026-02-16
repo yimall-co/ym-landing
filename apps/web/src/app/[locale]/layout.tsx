@@ -131,8 +131,8 @@ export default async function RootLayout(props: LayoutProps) {
             >
                 <NextIntlClientProvider>
                     <ThemeProvider
-                        enableSystem
-                        defaultTheme='light'
+                        // enableSystem
+                        defaultTheme='dark'
                         attribute='class'
                     >
                         {children}

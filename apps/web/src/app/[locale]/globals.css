@@ -7,6 +7,12 @@
     --background: var(--color-light);
     --background-alt: var(--color-light-900);
     --foreground: var(--color-dark);
+
+    --shadow-outer-dark: 0 2px 2px rgba(59, 59, 59, 0.5);
+    --shadow-inner-dark: inset 0 2px 2px rgba(37, 37, 37, 0.25);
+
+    --shadow-outer-light: 0 2px 2px rgba(0, 0, 0, 0.15);
+    --shadow-inner-light: inset 0 2px 2px rgba(255, 255, 255, 0.1);
 }
 
 .dark {

@@ -96,6 +96,7 @@ export const GradientText: FC<Props> = ({
 
     const gradientAngle =
         direction === 'horizontal' ? 'to right' : direction === 'vertical' ? 'to bottom' : 'to bottom right';
+
     // Duplicate first color at the end for seamless looping
     const gradientColors = [...colors, colors[0]].join(', ');
 
@@ -107,7 +108,7 @@ export const GradientText: FC<Props> = ({
 
     return (
         <motion.div
-            className={`relative mx-auto flex max-w-fit flex-row items-center justify-center rounded-[1.25rem] font-medium backdrop-blur transition-shadow duration-500 overflow-hidden cursor-pointer ${showBorder ? 'py-1 px-2' : ''} ${className}`}
+            className={`relative mx-auto flex max-w-fit flex-row items-center justify-center rounded-[1.25rem] backdrop-blur transition-shadow duration-500 overflow-hidden cursor-pointer ${showBorder ? 'py-1 px-2' : ''} ${className}`}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
@@ -129,6 +130,7 @@ export const GradientText: FC<Props> = ({
                 </motion.div>
             )}
             <motion.div
+                role='heading'
                 className="inline-block relative z-2 text-transparent bg-clip-text"
                 style={{ ...gradientStyle, backgroundPosition, WebkitBackgroundClip: 'text' }}
             >

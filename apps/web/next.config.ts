@@ -96,6 +96,11 @@ const nextConfig: NextConfig = {
     redirects: async () => {
         return [
             {
+                source: '/demo',
+                destination: 'https://demo.yimall.co',
+                permanent: true,
+            },
+            {
                 source: '/alashes',
                 destination: 'https://alashes.com.co',
                 permanent: true,

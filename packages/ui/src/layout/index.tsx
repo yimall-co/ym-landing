@@ -1,10 +1,11 @@
 'use client'
 
 import type { FC, ComponentProps } from 'react';
+import type { MotionNodeAnimationOptions } from 'motion/react';
 import type { VariantProps } from 'tailwind-variants';
 
 import { tv } from 'tailwind-variants';
-import { motion, MotionNodeAnimationOptions } from 'motion/react';
+import { motion } from 'motion/react';
 
 const layout = tv({
     slots: {
@@ -49,6 +50,7 @@ const layout = tv({
             },
             top: {
                 wrapper: 'top-0 mx-auto',
+                header: 'top-0'
             },
         },
         position: {

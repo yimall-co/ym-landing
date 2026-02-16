@@ -1,9 +1,9 @@
 {
     "metadata": {
-        "name": "yimall.co - Effective digital solution for your business",
+        "name": "yimall.co - Catálogo y menú digital para tu negocio",
         "shortName": "yimall.co",
-        "description": "Yimall is a leading provider of digital solutions, offering innovative services to help businesses thrive in the digital age.",
-        "keywords": "Yimall, digital solutions, business services, innovation, technology"
+        "description": "Crea un catálogo digital profesional para tu negocio. Muestra productos o servicios, comparte un solo enlace y actualiza tu menú fácilmente con Yimall. Ideal para restaurantes, emprendimientos y negocios de servicios que necesitan mostrar su oferta de forma clara, moderna y fácil de compartir.",
+        "keywords": "Yimall, catálogo digital, menú digital, productos, servicios, negocio"
     },
     "Header": {
         "title": "yimall.co"
@@ -11,5 +11,15 @@
     "Intro": {
         "brand": "yimall.co",
         "slogan": "El arte de,la digitalización,la innovación,la creación"
+    },
+    "Marketing": {
+        "greeting": "👋 ¡Hola Mundo!",
+        "title": "Estamos en lo más alto de la transformación digital",
+        "subtitle": "Innovación & Creación",
+        "marquee": "Sé digital ✦ sé innovador ✦ sé parte de yimall ✦",
+        "actions": {
+            "demo": "Ver demostración",
+            "contact": "Contáctanos"
+        }
     }
 }
