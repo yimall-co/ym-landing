@@ -12,6 +12,7 @@ import {
     MotionNodeAnimationOptions,
 } from 'motion/react';
 import { tv } from 'tailwind-variants';
+import { ChevronUpIcon, ChevronDownIcon } from 'lucide-react';
 import { Accordion as BaseAccordion } from '@base-ui/react/accordion';
 
 const accordion = tv({
@@ -20,40 +21,43 @@ const accordion = tv({
             'w-full',
             'flex',
             'flex-col',
-            'justify-center',
-            'box-border',
-            'outline-none',
         ],
-        item: ['rounded-2xl'],
-        header: [
-            'rounded-[inherit]',
-            'm-0',
-            'text-base',
-            'font-bold',
-            'font-secondary',
-        ],
+        item: ['not-last:border-b'],
+        header: ['flex'],
         trigger: [
-            'px-4 py-4',
-            'box-border',
+            'focus-visible:ring-ring/50',
+            'focus-visible:border-ring',
+            'focus-visible:after:border-ring',
+            '**:data-[slot=accordion-trigger-icon]:text-muted-foreground',
+            'rounded-lg',
+            'py-2.5',
+            'text-left',
+            'text-base',
+            'font-medium',
+            'hover:underline',
+            'focus-visible:ring-3',
+            '**:data-[slot=accordion-trigger-icon]:ml-auto',
+            '**:data-[slot=accordion-trigger-icon]:size-4',
+            'group/accordion-trigger',
             'relative',
             'flex',
-            'w-full',
-            'gap-4',
-            'items-center',
+            'flex-1',
+            'items-start',
             'justify-between',
-            'font-[family:inherit]',
+            'border',
+            'border-transparent',
+            'transition-all',
             'outline-none',
-            'data-[panel-open]:rounded-b-none',
-            'data-[panel-open]:border-b',
+            'aria-disabled:pointer-events-none aria-disabled:opacity-50',
         ],
         panel: [
-            'flex-1',
-            'h-auto',
-            'box-border',
-            'p-4',
-            'pt-1.5',
-            'data-[starting-style]:h-0',
-            'data-[ending-style]:h-0',
+            'pt-0',
+            'pb-2.5',
+            'text-start',
+            '[&_a]:hover:text-foreground',
+            'h-(--accordion-panel-height)',
+            'data-ending-style:h-0',
+            'data-starting-style:h-0 [&_a]:underline [&_a]:underline-offset-3 [&_p:not(:last-child)]:mb-4',
         ],
     },
 });
@@ -85,9 +89,9 @@ const Accordion: FC<AccordionProps> = ({
 
 Accordion.displayName = 'Accordion';
 
-type AccordionItemProps = AccordionVariants &
-    ComponentProps<typeof motion.div> &
-    ComponentProps<typeof BaseAccordion.Item>;
+type AccordionItemProps = AccordionVariants
+    & BaseAccordion.Item.Props
+    & ComponentProps<typeof motion.div>;
 
 const ACCORDION_ITEM_ANIMATION: MotionNodeAnimationOptions =
     {
@@ -125,9 +129,9 @@ const AccordionItem: FC<AccordionItemProps> = ({
 
 AccordionItem.displayName = 'AccordionItem';
 
-type AccordionHeaderProps = AccordionVariants & ComponentProps<typeof BaseAccordion.Header>;
+type AccordionHeaderProps = AccordionVariants & BaseAccordion.Header.Props;
 
-export const AccordionHeader: FC<AccordionHeaderProps> = ({
+const AccordionHeader: FC<AccordionHeaderProps> = ({
     className,
     ...props
 }) => {
@@ -145,24 +149,33 @@ export const AccordionHeader: FC<AccordionHeaderProps> = ({
     );
 };
 
-type AccordionTriggerProps = AccordionVariants &
-    ComponentProps<typeof BaseAccordion.Trigger>;
+type AccordionTriggerProps = AccordionVariants
+    & BaseAccordion.Trigger.Props
+    & ComponentProps<typeof motion.button>;
 
-const AccordionTrigger: FC<
-    AccordionTriggerProps
-> = ({ className, ...props }) => {
+const AccordionTrigger: FC<AccordionTriggerProps> = ({
+    className,
+    children,
+    ...props
+}) => {
     'use memo';
     const { trigger } = accordion();
 
     return (
-        <BaseAccordion.Trigger
-            {...props}
-            data-slot="accordion-trigger"
-            className={trigger({
-                className: className as ClassValue,
-            })}
-            render={<motion.button/>}
-        />
+        <AccordionHeader>
+            <BaseAccordion.Trigger
+                {...props}
+                data-slot="accordion-trigger"
+                className={trigger({
+                    className: className as ClassValue,
+                })}
+                render={<motion.button />}
+            >
+                {children}
+                <ChevronDownIcon data-slot="accordion-trigger-icon" className="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden" />
+                <ChevronUpIcon data-slot="accordion-trigger-icon" className="pointer-events-none hidden shrink-0 group-aria-expanded/accordion-trigger:inline" />
+            </BaseAccordion.Trigger>
+        </AccordionHeader>
     );
 };
 
@@ -188,8 +201,9 @@ const ACCORDION_PANEL_ANIMATION: MotionNodeAnimationOptions =
         },
     } as const;
 
-const AccordionPanel: FC<AccordionPanelProps> = ({
+const AccordionContent: FC<AccordionPanelProps> = ({
     className,
+    children,
     ...props
 }) => {
     'use memo';
@@ -201,21 +215,25 @@ const AccordionPanel: FC<AccordionPanelProps> = ({
                 key="panel"
                 {...ACCORDION_PANEL_ANIMATION}
                 {...props}
-                data-slot="accordion-panel"
-                className={panel({
-                    className: className as ClassValue,
-                })}
+                data-slot='accordion-panel'
+                className='data-open:animate-accordion-down data-closed:animate-accordion-up text-[15px] overflow-hidden'
                 render={<motion.div />}
-            />
+            >
+                <div className={panel({
+                    className: className as ClassValue,
+                })}>
+                    {children}
+                </div>
+            </BaseAccordion.Panel>
         </AnimatePresence>
     );
 };
 
-AccordionPanel.displayName = 'AccordionPanel';
+AccordionContent.displayName = 'AccordionPanel';
 
 export {
     Accordion,
     AccordionItem,
     AccordionTrigger,
-    AccordionPanel,
+    AccordionContent,
 };

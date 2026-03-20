@@ -19,15 +19,13 @@ export function useElementSize<T extends HTMLElement>() {
     });
 
     const handleResize: ResizeObserverCallback = useCallback(
-        ([entry], observer) => {
+        ([entry]) => {
             const { width, height } = entry?.contentRect ?? {};
 
             setSize({
                 width: width ?? 0,
                 height: height ?? 0,
             });
-
-            // observer.disconnect();
         },
         [],
     );

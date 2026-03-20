@@ -4,5 +4,23 @@
         "shortName": "Yimall",
         "description": "Yimall est un fournisseur de premier plan de solutions numériques, offrant des services innovants pour aider les entreprises à prospérer à l'ère numérique.",
         "keywords": "Yimall, solutions numériques, services aux entreprises, innovation, technologie"
+    },
+    "NoScript": "Pour une expérience complète, veuillez activer JavaScript.",
+    "Header": {
+        "title": "yimall.co"
+    },
+    "Intro": {
+        "brand": "yimall.co",
+        "slogan": "L'art de,la digitalisation,l'innovation,la création"
+    },
+    "Marketing": {
+        "greeting": "👋 Bonjour le monde!",
+        "title": "Nous sommes au sommet de la transformation numérique",
+        "subtitle": "Innovation & Création",
+        "marquee": "Soyez numérique ✦ soyez innovant ✦ soyez partie de yimall ✦",
+        "actions": {
+            "demo": "Voir la démonstration",
+            "contact": "Contactez-nous"
+        }
     }
 }

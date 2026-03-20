@@ -18,8 +18,8 @@ type UseScroll = Readonly<{
 export function useScroll(): UseScroll {
     'use memo'
     const [scroll, setScroll] = useState<Scroll>({
-        x: 0,
-        y: 0,
+        x: window.scrollX,
+        y: window.scrollY,
     });
     const [moving, setMoving,] = useState<boolean>(false);
     const [lastScrollY, setLastScrollY] = useState<number>(0);
@@ -27,12 +27,13 @@ export function useScroll(): UseScroll {
     const handleScroll: (event: Event) => void = useCallback(
         () => {
             const currentScrollY = window.scrollY;
+            const currentScrollX = window.scrollX;
             if (currentScrollY > lastScrollY && currentScrollY > 35) setMoving(true);
             else setMoving(false);
 
             setScroll({
-                x: window.scrollX,
-                y: window.scrollY,
+                x: currentScrollX,
+                y: currentScrollY,
             });
             setLastScrollY(currentScrollY);
         },

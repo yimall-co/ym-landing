@@ -12,11 +12,16 @@ import {
     Geist_Mono,
     Nunito_Sans,
 } from 'next/font/google';
+import { notFound } from 'next/navigation';
 import { ThemeProvider } from 'next-themes';
 import { getTranslations } from 'next-intl/server';
-import { NextIntlClientProvider } from 'next-intl';
+import { hasLocale, NextIntlClientProvider } from 'next-intl';
+
+import { routing } from 'lib/i18n';
 
 import { cn } from '@yimall/ui';
+
+import BaseLayout from 'layouts/base';
 
 const geistSans = Geist({
     variable: '--font-geist-sans',
@@ -107,6 +112,11 @@ export default async function RootLayout(props: LayoutProps) {
 
     const locale = (await params).locale;
 
+    const supportsLocale = hasLocale(routing.locales, locale);
+    if (!supportsLocale) return notFound();
+
+    const t = await getTranslations();
+
     return (
         <html
             lang={locale}
@@ -129,13 +139,15 @@ export default async function RootLayout(props: LayoutProps) {
                     'relative',
                 )}
             >
+                <noscript>{t('NoScript')}</noscript>
                 <NextIntlClientProvider>
                     <ThemeProvider
-                        // enableSystem
-                        defaultTheme='dark'
+                        enableSystem
                         attribute='class'
                     >
-                        {children}
+                        <BaseLayout>
+                            {children}
+                        </BaseLayout>
                     </ThemeProvider>
                 </NextIntlClientProvider>
             </body>

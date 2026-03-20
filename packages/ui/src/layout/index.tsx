@@ -76,8 +76,14 @@ const layout = tv({
             },
         },
         scrolling: {
-            true: { header: '-translate-y-full' },
-            false: { header: 'translate-y-0' }
+            true: {
+                header: [
+                    '-translate-y-full',
+                ],
+            },
+            false: {
+                header: 'translate-y-0',
+            },
         },
     },
     defaultVariants: {},

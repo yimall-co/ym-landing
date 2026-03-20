@@ -61,6 +61,7 @@
         "motion": "catalog:",
         "gsap": "catalog:",
         "vaul": "catalog:",
+        "lucide-react": "catalog:",
         "tailwind-merge": "catalog:",
         "tailwind-variants": "catalog:",
         "@base-ui/react": "catalog:",

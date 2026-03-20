@@ -7,14 +7,39 @@
             }
         ],
         "paths": {
-            "lib/*": ["./src/lib/*"],
-            "env/*": ["./src/env/*"],
-            "app/*": ["./src/app/*"],
-            "messages/*": ["./messages/*"],
-            "components/*": ["./src/components/*"],
-            "layouts/*": ["./src/components/layouts/*"],
-            "pages/*": ["./src/components/pages/*"],
-            "shared/*": ["./src/shared/*"],
+            "lib/*": [
+                "./src/lib/*"
+            ],
+            "env/*": [
+                "./src/env/*"
+            ],
+            "app/*": [
+                "./src/app/*"
+            ],
+            "assets/*": [
+                "./src/assets/*"
+            ],
+            "messages/*": [
+                "./messages/*"
+            ],
+            "components/*": [
+                "./src/components/*"
+            ],
+            "ui/*": [
+                "./src/components/ui/*"
+            ],
+            "layouts/*": [
+                "./src/components/layouts/*"
+            ],
+            "features/*": [
+                "./src/components/features/*"
+            ],
+            "pages/*": [
+                "./src/components/pages/*"
+            ],
+            "shared/*": [
+                "./src/shared/*"
+            ],
         }
     },
     "include": [

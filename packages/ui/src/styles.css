@@ -1,5 +1,9 @@
 @import 'tailwindcss';
+@import '@yimall/tailwind-config';
 
 @theme {
-    --color-primary: #1d4ed8;
+    /* --color-primary: #402D63;
+    --color-secondary: #1C0832;
+    --color-light: #F5F1EB;
+    --color-dark: #121212; */
 }

@@ -1,3 +1,4 @@
+export * from './accordion';
 export * from './text';
 export * from './layout';
 export * from './webgl';
@@ -10,5 +11,6 @@ export * from './button';
 export * from './curved-loop';
 export * from './drawer';
 export * from './dock';
+export * from './logo-loop';
 
 export { cn } from 'tailwind-variants';

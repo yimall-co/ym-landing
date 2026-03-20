@@ -4,5 +4,23 @@
         "shortName": "Yimall",
         "description": "Yimall is a leading provider of digital solutions, offering innovative services to help businesses thrive in the digital age.",
         "keywords": "Yimall, digital solutions, business services, innovation, technology"
+    },
+    "NoScript": "Para uma experiência completa, por favor habilita JavaScript.",
+    "Header": {
+        "title": "yimall.co"
+    },
+    "Intro": {
+        "brand": "yimall.co",
+        "slogan": "A arte de,a digitalização,a inovação,a criação"
+    },
+    "Marketing": {
+        "greeting": "👋 Olá Mundo!",
+        "title": "Estamos no topo da transformação digital",
+        "subtitle": "Inovação & Criação",
+        "marquee": "Seja digital ✦ seja inovador ✦ seja parte de yimall ✦",
+        "actions": {
+            "demo": "Ver demonstração",
+            "contact": "Contate-nos"
+        }
     }
 }

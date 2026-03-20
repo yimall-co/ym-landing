@@ -2,6 +2,7 @@ import {
     NextRequest,
     ProxyConfig,
     NextResponse,
+    userAgent,
 } from 'next/server';
 
 import createMiddleware from 'next-intl/middleware';
@@ -20,7 +21,13 @@ function getLocaleFromPathname(pathname: string) {
 export async function proxy(request: NextRequest) {
     const { pathname } = request.nextUrl;
 
+    const response = i18nMiddleware(request);
+
     const locale = getLocaleFromPathname(pathname);
+
+    const { device } = userAgent(request);
+
+    response.cookies.set('device-info', JSON.stringify(device));
 
     // Used for show intro page only once.
     const visitedBefore = request.cookies.has('visited');
@@ -30,7 +37,7 @@ export async function proxy(request: NextRequest) {
         );
     }
 
-    return i18nMiddleware(request);
+    return response;
 }
 
 export const config: ProxyConfig = {

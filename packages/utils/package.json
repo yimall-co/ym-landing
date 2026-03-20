@@ -1,3 +1,38 @@
 {
-    "name": "@yimall/utils"
+    "name": "@yimall/utils",
+    "version": "0.1.0",
+    "private": true,
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "module": "./dist/index.mjs",
+    "files": [
+        "dist"
+    ],
+    "exports": {
+        ".": {
+            "default": "./src/index.ts",
+            "import": {
+                "types": "./dist/index.d.mts",
+                "default": "./dist/index.mjs"
+            },
+            "require": {
+                "types": "./dist/index.d.ts",
+                "default": "./dist/index.js"
+            }
+        }
+    },
+    "scripts": {
+        "build": "tsc",
+        "dev": "tsc --watch",
+        "type-check": "tsc --noEmit"
+    },
+    "dependencies": {
+        "qrcode": "catalog:"
+    },
+    "devDependencies": {
+        "@yimall/typescript-config": "workspace:*",
+        "@types/qrcode": "catalog:types",
+        "@types/node": "catalog:node-20",
+        "typescript": "catalog:"
+    }
 }

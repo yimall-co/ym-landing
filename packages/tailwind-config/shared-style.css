@@ -7,7 +7,7 @@
     --color-light-100: #ffffff;
     --color-light-200: #f0f0f0;
     --color-light-300: #eceff4;
-    --color-light-400: #F2F0EF;
+    --color-light-400: #F5F1EB;
     --color-light-500: #e5e9f0;
     --color-light-600: #d8dee9;
     --color-light-700: #c3cfe2;
@@ -25,7 +25,11 @@
 
     --color-dark: var(--color-dark-400);
 
-    --color-primary-400: #1d4ed8;
+    --color-primary-50: #f1f0fd;
+    --color-primary-100: #e5e3fc;
+    --color-primary-200: #d3cdf8;
+    --color-primary-300: #b8aef3;
+    --color-primary-400: #402D63;
     --color-primary-500: #1d4ed8;
     --color-primary-600: #2559eb;
     --color-primary-700: #1e3a8a;
@@ -33,6 +37,10 @@
     --color-primary-900: #93affd;
 
     --color-primary: var(--color-primary-400);
+
+    --color-secondary-400: #1C0832;
+
+    --color-secondary: var(--color-secondary-400);
 
     --color-instagram: radial-gradient(circle at 30% 107%,
             #fdf497 0%,

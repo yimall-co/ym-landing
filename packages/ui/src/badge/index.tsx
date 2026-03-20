@@ -26,7 +26,7 @@ const badge = tv({
         },
         color: {
             default: 'bg-[var(--background)]',
-            primary: 'bg-primary',
+            primary: 'text-primary bg-[var(--color-primary-400)]/5 border border-(--color-primary)',
         },
         variant: {
             bubble: 'rounded-[35px_25px_35px_25px]',

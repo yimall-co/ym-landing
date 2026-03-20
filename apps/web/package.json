@@ -13,6 +13,7 @@
         "@next/env": "catalog:next-16",
         "@tailwindcss/postcss": "catalog:",
         "@t3-oss/env-nextjs": "catalog:",
+        "motion": "catalog:",
         "next": "catalog:next-16",
         "next-intl": "catalog:next-16",
         "next-themes": "catalog:next-16",
@@ -21,7 +22,8 @@
         "zod": "catalog:",
         "date-fns": "catalog:",
         "tailwindcss": "catalog:",
-        "postcss": "catalog:"
+        "postcss": "catalog:",
+        "cookies-next": "catalog:"
     },
     "devDependencies": {
         "@yimall/ui": "workspace:*",
