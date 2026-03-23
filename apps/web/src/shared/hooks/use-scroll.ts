@@ -18,8 +18,8 @@ type UseScroll = Readonly<{
 export function useScroll(): UseScroll {
     'use memo'
     const [scroll, setScroll] = useState<Scroll>({
-        x: window.scrollX,
-        y: window.scrollY,
+        x: typeof window !== 'undefined' ? window.scrollX : 0,
+        y: typeof window !== 'undefined' ? window.scrollY : 0,
     });
     const [moving, setMoving,] = useState<boolean>(false);
     const [lastScrollY, setLastScrollY] = useState<number>(0);
@@ -41,6 +41,8 @@ export function useScroll(): UseScroll {
     );
 
     useEffect(() => {
+        if (typeof window === 'undefined') return;
+
         window.addEventListener('scroll', handleScroll);
 
         return () => {

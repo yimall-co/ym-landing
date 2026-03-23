@@ -5,6 +5,20 @@
         "description": "Crea un catálogo digital profesional para tu negocio. Muestra productos o servicios, comparte un solo enlace y actualiza tu menú fácilmente con Yimall. Ideal para restaurantes, emprendimientos y negocios de servicios que necesitan mostrar su oferta de forma clara, moderna y fácil de compartir.",
         "keywords": "Yimall, catálogo digital, menú digital, productos, servicios, negocio"
     },
+    "common": {
+        "back": "Volver",
+        "next": "Siguiente",
+        "continue": "Continuar",
+        "complete": "Completar"
+    },
+    "errors": {
+        "required": "Es necesario rellenar este campo.",
+        "mustBeAlphanumeric": "Solo se permiten letras, números y espacios",
+        "mustBeComplex": "Debe tener al menos {minLength} caracteres, una mayúscula, una minúscula y un número",
+        "mustBeAnEmail": "El correo electrónico no es válido",
+        "mustBeAtLeastMinLength": "Debe tener al menos {minLength} caracteres",
+        "mustBeAtMostMaxLength": "Debe tener como máximo {maxLength} caracteres"
+    },
     "NoScript": "Para una experiencia completa, por favor habilita JavaScript.",
     "Header": {
         "title": "yimall.co"
@@ -21,6 +35,37 @@
         "actions": {
             "demo": "Ver demostración",
             "contact": "Contáctanos"
+        }
+    },
+    "SignUp": {
+        "name": {
+            "title": "Empecemos...",
+            "subtitle": "¿Cómo te llamas?",
+            "description": "Este es el nombre con el que serás conocido dentro de Yimall.",
+            "label": "Nombre completo",
+            "placeholder": "ej. Juan Pérez"
+        },
+        "email": {
+            "title": "Continuemos...",
+            "subtitle": "Configuremos las credenciales de acceso.",
+            "description": "El correo electrónico y la contraseña son útiles para iniciar sesión en tu cuenta y recibir notificaciones.",
+            "label": "Correo electrónico",
+            "placeholder": "ej. juan.perez@mail.com"
+        },
+        "password": {
+            "label": "Contraseña",
+            "placeholder": "ej. *********"
+        },
+        "terms": {
+            "title": "Casi listo.",
+            "subtitle": "Términos y condiciones.",
+            "description": "Por favor, lee detenidamente y acepta los términos y condiciones de nuestro servicio.",
+            "label": "Términos y condiciones",
+            "labelDescription": "He leído y acepto los términos y condiciones de nuestro servicio."
+        },
+        "newsLetter": {
+            "label": "Noticias y actualizaciones",
+            "labelDescription": "Quiero recibir noticias y actualizaciones sobre Yimall."
         }
     }
 }

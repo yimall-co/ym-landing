@@ -1,7 +1,5 @@
 'use client'
 
-import type { FC } from 'react';
-
 import {
     useRef,
     useEffect,
@@ -36,7 +34,7 @@ type Props = Readonly<{
     rippleSpeed?: number;
 }>;
 
-export const Cubes: FC<Props> = ({
+export function Cubes({
     gridSize = 10,
     cubeSize,
     maxAngle = 45,
@@ -51,7 +49,7 @@ export const Cubes: FC<Props> = ({
     rippleOnClick = true,
     rippleColor = '#fff',
     rippleSpeed = 2
-}) => {
+}: Props) {
     const sceneRef = useRef<HTMLDivElement | null>(null);
     const rafRef = useRef<number | null>(null);
     const idleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);

@@ -73,6 +73,7 @@ const layout = tv({
             relative: {
                 header: 'relative',
                 wrapper: 'relative',
+                section: 'relative',
             },
         },
         scrolling: {
@@ -160,7 +161,7 @@ const SECTION_ANIMATION: MotionNodeAnimationOptions = {
     },
 } as const;
 
-const Section: FC<SectionProps> = ({ className, ...props }) => {
+const Section: FC<SectionProps> = ({ className, position, ...props }) => {
     'use memo'
     const { section } = layout();
 
@@ -171,6 +172,7 @@ const Section: FC<SectionProps> = ({ className, ...props }) => {
             data-slot='layout-section'
             className={section({
                 className,
+                position,
             })}
         />
     );

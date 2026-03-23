@@ -39,7 +39,7 @@ const Intro: FC<Props> = () => {
     const [slogan, ...complements] = t('slogan').split(',');
 
     return (
-        <Section className='h-dvh relative overflow-hidden'>
+        <Section className='h-dvh overflow-hidden' position='relative'>
             <div className='size-full absolute top-0 left-0 -z-10'>
                 <Cubes
                     easing='bounce.in'

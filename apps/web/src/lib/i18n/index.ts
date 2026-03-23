@@ -11,6 +11,18 @@ import {
 const routing = defineRouting({
     locales: locales,
     defaultLocale: fallbackLocale,
+    pathnames: {
+        '/': '/',
+        '/sign-up': {
+            es: '/registrarse',
+        },
+        '/sign-in': {
+            es: '/iniciar-sesion',
+        },
+        '/intro': {
+            es: '/introduccion',
+        },
+    },
 });
 
 const {

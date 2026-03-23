@@ -11,10 +11,8 @@ type Props = Readonly<{
     children: ReactNode;
 }>;
 
-export default function MarketingLayout(props: Props) {
+export default function MarketingLayout({ children }: Props) {
     'use memo'
-    const { children } = props;
-
     const {
         theme,
         setTheme,

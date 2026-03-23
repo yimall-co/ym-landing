@@ -1,6 +1,6 @@
 'use client';
 
-import type { FC, ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
 import type { VariantProps } from 'tailwind-variants';
 
 import { tv } from 'tailwind-variants';
@@ -80,9 +80,9 @@ type DrawerVariants = VariantProps<typeof drawer>;
 
 type DrawerProps = DrawerVariants & ComponentProps<typeof BaseDrawer.Root>;
 
-const Drawer: FC<DrawerProps> = ({
+function Drawer({
     ...props
-}) => {
+}: DrawerProps) {
     'use memo'
 
     return (
@@ -95,11 +95,11 @@ const Drawer: FC<DrawerProps> = ({
 
 type DrawerTriggerProps = DrawerVariants & ComponentProps<typeof BaseDrawer.Trigger>;
 
-const DrawerTrigger: FC<DrawerTriggerProps> = ({
+function DrawerTrigger({
     className,
     selected,
     ...props
-}) => {
+}: DrawerTriggerProps) {
     'use memo'
     const { trigger } = drawer({
         selected,
@@ -118,9 +118,9 @@ const DrawerTrigger: FC<DrawerTriggerProps> = ({
 
 type DrawerPortalProps = DrawerVariants & ComponentProps<typeof BaseDrawer.Portal>;
 
-const DrawerPortal: FC<DrawerPortalProps> = ({
+function DrawerPortal({
     ...props
-}) => {
+}: DrawerPortalProps) {
     'use memo'
 
     return (
@@ -133,9 +133,9 @@ const DrawerPortal: FC<DrawerPortalProps> = ({
 
 type DrawerCloseProps = DrawerVariants & ComponentProps<typeof BaseDrawer.Close>;
 
-const DrawerClose: FC<DrawerCloseProps> = ({
+function DrawerClose({
     ...props
-}) => {
+}: DrawerCloseProps) {
     'use memo'
 
     return (
@@ -148,10 +148,10 @@ const DrawerClose: FC<DrawerCloseProps> = ({
 
 type DrawerOverlayProps = DrawerVariants & ComponentProps<typeof BaseDrawer.Overlay>;
 
-const DrawerOverlay: FC<DrawerOverlayProps> = ({
+function DrawerOverlay({
     className,
     ...props
-}) => {
+}: DrawerOverlayProps) {
     'use memo'
     const { overlay } = drawer();
 
@@ -168,11 +168,11 @@ const DrawerOverlay: FC<DrawerOverlayProps> = ({
 
 type DrawerContentProps = DrawerVariants & ComponentProps<typeof BaseDrawer.Content>;
 
-const DrawerContent: FC<DrawerContentProps> = ({
+function DrawerContent({
     className,
     children,
     ...props
-}) => {
+}: DrawerContentProps) {
     'use memo'
     const {
         content,
@@ -201,10 +201,10 @@ const DrawerContent: FC<DrawerContentProps> = ({
 
 type DrawerHeaderProps = DrawerVariants & ComponentProps<typeof motion.div>;
 
-const DrawerHeader: FC<DrawerHeaderProps> = ({
+function DrawerHeader({
     className,
     ...props
-}) => {
+}: DrawerHeaderProps) {
     'use memo'
     const { header } = drawer();
 
@@ -221,10 +221,10 @@ const DrawerHeader: FC<DrawerHeaderProps> = ({
 
 type DrawerFooterProps = DrawerVariants & ComponentProps<typeof motion.div>;
 
-const DrawerFooter: FC<DrawerFooterProps> = ({
+function DrawerFooter({
     className,
     ...props
-}) => {
+}: DrawerFooterProps) {
     'use memo'
     const { footer } = drawer();
 
@@ -241,10 +241,10 @@ const DrawerFooter: FC<DrawerFooterProps> = ({
 
 type DrawerTitleProps = DrawerVariants & ComponentProps<typeof BaseDrawer.Title>;
 
-const DrawerTitle: FC<DrawerTitleProps> = ({
+function DrawerTitle({
     className,
     ...props
-}) => {
+}: DrawerTitleProps) {
     'use memo'
     const { title } = drawer();
 
@@ -261,10 +261,10 @@ const DrawerTitle: FC<DrawerTitleProps> = ({
 
 type DrawerDescriptionProps = DrawerVariants & ComponentProps<typeof BaseDrawer.Description>;
 
-const DrawerDescription: FC<DrawerDescriptionProps> = ({
+function DrawerDescription({
     className,
     ...props
-}) => {
+}: DrawerDescriptionProps) {
     'use memo'
     const { description } = drawer();
 

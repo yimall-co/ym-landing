@@ -5,6 +5,20 @@
         "description": "Create a professional digital catalog for your business. Showcase products or services, share a single link, and update your menu easily with Yimall. Ideal for restaurants, startups and service businesses that need to showcase their offer in a clear, modern and easy-to-share way.",
         "keywords": "Yimall, digital catalog, digital menu, products, services, business"
     },
+    "common": {
+        "back": "Back",
+        "next": "Next",
+        "continue": "Continue",
+        "complete": "Complete"
+    },
+    "errors": {
+        "required": "This field is required.",
+        "mustBeAlphanumeric": "Only letters, numbers and spaces are allowed.",
+        "mustBeComplex": "",
+        "mustBeAnEmail": "The email address is not valid.",
+        "mustBeAtLeastMinLength": "It must have at least {minLength} characters.",
+        "mustBeAtMostMaxLength": "It must have at most {maxLength} characters."
+    },
     "NoScript": "For a complete experience, please enable JavaScript.",
     "Header": {
         "title": "yimall.co"
@@ -21,6 +35,37 @@
         "actions": {
             "demo": "Show demo",
             "contact": "Contact us"
+        }
+    },
+    "SignUp": {
+        "name": {
+            "title": "Let's start.",
+            "subtitle": "What's your name?",
+            "description": "This is the name you'll be known by within Yimall.",
+            "label": "Full name",
+            "placeholder": "e.g. John Doe"
+        },
+        "email": {
+            "title": "Let's continue.",
+            "subtitle": "Set up access credentials.",
+            "description": "Email and password are useful to log in your account and receive notifications.",
+            "label": "Email address",
+            "placeholder": "e.g. john.doe@mail.com"
+        },
+        "password": {
+            "label": "Password",
+            "placeholder": "e.g. *********"
+        },
+        "terms": {
+            "title": "Almost done.",
+            "subtitle": "Terms and conditions.",
+            "description": "Please read and accept the terms and conditions.",
+            "label": "Terms and conditions",
+            "labelDescription": "I have read and accept the terms and conditions of our service."
+        },
+        "newsLetter": {
+            "label": "News and updates",
+            "labelDescription": "I want to receive news and updates about Yimall."
         }
     }
 }

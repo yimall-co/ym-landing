@@ -6,6 +6,7 @@ const isProd = process.env.NODE_ENV === 'production';
 
 const nextConfig: NextConfig = {
     output: 'standalone',
+    // output: 'export',
     devIndicators: false,
     // cacheComponents: true,
     experimental: {

@@ -12,5 +12,11 @@ export * from './curved-loop';
 export * from './drawer';
 export * from './dock';
 export * from './logo-loop';
+export * from './stepper';
+export * from './input';
+export * from './label';
+export * from './field';
+export * from './separator';
+export * from './checkbox';
 
 export { cn } from 'tailwind-variants';

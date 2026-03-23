@@ -1,10 +1,9 @@
 'use client'
 
-import type { FC, ComponentProps } from 'react';
 import type { VariantProps } from 'tailwind-variants';
 
 import { tv } from 'tailwind-variants';
-import { motion } from 'motion/react';
+import { mergeProps, useRender } from '@base-ui/react';
 
 const badge = tv({
     base: [
@@ -35,6 +34,37 @@ const badge = tv({
             destructive: 'border-transparent bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
             outline: 'text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground',
         },
+        size: {
+            sm: [
+                'h-5',
+                'gap-1',
+                'rounded-4xl',
+                'border border-transparent',
+                'px-2',
+                'py-0.5',
+                'text-xs',
+                'font-medium',
+                'transition-all',
+                'has-data-[icon=inline-end]:pr-1.5',
+                'has-data-[icon=inline-start]:pl-1.5',
+                '[&>svg]:size-3!',
+                'group/badge',
+                'inline-flex',
+                'w-fit',
+                'shrink-0',
+                'items-center',
+                'justify-center',
+                'overflow-hidden',
+                'whitespace-nowrap',
+                'focus-visible:border-ring',
+                'focus-visible:ring-[3px]',
+                'focus-visible:ring-ring/50',
+                'aria-invalid:border-destructive',
+                'aria-invalid:ring-destructive/20',
+                'dark:aria-invalid:ring-destructive/40',
+                '[&>svg]:pointer-events-none',
+            ],
+        }
     },
     defaultVariants: {
         variant: 'default',
@@ -44,31 +74,40 @@ const badge = tv({
 
 type BadgeVariants = VariantProps<typeof badge>;
 
-type BadgeProps = BadgeVariants & ComponentProps<typeof motion.div>;
+type BadgeProps = BadgeVariants & useRender.ComponentProps<'span'>;
 
-const Badge: FC<BadgeProps> = ({
+export function Badge({
     className,
     color,
+    size,
     variant = 'default',
     position = 'default',
+    render,
     ...props
-}) => {
+}: BadgeProps) {
     'use memo'
 
-    return (
-        <motion.div
-            {...props}
-            data-slot='badge'
-            className={badge({
-                color,
-                variant,
-                position,
-                className,
-            })}
-        />
-    );
+    return useRender({
+        defaultTagName: 'span',
+        props: mergeProps<'span'>(
+            {
+                className: badge({
+                    variant,
+                    position,
+                    color,
+                    size,
+                    className,
+                }),
+            },
+            props,
+        ),
+        render,
+        state: {
+            slot: 'badge',
+            variant,
+            color,
+            size,
+            position,
+        }
+    });
 }
-
-Badge.displayName = 'Badge';
-
-export { Badge };

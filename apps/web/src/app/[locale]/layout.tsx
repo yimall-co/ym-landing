@@ -4,6 +4,8 @@ import '@yimall/ui/styles.css';
 import type { ReactNode } from 'react';
 import type { Viewport, Metadata } from 'next';
 
+import Script from 'next/script';
+
 import {
     Anta,
     Geist,
@@ -11,6 +13,7 @@ import {
     Raleway,
     Geist_Mono,
     Nunito_Sans,
+    Montserrat,
 } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { ThemeProvider } from 'next-themes';
@@ -18,6 +21,7 @@ import { getTranslations } from 'next-intl/server';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 
 import { routing } from 'lib/i18n';
+import { clientEnv } from 'env/client';
 
 import { cn } from '@yimall/ui';
 
@@ -60,6 +64,13 @@ const anta = Anta({
     display: 'swap',
     weight: ['400'],
 });
+
+const monstserrat = Montserrat({
+    variable: '--font-monstserrat',
+    subsets: ['latin'],
+    display: 'swap',
+    weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900',],
+})
 
 type Props = Readonly<{
     params: Promise<{ locale: string }>;
@@ -104,6 +115,9 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
             template: `% | ${t('shortName')}`,
         },
         description: t('description'),
+        other: {
+            'google-site-verification': clientEnv.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION!,
+        },
     };
 };
 
@@ -134,6 +148,7 @@ export default async function RootLayout(props: LayoutProps) {
                     raleway.variable,
                     nunito.variable,
                     anta.variable,
+                    monstserrat.variable,
                     'antialiased',
                     'isolate',
                     'relative',
@@ -150,6 +165,12 @@ export default async function RootLayout(props: LayoutProps) {
                         </BaseLayout>
                     </ThemeProvider>
                 </NextIntlClientProvider>
+                <Script
+                    async
+                    defer
+                    strategy='beforeInteractive'
+                    src={`https://www.google.com/recaptcha/enterprise.js?hl=${locale}`}
+                />
             </body>
         </html>
     );

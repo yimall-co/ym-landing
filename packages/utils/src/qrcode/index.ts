@@ -13,7 +13,6 @@ export async function generateQRCode(text: string): Promise<true | null> {
 
         return true
     } catch (error) {
-        console.error(error);
         return null;
     }
 }

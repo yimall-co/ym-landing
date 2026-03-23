@@ -6,8 +6,8 @@ type LayoutProps = Readonly<{
     children: ReactNode;
 }>;
 
-export default async function Layout(props: LayoutProps) {
-    const { children } = props;
+export default async function Layout({ children }: LayoutProps) {
+    'use memo'
 
     return (
         <MarketingLayout>

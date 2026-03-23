@@ -26,7 +26,7 @@ const text = tv({
     slots: {
         root: cn('text-base font-normal m-0 p-0 text-inherit'),
         heading: cn('block font-secondary font-bold'),
-        paragraph: cn('block text-normal truncate'),
+        paragraph: cn('block truncate'),
         iconLabel: cn('grid grid-cols-[auto_1fr] items-center gap-x-2 ml-0'),
         label: '',
     },
@@ -60,7 +60,7 @@ const text = tv({
         color: {
             normal: {
                 heading: 'text-dark-600 dark:text-light-400',
-                paragraph: 'text-dark-600 dark:text-light-400',
+                // paragraph: 'text-dark-600 dark:text-light-400',
             },
             primary: {
                 heading: 'text-[var(--mui-palette-primary-main)]',
@@ -141,7 +141,6 @@ const Heading: FC<HeadingProps> = ({
             {...TEXT_ANIMATION}
             {...props}
             role='heading'
-            aria-label={props.children?.toString()}
             data-slot={`text-heading-${level}`}
             className={heading({
                 level,
