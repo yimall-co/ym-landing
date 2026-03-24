@@ -365,8 +365,8 @@ export function Stepper({
                                     })
                                 ) : (
                                     <Button
-                                        variant='link'
                                         size='lg'
+                                        variant='link'
                                         onClick={handleBack}
                                         className={cn(`duration-350 rounded px-2 py-1 transition`, currentStep === 1
                                             ? 'pointer-events-none opacity-50 text-neutral-400'
@@ -385,6 +385,7 @@ export function Stepper({
                                 })
                             ) : !isLastStep ? (
                                 <Button
+                                    shape='pill'
                                     size='xl'
                                     onClick={handleNext}
                                     {...nextButtonProps}
@@ -393,6 +394,7 @@ export function Stepper({
                                 </Button>
                             ) : (
                                 <Button
+                                    shape='pill'
                                     size='xl'
                                     onClick={handleComplete}
                                     {...completeButtonProps}

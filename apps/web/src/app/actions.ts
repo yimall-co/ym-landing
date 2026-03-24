@@ -21,3 +21,21 @@ export async function visited(): Promise<void> {
 
     redirect('/');
 }
+
+export async function setSession(payload: string, expiresAt: number) {
+    'use server'
+    const cookieStore = await cookies();
+
+    const currentSession = cookieStore.get('session');
+    if (currentSession?.value) {
+        cookieStore.delete('session');
+    }
+
+    cookieStore.set('session', payload, {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'strict',
+        path: '/',
+        expires: expiresAt,
+    });
+}

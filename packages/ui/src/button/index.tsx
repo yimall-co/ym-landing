@@ -38,6 +38,9 @@ const buttonVariants = tv({
         'select-none',
     ],
     variants: {
+        block: {
+            true: 'w-full',
+        },
         shape: {
             square: 'rounded-none',
             rounded: 'rounded-xl',
@@ -87,13 +90,13 @@ type ButtonVariants = VariantProps<typeof buttonVariants>;
 
 type Props = ButtonVariants & BaseButton.Props;
 
-const Button: FC<Props> = ({
+export function Button({
     className,
     shape = 'rounded',
     variant = "default",
     size = "default",
     ...props
-}) => {
+}: Props) {
     return (
         <BaseButton
             {...props}
@@ -108,5 +111,3 @@ const Button: FC<Props> = ({
         />
     );
 }
-
-export { Button }

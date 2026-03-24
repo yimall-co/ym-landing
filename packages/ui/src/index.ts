@@ -17,6 +17,7 @@ export * from './input';
 export * from './label';
 export * from './field';
 export * from './separator';
+export * from './spinner';
 export * from './checkbox';
 
 export { cn } from 'tailwind-variants';

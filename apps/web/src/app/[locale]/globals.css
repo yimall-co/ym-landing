@@ -13,6 +13,10 @@
 
     --shadow-outer-light: 0 2px 2px rgba(0, 0, 0, 0.15);
     --shadow-inner-light: inset 0 2px 2px rgba(255, 255, 255, 0.1);
+
+    --popover: var(--background);
+    --popover-foreground: var(--foreground);
+    --radius: 8.5px;
 }
 
 .dark {

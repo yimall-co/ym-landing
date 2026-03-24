@@ -11,7 +11,7 @@ import {
 
 import StepName from 'features/sign-up/step-name';
 import StepEmail from 'features/sign-up/step-email';
-import StepTerms from 'components/features/sign-up/step-terms';
+import StepTerms from 'features/sign-up/step-terms';
 
 type Props = SignUpProps
 

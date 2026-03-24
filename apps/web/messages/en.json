@@ -67,5 +67,25 @@
             "label": "News and updates",
             "labelDescription": "I want to receive news and updates about Yimall."
         }
+    },
+    "SignIn": {
+        "title": "Welcome back",
+        "description": "Sign in to your account to continue.",
+        "email": {
+            "label": "Email address",
+            "placeholder": "e.g. john.doe@mail.com"
+        },
+        "password": {
+            "label": "Password",
+            "placeholder": "e.g. *********"
+        },
+        "rememberMe": {
+            "label": "Remember me",
+            "labelDescription": "Keep me signed in"
+        },
+        "forgotPassword": "Forgot password?",
+        "alreadyHaveAccount": "Don't have an account?",
+        "signUp": "Sign up",
+        "submit": "Sign in"
     }
 }

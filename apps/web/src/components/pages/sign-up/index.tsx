@@ -2,16 +2,22 @@
 
 import type { SignUpSchema } from 'features/sign-up/schema';
 
-import { Fragment, useEffect, useState } from 'react';
+import {
+    Fragment,
+    useCallback,
+    useEffect,
+    useState,
+} from 'react';
+import { toast } from 'sonner';
 import { useTranslations } from 'next-intl';
-import { createFormControl, useFormState, useWatch } from 'react-hook-form';
+import { createFormControl, useFormState } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { clientEnv } from 'env/client';
 
-import { useLocalStorage } from 'shared/hooks';
-import { DeviceDetector } from 'components/device-detector';
 import { signUpSchema } from 'features/sign-up/schema';
+import { useSignUp } from 'features/sign-up/hooks';
+import { DeviceDetector } from 'components/device-detector';
 
 import SignUpMobile from './mobile';
 import SignUpDesktop from './desktop';
@@ -38,6 +44,8 @@ export default function SignUp({
     // const [currentStep, setCurrentStep] = useLocalStorage<number>('sign-up-current-step', 1);
     const [currentStep, setCurrentStep] = useState<number>(1);
 
+    const signUpMutation = useSignUp();
+
     const formControl = createFormControl<SignUpSchema>({
         resolver: zodResolver(signUpSchema),
         mode: 'all',
@@ -46,7 +54,7 @@ export default function SignUp({
             name: '',
             email: '',
             password: '',
-            image: undefined,
+            image: 'https://ssfdpagynvyveoschegx.supabase.co/storage/v1/object/public/assets/collamiy/collamiy.webp',
             termsAndConditions: false,
             newsLetter: undefined,
         },
@@ -56,28 +64,48 @@ export default function SignUp({
         control: formControl.control,
     });
 
-    const values = useWatch({
-        control: formControl.control,
-    });
-
     const handleStepChange = (step: number) => {
         setCurrentStep(step);
     }
 
-    const handleFinalStepCompleted = () => {
-        const isValid = formState.isValid;
-        const values = formControl.getValues();
+    const handleFinalStepCompleted = useCallback(
+        async () => {
+            const isValid = formState.isValid;
+            const values = formControl.getValues();
 
-        console.log('Final step completed');
-    }
+            if (!isValid) {
+                toast.error('Please fill all fields');
+                return;
+            }
 
-    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
-        event.preventDefault();
+            const onSuccess = (data: any) => {
+                console.log(data);
+                return 'Sign up successfully';
+            }
 
-        // TODO: save progress here.
-    }
+            const onError = (error: Error) => {
+                return error.message;
+            }
+
+            toast.promise(
+                signUpMutation.mutateAsync(values),
+                {
+                    loading: 'Signing up...',
+                    success: onSuccess,
+                    error: onError,
+                },
+            );
+        },
+        [formControl, formState, toast, signUpMutation],
+    );
 
     useEffect(() => {
+        const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+            event.preventDefault();
+
+            // TODO: save progress here.
+        };
+
         window.addEventListener('beforeunload', handleBeforeUnload);
 
         return () => {

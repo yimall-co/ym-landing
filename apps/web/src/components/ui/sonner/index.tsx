@@ -1,6 +1,6 @@
 'use client'
 
-import type { ToasterProps } from 'sonner';
+import type { ToasterProps as BaseToasterProps } from 'sonner';
 
 import { useTheme } from 'next-themes'
 import { Toaster as BaseToaster } from 'sonner'
@@ -12,6 +12,8 @@ import {
     Loader2Icon
 } from 'lucide-react'
 
+type ToasterProps = BaseToasterProps;
+
 export function Toaster({
     ...props
 }: ToasterProps) {
@@ -20,7 +22,7 @@ export function Toaster({
     return (
         <BaseToaster
             theme={theme as ToasterProps["theme"]}
-            className="toaster group"
+            className='toaster group'
             icons={{
                 success: (
                     <CircleCheckIcon className="size-4" />
@@ -48,7 +50,7 @@ export function Toaster({
             }
             toastOptions={{
                 classNames: {
-                    toast: "cn-toast",
+                    toast: "cn-toast z-50",
                 },
             }}
             {...props}

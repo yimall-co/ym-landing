@@ -1,7 +1,5 @@
 'use client'
 
-import type { FC } from 'react';
-
 import {
     useRef,
     useEffect,
@@ -20,7 +18,7 @@ import {
 
 type Props = Readonly<{}>;
 
-const Intro: FC<Props> = () => {
+export default function Intro({ }: Props) {
     'use memo'
     const formRef = useRef<HTMLFormElement | null>(null);
 
@@ -85,5 +83,3 @@ const Intro: FC<Props> = () => {
         </Section>
     );
 }
-
-export default Intro;
