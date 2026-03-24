@@ -2,12 +2,11 @@ import type { ReactNode } from 'react';
 
 import MarketingLayout from 'layouts/marketing';
 
-type LayoutProps = Readonly<{
+type Props = Readonly<{
     children: ReactNode;
 }>;
 
-export default async function Layout({ children }: LayoutProps) {
-    'use memo'
+export default async function Layout({ children }: Props) {
 
     return (
         <MarketingLayout>

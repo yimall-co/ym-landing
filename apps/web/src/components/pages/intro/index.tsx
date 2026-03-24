@@ -6,19 +6,22 @@ import {
 } from 'react';
 import { useTranslations } from 'next-intl';
 
-import { visited } from 'app/actions';
+import { setVisited } from 'app/actions';
 
 import {
     Cubes,
     Section,
-    SplitText,
     RotatingText,
     Paragraph,
 } from '@yimall/ui';
 
-type Props = Readonly<{}>;
+import { Logo } from 'components/ui/logo';
 
-export default function Intro({ }: Props) {
+type Props = Readonly<{
+    locale: string;
+}>;
+
+export default function Intro({ locale }: Props) {
     'use memo'
     const formRef = useRef<HTMLFormElement | null>(null);
 
@@ -49,13 +52,9 @@ export default function Intro({ }: Props) {
             </div>
             <div className='size-full flex flex-col items-center justify-center p-5'>
                 <div className='w-full flex flex-col gap-y-4'>
-                    <SplitText
-                        ease='bounce.out'
-                        delay={100}
-                        duration={0.5}
-                        text={t('brand')}
-                        className='text-6xl font-brand'
-                    />
+                    <div className='h-16 mx-auto'>
+                        <Logo variant='horizontal' />
+                    </div>
                     <div className='flex items-center justify-center gap-x-2 text-center'>
                         <Paragraph level='2'>{slogan}</Paragraph>
                         <RotatingText
@@ -79,7 +78,7 @@ export default function Intro({ }: Props) {
                     </div>
                 </div>
             </div>
-            <form ref={formRef} action={visited} />
+            <form ref={formRef} action={setVisited} />
         </Section>
     );
 }

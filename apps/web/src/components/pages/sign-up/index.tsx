@@ -3,7 +3,6 @@
 import type { SignUpSchema } from 'features/sign-up/schema';
 
 import {
-    Fragment,
     useCallback,
     useEffect,
     useState,
@@ -12,8 +11,6 @@ import { toast } from 'sonner';
 import { useTranslations } from 'next-intl';
 import { createFormControl, useFormState } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-
-import { clientEnv } from 'env/client';
 
 import { signUpSchema } from 'features/sign-up/schema';
 import { useSignUp } from 'features/sign-up/hooks';
@@ -33,6 +30,7 @@ export type SignUpProps = Readonly<{
     currentStep: number;
     onStepChange: (step: number) => void;
     onFinalStepCompleted: () => void;
+    onRecaptcha: (token: string, action: string) => Promise<void>;
 }>;
 
 export default function SignUp({
@@ -41,7 +39,6 @@ export default function SignUp({
     'use memo'
     const t = useTranslations();
 
-    // const [currentStep, setCurrentStep] = useLocalStorage<number>('sign-up-current-step', 1);
     const [currentStep, setCurrentStep] = useState<number>(1);
 
     const signUpMutation = useSignUp();
@@ -68,6 +65,22 @@ export default function SignUp({
         setCurrentStep(step);
     }
 
+    const handleRecaptcha = useCallback(
+        async (token: string, action: string) => {
+            await fetch('/api/recaptcha', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    token,
+                    action,
+                }),
+            });
+        },
+        [],
+    );
+
     const handleFinalStepCompleted = useCallback(
         async () => {
             const isValid = formState.isValid;
@@ -75,35 +88,35 @@ export default function SignUp({
 
             if (!isValid) {
                 toast.error('Please fill all fields');
+
                 return;
             }
 
-            const onSuccess = (data: any) => {
-                console.log(data);
+            const onSuccess = () => {
+                formControl.reset();
+
                 return 'Sign up successfully';
-            }
+            };
 
             const onError = (error: Error) => {
                 return error.message;
-            }
+            };
 
             toast.promise(
                 signUpMutation.mutateAsync(values),
                 {
-                    loading: 'Signing up...',
+                    loading: t('SignUp.loading'),
                     success: onSuccess,
                     error: onError,
                 },
             );
         },
-        [formControl, formState, toast, signUpMutation],
+        [formControl, formState, toast, signUpMutation, t],
     );
 
     useEffect(() => {
         const handleBeforeUnload = (event: BeforeUnloadEvent) => {
             event.preventDefault();
-
-            // TODO: save progress here.
         };
 
         window.addEventListener('beforeunload', handleBeforeUnload);
@@ -120,15 +133,13 @@ export default function SignUp({
         currentStep,
         onStepChange: handleStepChange,
         onFinalStepCompleted: handleFinalStepCompleted,
+        onRecaptcha: handleRecaptcha,
     };
 
     return (
-        <Fragment>
-            <DeviceDetector
-                mobile={<SignUpMobile {...childProps} />}
-                desktop={<SignUpDesktop {...childProps} />}
-            />
-            <div className='g-recaptcha' data-sitekey={clientEnv.NEXT_PUBLIC_RECAPTCHA_SITE_KEY} data-action='signup' />
-        </Fragment>
+        <DeviceDetector
+            mobile={<SignUpMobile {...childProps} />}
+            desktop={<SignUpDesktop {...childProps} />}
+        />
     );
 }

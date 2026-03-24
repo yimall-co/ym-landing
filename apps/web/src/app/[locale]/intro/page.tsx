@@ -7,15 +7,13 @@ type Props = Readonly<{
     params: Promise<{ locale: string; }>;
 }>;
 
-export default async function IntroPage(props: Props) {
-    const { params } = props;
-
+export default async function IntroPage({ params }: Props) {
     const locale = (await params).locale;
 
     const cookieStore = await cookies();
     if (cookieStore.has('visited')) return redirect(`/${locale}`);
 
     return (
-        <Intro />
+        <Intro locale={locale} />
     );
 }

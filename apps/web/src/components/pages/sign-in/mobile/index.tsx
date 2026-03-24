@@ -18,6 +18,8 @@ import {
     Paragraph,
 } from '@yimall/ui';
 
+import { Recaptcha } from 'components/recaptcha';
+
 import { signInSchema } from 'features/sign-in/schema';
 
 type Props = SignInProps;
@@ -32,6 +34,7 @@ export default function SignInMobile({
         isValid,
     },
     onSubmit,
+    onRecaptcha,
 }: Props) {
     'use memo'
 
@@ -133,6 +136,7 @@ export default function SignInMobile({
                         {t('SignIn.forgotPassword')}
                     </Link>
                 </div>
+                <Recaptcha action='signin' onRecaptcha={onRecaptcha} />
                 <Button shape='pill' size='xl' type='submit' disabled={!isValid}>
                     {t('SignIn.submit')}
                 </Button>

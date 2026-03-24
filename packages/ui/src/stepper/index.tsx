@@ -1,17 +1,17 @@
 'use client';
 
+import type { HTMLAttributes, ReactNode, SVGProps } from 'react';
+
 import {
     useState,
     Children,
     useRef,
-    useLayoutEffect,
-    HTMLAttributes,
-    ReactNode,
     Fragment,
-    SVGProps
+    useEffect,
 } from 'react';
-import { motion, AnimatePresence, Variants } from 'motion/react';
 import { cn } from 'tailwind-variants';
+import { motion, AnimatePresence, Variants } from 'motion/react';
+
 import { Button } from '../button';
 
 const stepVariants: Variants = {
@@ -140,10 +140,25 @@ function SlideTransition({
 }: SlideTransitionProps) {
     const containerRef = useRef<HTMLDivElement | null>(null);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         if (containerRef.current) {
             onHeightReady(containerRef.current.offsetHeight);
         }
+
+        // Listening new changes on element size;
+        const resizeObserver = new ResizeObserver((entries) => {
+            for (const entry of entries) {
+                onHeightReady(entry.contentRect.height);
+            }
+        });
+
+        if (containerRef.current) {
+            resizeObserver.observe(containerRef.current);
+        }
+
+        return () => {
+            resizeObserver.disconnect();
+        };
     }, [children, onHeightReady]);
 
     return (
@@ -305,44 +320,74 @@ export function Stepper({
         updateStep(totalSteps + 1);
     };
 
+    useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+            const key = event.key;
+
+            const isBack = key === 'ArrowLeft';
+            const isNext = !isLastStep && (key === 'ArrowRight' || key === 'Enter');
+            const isComplete = isLastStep && key === 'Enter';
+
+            if (isNext) {
+                handleNext();
+            }
+
+            if (isBack) {
+                handleBack();
+            }
+
+            if (isComplete) {
+                handleComplete();
+            }
+        }
+
+        window.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        }
+    }, [isLastStep, handleBack, handleNext, handleComplete])
+
     return (
         <div
-            className='flex min-h-full flex-1 flex-col items-center justify-center p-4'
+            className='flex min-h-full flex-1 flex-col p-4'
             {...rest}
         >
-            <div className={cn(`mx-auto w-full max-w-md rounded-4xl shadow-xl`, stepCircleContainerClassName)}>
-                <div className={cn(`flex w-full items-center p-8`, stepContainerClassName)}>
-                    {stepsArray.map((_, index) => {
-                        const stepNumber = index + 1;
-                        const isNotLastStep = index < totalSteps - 1;
+            <div className={cn(`mx-auto w-full max-w-md`, stepCircleContainerClassName)}>
+                {!hideStepIndicator && (
+                    <div className={cn(`flex w-full items-center p-8`, stepContainerClassName)}>
+                        {stepsArray.map((_, index) => {
+                            const stepNumber = index + 1;
+                            const isNotLastStep = index < totalSteps - 1;
 
-                        return (
-                            <Fragment key={stepNumber}>
-                                {renderStepIndicator && !hideStepIndicator ? (
-                                    renderStepIndicator({
-                                        step: stepNumber,
-                                        currentStep,
-                                        onStepClick: (clicked) => {
-                                            setDirection(clicked > currentStep ? 1 : -1);
-                                            updateStep(clicked);
-                                        }
-                                    })
-                                ) : !hideStepIndicator && (
-                                    <StepIndicator
-                                        step={stepNumber}
-                                        disableStepIndicators={disableStepIndicators}
-                                        currentStep={currentStep}
-                                        onClickStep={clicked => {
-                                            setDirection(clicked > currentStep ? 1 : -1);
-                                            updateStep(clicked);
-                                        }}
-                                    />
-                                )}
-                                {isNotLastStep && !hideStepIndicator && <StepConnector isComplete={currentStep > stepNumber} />}
-                            </Fragment>
-                        );
-                    })}
-                </div>
+                            return (
+                                <Fragment key={stepNumber}>
+                                    {renderStepIndicator && !hideStepIndicator ? (
+                                        renderStepIndicator({
+                                            step: stepNumber,
+                                            currentStep,
+                                            onStepClick: (clicked) => {
+                                                setDirection(clicked > currentStep ? 1 : -1);
+                                                updateStep(clicked);
+                                            }
+                                        })
+                                    ) : !hideStepIndicator && (
+                                        <StepIndicator
+                                            step={stepNumber}
+                                            disableStepIndicators={disableStepIndicators}
+                                            currentStep={currentStep}
+                                            onClickStep={clicked => {
+                                                setDirection(clicked > currentStep ? 1 : -1);
+                                                updateStep(clicked);
+                                            }}
+                                        />
+                                    )}
+                                    {isNotLastStep && !hideStepIndicator && <StepConnector isComplete={currentStep > stepNumber} />}
+                                </Fragment>
+                            );
+                        })}
+                    </div>
+                )}
 
                 <StepContentWrapper
                     isCompleted={isCompleted}
@@ -355,7 +400,7 @@ export function Stepper({
 
                 {!isCompleted && (
                     <div className={cn(`px-2 pb-2`, footerClassName)}>
-                        <div className={cn(`mt-6 flex flex-col-reverse gap-y-4`, currentStep !== 1 ? 'justify-between' : 'justify-end')}>
+                        <div className={cn(`pt-4 flex flex-col-reverse gap-y-4`, currentStep !== 1 ? 'justify-between' : 'justify-end')}>
                             {currentStep !== 1 && (
                                 renderBackButton ? (
                                     renderBackButton({

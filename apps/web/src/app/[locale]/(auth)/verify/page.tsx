@@ -19,9 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {};
 }
 
-export default async function Page({ params }: Props) {
-    'use memo'
-
+export default async function VerifyPage({ params }: Props) {
     const locale = (await params).locale;
 
     return (

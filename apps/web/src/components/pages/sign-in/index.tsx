@@ -3,7 +3,10 @@
 import type { SubmitHandler } from 'react-hook-form';
 import type { SignInSchema } from 'features/sign-in/schema';
 
-import { useCallback, useEffect } from 'react';
+import {
+    useCallback,
+    useEffect,
+} from 'react';
 import { toast } from 'sonner';
 import { useTranslations } from 'next-intl';
 import { createFormControl, useFormState } from 'react-hook-form';
@@ -25,6 +28,7 @@ export type SignInProps = Readonly<{
     formControl: ReturnType<typeof createFormControl<SignInSchema>>;
     formState: ReturnType<typeof useFormState<SignInSchema>>;
     onSubmit: SubmitHandler<SignInSchema>;
+    onRecaptcha: (token: string, action: string) => Promise<void>;
 }>;
 
 export default function SignIn({
@@ -42,6 +46,7 @@ export default function SignIn({
         values: {
             email: '',
             password: '',
+            recaptchaToken: '',
             rememberMe: false,
         },
     });
@@ -49,6 +54,51 @@ export default function SignIn({
     const formState = useFormState({
         control: formControl.control,
     });
+
+    const handleRecaptcha = useCallback(
+        async (token: string, action: string) => {
+            await fetch('/api/recaptcha', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    token,
+                    action,
+                }),
+            });
+        },
+        [],
+    );
+
+    const handleSubmit: SubmitHandler<SignInSchema> = useCallback(
+        (data) => {
+            const isValid = formState.isValid;
+            if (!isValid) {
+                return;
+            }
+
+            const onSuccess = () => {
+                formControl.reset();
+
+                return 'Sign in successful!';
+            };
+
+            const onError = (error: Error) => {
+                return error.message;
+            };
+
+            toast.promise(
+                signInMutation.mutateAsync(data),
+                {
+                    loading: t('SignIn.loading'),
+                    success: onSuccess,
+                    error: onError,
+                },
+            );
+        },
+        [formControl, formState, toast, signInMutation, t],
+    );
 
     useEffect(() => {
         const handleBeforeUnload = (event: BeforeUnloadEvent) => {
@@ -62,39 +112,12 @@ export default function SignIn({
         };
     }, []);
 
-    const handleSubmit: SubmitHandler<SignInSchema> = useCallback(
-        (data) => {
-            const isValid = formState.isValid;
-            if (!isValid) {
-                return;
-            }
-
-            const onSuccess = () => {
-                formControl.reset();
-                return 'Sign in successful!';
-            };
-
-            const onError = (error: Error) => {
-                return error.message;
-            };
-
-            toast.promise(
-                signInMutation.mutateAsync(data),
-                {
-                    loading: 'Signing in...',
-                    success: onSuccess,
-                    error: onError,
-                },
-            );
-        },
-        [formControl, formState, toast, signInMutation],
-    );
-
     const childProps: SignInProps = {
         t,
         formControl,
         formState,
         onSubmit: handleSubmit,
+        onRecaptcha: handleRecaptcha,
     };
 
     return (

@@ -24,7 +24,7 @@ export function Header({ onResize }: Props) {
     'use memo'
     const t = useTranslations('Header');
 
-    const { moving, scroll } = useScroll();
+    const { scroll } = useScroll();
     const { device, isMobile } = useDevice();
     const { ref, size } = useElementSize<HTMLElement>();
 
@@ -37,6 +37,10 @@ export function Header({ onResize }: Props) {
                 '--header-height',
                 `${size.height}px`,
             );
+            document.documentElement.style.setProperty(
+                '--header-width',
+                `${size.width}px`,
+            )
         },
         [size, onResize],
     );
@@ -49,8 +53,11 @@ export function Header({ onResize }: Props) {
         setIsScrolled(scroll.y > size.height);
     }, [scroll, size]);
 
-    const variant = isScrolled ? 'element' : 'horizontal';
-    const isCompact = isScrolled;
+    // const variant = isScrolled ? 'element' : 'horizontal';
+    // const isCompact = isScrolled;
+
+    const variant = 'element';
+    const isCompact = true;
 
     return (
         <BaseHeader

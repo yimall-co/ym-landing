@@ -9,7 +9,9 @@
         "back": "Back",
         "next": "Next",
         "continue": "Continue",
-        "complete": "Complete"
+        "complete": "Complete",
+        "accept": "Accept",
+        "readMore": "Read more"
     },
     "errors": {
         "required": "This field is required.",
@@ -20,6 +22,9 @@
         "mustBeAtMostMaxLength": "It must have at most {maxLength} characters."
     },
     "NoScript": "For a complete experience, please enable JavaScript.",
+    "CookiesConsent": {
+        "description": "This website uses cookies to ensure you get the best experience on our website."
+    },
     "Header": {
         "title": "yimall.co"
     },
@@ -38,6 +43,7 @@
         }
     },
     "SignUp": {
+        "loading": "Signing up...",
         "name": {
             "title": "Let's start.",
             "subtitle": "What's your name?",
@@ -70,7 +76,8 @@
     },
     "SignIn": {
         "title": "Welcome back",
-        "description": "Sign in to your account to continue.",
+        "description": "Sign in to your account to access your dashboard, make purchases and manage your orders.",
+        "loading": "Signing in...",
         "email": {
             "label": "Email address",
             "placeholder": "e.g. john.doe@mail.com"

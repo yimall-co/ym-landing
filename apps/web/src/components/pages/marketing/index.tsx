@@ -12,7 +12,9 @@ import { DeviceDetector } from 'components/device-detector';
 import MarketingMobile from './mobile';
 import MarketingDesktop from './desktop';
 
-type Props = Readonly<object>;
+type Props = Readonly<{
+    locale: string;
+}>;
 
 export type MarketingProps = Readonly<{
     t: ReturnType<typeof useTranslations>;
@@ -20,7 +22,7 @@ export type MarketingProps = Readonly<{
     handleContact: MouseEventHandler<HTMLButtonElement>;
 }>;
 
-export default function Marketing(props: Props) {
+export default function Marketing({ locale }: Props) {
     'use memo'
     const router = useRouter();
     const t = useTranslations('Marketing');

@@ -1,9 +1,5 @@
 import type { Metadata } from 'next';
 
-import { getTranslations } from 'next-intl/server';
-
-import SignIn from 'pages/sign-in';
-
 type Props = Readonly<{
     params: Promise<{ locale: string }>;
 }>;
@@ -11,18 +7,15 @@ type Props = Readonly<{
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const locale = (await params).locale;
 
-    const t = await getTranslations({
-        locale,
-        namespace: '',
-    });
-
     return {};
 }
 
-export default async function SignInPage({ params }: Props) {
+export default async function PrivacyPage({ params }: Props) {
     const locale = (await params).locale;
 
     return (
-        <SignIn locale={locale} />
+        <>
+            Privacy Policy
+        </>
     );
 }

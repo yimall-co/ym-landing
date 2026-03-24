@@ -4,8 +4,6 @@ import '@yimall/ui/styles.css';
 import type { ReactNode } from 'react';
 import type { Viewport, Metadata } from 'next';
 
-import Script from 'next/script';
-
 import {
     Anta,
     Geist,
@@ -26,6 +24,7 @@ import { clientEnv } from 'env/client';
 import { cn } from '@yimall/ui';
 
 import BaseLayout from 'layouts/base';
+import CookiesConsent from 'features/app/cookies-consent';
 
 const geistSans = Geist({
     variable: '--font-geist-sans',
@@ -121,9 +120,10 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     };
 };
 
-export default async function RootLayout(props: LayoutProps) {
-    const { params, children } = props;
-
+export default async function RootLayout({
+    params,
+    children,
+}: LayoutProps) {
     const locale = (await params).locale;
 
     const supportsLocale = hasLocale(routing.locales, locale);
@@ -163,14 +163,9 @@ export default async function RootLayout(props: LayoutProps) {
                         <BaseLayout>
                             {children}
                         </BaseLayout>
+                        <CookiesConsent />
                     </ThemeProvider>
                 </NextIntlClientProvider>
-                <Script
-                    async
-                    defer
-                    strategy='beforeInteractive'
-                    src={`https://www.google.com/recaptcha/enterprise.js?hl=${locale}`}
-                />
             </body>
         </html>
     );

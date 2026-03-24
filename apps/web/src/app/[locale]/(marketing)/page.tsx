@@ -10,9 +10,7 @@ type Props = Readonly<{
 
 export const dynamic = 'force-dynamic';
 
-export async function generateMetadata(props: Props): Promise<Metadata> {
-    const { params } = props;
-
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const locale = (await params).locale;
 
     const t = await getTranslations({
@@ -23,10 +21,10 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     return {};
 }
 
-export default async function MarketingPage(props: Props) {
-    const { } = props;
+export default async function MarketingPage({ params }: Props) {
+    const locale = (await params).locale;
 
     return (
-        <Marketing />
+        <Marketing locale={locale} />
     );
 }

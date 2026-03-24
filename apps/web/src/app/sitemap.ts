@@ -8,7 +8,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const getLocaleUrlWithPathName = (
         locale: string,
         href: string = '/'
-    ) => `${clientEnv.NEXT_PUBLIC_SITE_URL}${getPathname({ locale, href, })}`;
+    ) => `${clientEnv.NEXT_PUBLIC_SITE_URL}${getPathname({ locale, href: href as any, })}`;
 
     const localesMap = {
         es: getLocaleUrlWithPathName('es'),

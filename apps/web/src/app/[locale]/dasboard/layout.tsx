@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-import AuthLayout from 'layouts/auth';
+import DashboardLayout from 'layouts/dashboard';
 
 type Props = Readonly<{
     children: ReactNode;
@@ -8,8 +8,8 @@ type Props = Readonly<{
 
 export default function Layout({ children }: Props) {
     return (
-        <AuthLayout>
+        <DashboardLayout>
             {children}
-        </AuthLayout>
+        </DashboardLayout>
     );
 }

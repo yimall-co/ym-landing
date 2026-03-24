@@ -14,7 +14,7 @@ import LogoElement from './element';
 export type LogoVariant = 'horizontal' | 'vertical' | 'element';
 
 type Props = Readonly<{
-    variant: LogoVariant;
+    variant?: LogoVariant;
     className?: string;
 }>;
 

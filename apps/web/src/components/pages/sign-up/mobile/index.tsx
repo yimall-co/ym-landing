@@ -2,12 +2,14 @@
 
 import type { SignUpProps } from 'pages/sign-up';
 
-import { useMemo } from 'react';
+import { Fragment, useMemo } from 'react';
 
 import {
     Step,
     Stepper,
 } from '@yimall/ui';
+
+import { Recaptcha } from 'components/recaptcha';
 
 import StepName from 'features/sign-up/step-name';
 import StepEmail from 'features/sign-up/step-email';
@@ -26,6 +28,7 @@ export default function SignUpMobile({
     currentStep,
     onStepChange,
     onFinalStepCompleted,
+    onRecaptcha,
 }: Props) {
     'use memo'
 
@@ -40,28 +43,31 @@ export default function SignUpMobile({
     const canComplete = isValid && isLastStep;
 
     return (
-        <Stepper
-            hideStepIndicator
-            disableStepIndicators
-            stepContainerClassName='p-0'
-            stepCircleContainerClassName='flex-1 h-full max-w-[none] shadow-none flex flex-col'
-            contentClassName='flex-1 h-full'
-            completeButtonProps={{
-                type: 'submit',
-                disabled: !canComplete,
-            }}
-            initialStep={currentStep}
-            nextButtonText={t('common.next')}
-            backButtonText={t('common.back')}
-            completeButtonText={t('common.complete')}
-            onStepChange={onStepChange}
-            onFinalStepCompleted={onFinalStepCompleted}
-        >
-            {steps.map((step, index) => (
-                <Step key={index} className='p-2'>
-                    {step}
-                </Step>
-            ))}
-        </Stepper>
+        <Fragment>
+            <Stepper
+                hideStepIndicator
+                disableStepIndicators
+                stepContainerClassName='p-0'
+                // stepCircleContainerClassName='flex-1 h-full max-w-[none] shadow-none flex flex-col'
+                contentClassName='flex-1'
+                completeButtonProps={{
+                    type: 'submit',
+                    disabled: !canComplete,
+                }}
+                initialStep={currentStep}
+                nextButtonText={t('common.next')}
+                backButtonText={t('common.back')}
+                completeButtonText={t('common.complete')}
+                onStepChange={onStepChange}
+                onFinalStepCompleted={onFinalStepCompleted}
+            >
+                {steps.map((step, index) => (
+                    <Step key={index} className='p-2'>
+                        {step}
+                    </Step>
+                ))}
+            </Stepper>
+            <Recaptcha action='signup' onRecaptcha={onRecaptcha} />
+        </Fragment>
     );
 }

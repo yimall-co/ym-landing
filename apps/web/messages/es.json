@@ -9,7 +9,9 @@
         "back": "Volver",
         "next": "Siguiente",
         "continue": "Continuar",
-        "complete": "Completar"
+        "complete": "Completar",
+        "accept": "Aceptar",
+        "readMore": "Leer más"
     },
     "errors": {
         "required": "Es necesario rellenar este campo.",
@@ -20,6 +22,9 @@
         "mustBeAtMostMaxLength": "Debe tener como máximo {maxLength} caracteres"
     },
     "NoScript": "Para una experiencia completa, por favor habilita JavaScript.",
+    "CookiesConsent": {
+        "description": "Este sitio web utiliza cookies para garantizar la mejor experiencia en nuestro sitio web."
+    },
     "Header": {
         "title": "yimall.co"
     },
@@ -38,6 +43,7 @@
         }
     },
     "SignUp": {
+        "loading": "Registrando tu cuenta...",
         "name": {
             "title": "Empecemos...",
             "subtitle": "¿Cómo te llamas?",
@@ -70,7 +76,8 @@
     },
     "SignIn": {
         "title": "Bienvenido de nuevo",
-        "description": "Inicia sesión en tu cuenta para continuar.",
+        "description": "Inicia sesión en tu cuenta para acceder a tu panel de control, realizar compras y gestionar tus pedidos.",
+        "loading": "Iniciando sesión...",
         "email": {
             "label": "Correo electrónico",
             "placeholder": "ej. juan.perez@mail.com"

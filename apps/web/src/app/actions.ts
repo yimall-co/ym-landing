@@ -3,7 +3,7 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-export async function visited(): Promise<void> {
+export async function setVisited(): Promise<void> {
     'use server'
     const cookieStore = await cookies();
 
@@ -38,4 +38,21 @@ export async function setSession(payload: string, expiresAt: number) {
         path: '/',
         expires: expiresAt,
     });
+}
+
+export async function setConsent() {
+    'use server'
+    const cookieStore = await cookies();
+
+    const hasConsent = cookieStore.has('consent');
+    if (!hasConsent) {
+        const expireAt = new Date();
+        expireAt.setDate(expireAt.getFullYear() + 2);
+
+        cookieStore.set({
+            name: 'consent',
+            value: '1',
+            expires: expireAt,
+        });
+    }
 }

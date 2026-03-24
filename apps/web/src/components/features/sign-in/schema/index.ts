@@ -12,6 +12,7 @@ export const signInSchema = z.object({
         .boolean()
         .describe('Remember me'),
     ),
+    recaptchaToken: z.string().describe('reCAPTCHA token'),
 });
 
 export type SignInSchema = z.infer<typeof signInSchema>;
