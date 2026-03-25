@@ -1,6 +1,6 @@
 'use client'
 
-import type { FC, ReactNode, ComponentProps } from 'react';
+import type { ReactNode, ComponentProps } from 'react';
 import type { VariantProps } from 'tailwind-variants';
 
 import { Fragment } from 'react';
@@ -59,7 +59,7 @@ const text = tv({
         },
         color: {
             normal: {
-                heading: 'text-dark-600 dark:text-light-400',
+                heading: '',
                 // paragraph: 'text-dark-600 dark:text-light-400',
             },
             primary: {
@@ -122,13 +122,13 @@ const headingLevelMap = {
     '6': motion.h6,
 } as const;
 
-const Heading: FC<HeadingProps> = ({
+function Heading({
     level = '2',
     color = 'normal',
     className,
     through,
     ...props
-}) => {
+}: HeadingProps) {
     'use memo'
     const { heading } = text();
 
@@ -152,17 +152,15 @@ const Heading: FC<HeadingProps> = ({
     );
 };
 
-Heading.displayName = 'Heading';
-
 type ParagraphProps = TextVariants & ComponentProps<typeof motion.p>;
 
-const Paragraph: FC<ParagraphProps> = ({
+function Paragraph({
     level = '4',
     color,
     through,
     className,
     ...props
-}) => {
+}: ParagraphProps) {
     'use memo'
     const { paragraph } = text();
 
@@ -181,8 +179,6 @@ const Paragraph: FC<ParagraphProps> = ({
     );
 };
 
-Paragraph.displayName = 'Paragraph';
-
 type RichTextTag = 'h1'
     | 'h2'
     | 'h3'
@@ -196,9 +192,9 @@ type RichTextProps = {
     children(tags: Record<RichTextTag, (chunks: ReactNode) => ReactNode>): ReactNode;
 };
 
-const RichText: FC<RichTextProps> = ({
+function RichText({
     children,
-}) => {
+}: RichTextProps) {
     'use memo'
 
     return (
@@ -216,8 +212,6 @@ const RichText: FC<RichTextProps> = ({
         </Fragment>
     );
 };
-
-RichText.displayName = 'RichText';
 
 export {
     Heading,

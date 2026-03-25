@@ -2,12 +2,12 @@ import type { Locale } from './types';
 
 export const fallbackLocale: Locale = 'es';
 
-export const locales: Array<Locale> = [
-    fallbackLocale,
-    'en',
-    'fr',
-    'pt',
-];
+export const locales: Array<{ code: Locale }> = [
+    { code: fallbackLocale },
+    { code: 'en' },
+    { code: 'fr' },
+    { code: 'pt' },
+] as const;
 
 export const cookieName = 'i18next';
 

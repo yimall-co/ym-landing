@@ -18,6 +18,7 @@ import { DeviceDetector } from 'components/device-detector';
 
 import SignInMobile from './mobile';
 import SignInDesktop from './desktop';
+import { useRouter } from 'lib/i18n';
 
 type Props = Readonly<{
     locale: string;
@@ -37,6 +38,7 @@ export default function SignIn({
     'use memo'
     const t = useTranslations();
 
+    const router = useRouter();
     const signInMutation = useSignIn();
 
     const formControl = createFormControl<SignInSchema>({
@@ -81,6 +83,7 @@ export default function SignIn({
             const onSuccess = () => {
                 formControl.reset();
 
+                router.push('/me' as any);
                 return 'Sign in successful!';
             };
 
@@ -97,7 +100,7 @@ export default function SignIn({
                 },
             );
         },
-        [formControl, formState, toast, signInMutation, t],
+        [formControl, formState, toast, signInMutation, t, router],
     );
 
     useEffect(() => {

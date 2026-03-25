@@ -9,7 +9,7 @@ import {
 } from './constants';
 
 const routing = defineRouting({
-    locales: locales,
+    locales: locales.map((l) => l.code),
     defaultLocale: fallbackLocale,
     pathnames: {
         '/': '/',

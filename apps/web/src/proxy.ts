@@ -9,6 +9,12 @@ import createMiddleware from 'next-intl/middleware';
 
 import { routing } from 'lib/i18n';
 
+const authRoutes = [
+    'sign-in',
+    'sign-up',
+    'reset-password',
+] as const;
+
 const i18nMiddleware = createMiddleware(routing);
 
 function getLocaleFromPathname(pathname: string) {

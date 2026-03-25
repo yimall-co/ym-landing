@@ -1,4 +1,4 @@
-'use memo'
+'use client';
 
 import type { SVGProps } from 'react';
 

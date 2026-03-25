@@ -11,7 +11,14 @@
         "continue": "Continuar",
         "complete": "Completar",
         "accept": "Aceptar",
-        "readMore": "Leer más"
+        "readMore": "Leer más",
+        "language": "Idioma",
+        "languages": {
+            "es": "Español",
+            "en": "Inglés",
+            "fr": "Francés",
+            "pt": "Portugués"
+        }
     },
     "errors": {
         "required": "Es necesario rellenar este campo.",
@@ -94,5 +101,14 @@
         "alreadyHaveAccount": "¿No tienes una cuenta?",
         "signUp": "Regístrate",
         "submit": "Iniciar sesión"
+    },
+    "Dashboard": {
+        "sidebar": {},
+        "settings": {
+            "title": "Configuración",
+            "description": "Administra la configuración de tu cuenta.",
+            "displayLanguage": "Idioma de visualización",
+            "appearance": "Apariencia"
+        }
     }
 }

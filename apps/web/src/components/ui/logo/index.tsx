@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import type { SVGProps, ComponentType } from 'react';
 
@@ -38,7 +38,7 @@ export function Logo({
         ? 'fill-(--color-primary)'
         : 'fill-(--color-light)';
 
-    const Wrapper = logoMap[variant];
+    const Wrapper = logoMap?.[variant];
     if (!Wrapper) return <LogoHorizontal fill={fill} />
 
     const transition = {
@@ -56,7 +56,7 @@ export function Logo({
                 transition={transition as any}
                 className={cn('h-full w-full', className)}
             >
-                <Wrapper className={cn('block h-full w-auto', fill)} />
+                <Wrapper fill={fill} className={cn('block h-full w-auto', fill)} />
             </motion.div>
         </AnimatePresence>
     );

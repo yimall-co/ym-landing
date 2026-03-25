@@ -65,6 +65,9 @@ const buttonVariants = tv({
             link: [
                 'text-primary underline-offset-4 hover:underline',
             ],
+            text: [
+                'hover:bg-muted hover:text-foreground dark:hover:bg-muted/50 aria-expanded:bg-muted aria-expanded:text-foreground',
+            ],
         },
         size: {
             default: "h-10 gap-2 px-4 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",

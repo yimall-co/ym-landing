@@ -1,3 +1,4 @@
+export * from './avatar';
 export * from './accordion';
 export * from './text';
 export * from './layout';
@@ -19,5 +20,12 @@ export * from './field';
 export * from './separator';
 export * from './spinner';
 export * from './checkbox';
+export * from './sheet';
+export * from './sidebar';
+export * from './skeleton';
+export * from './dropdown';
+export * from './popover';
+export * from './select';
+export * from './switcher';
 
 export { cn } from 'tailwind-variants';

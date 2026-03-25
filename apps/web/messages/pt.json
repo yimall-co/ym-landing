@@ -1,11 +1,37 @@
 {
     "metadata": {
-        "name": "Yimall - Effective digital solution for your business",
-        "shortName": "Yimall",
-        "description": "Yimall is a leading provider of digital solutions, offering innovative services to help businesses thrive in the digital age.",
-        "keywords": "Yimall, digital solutions, business services, innovation, technology"
+        "name": "yimall.co - Catálogo e menu digitais para o seu negócio",
+        "shortName": "yimall.co",
+        "description": "Crie um catálogo digital profissional para o seu negócio. Apresente produtos ou serviços, compartilhe um único link e atualize seu menu facilmente com Yimall. Ideal para restaurantes, startups e empresas de serviços que precisam apresentar sua oferta de forma clara, moderna e fácil de compartilhar.",
+        "keywords": "Yimall, catálogo digital, menu digital, produtos, serviços, negócio"
+    },
+    "common": {
+        "back": "Voltar",
+        "next": "Próximo",
+        "continue": "Continuar",
+        "complete": "Completar",
+        "accept": "Aceitar",
+        "readMore": "Ler mais",
+        "language": "Linguagem",
+        "languages": {
+            "es": "Espanhol",
+            "en": "Inglês",
+            "fr": "Francês",
+            "pt": "Português"
+        }
+    },
+    "errors": {
+        "required": "Este campo é obrigatório.",
+        "mustBeAlphanumeric": "Apenas letras, números e espaços são permitidos.",
+        "mustBeComplex": "",
+        "mustBeAnEmail": "O endereço de e-mail não é válido.",
+        "mustBeAtLeastMinLength": "Deve conter pelo menos {minLength} caracteres.",
+        "mustBeAtMostMaxLength": "Deve conter no máximo {maxLength} caracteres."
     },
     "NoScript": "Para uma experiência completa, por favor habilita JavaScript.",
+    "CookiesConsent": {
+        "description": "Este site usa cookies para garantir a melhor experiência em nosso site."
+    },
     "Header": {
         "title": "yimall.co"
     },
@@ -17,10 +43,71 @@
         "greeting": "👋 Olá Mundo!",
         "title": "Estamos no topo da transformação digital",
         "subtitle": "Inovação & Criação",
-        "marquee": "Seja digital ✦ seja inovador ✦ seja parte de yimall ✦",
+        "marquee": "Seja digital ✦ seja inovador ✦ seja parceiro de yimall ✦",
         "actions": {
             "demo": "Ver demonstração",
             "contact": "Contate-nos"
+        }
+    },
+    "SignUp": {
+        "loading": "Inscription en cours...",
+        "name": {
+            "title": "Vamos começar.",
+            "subtitle": "Qual é o seu nome?",
+            "description": "Este é o nome pelo qual você será conhecido dentro do Yimall.",
+            "label": "Nome completo",
+            "placeholder": "e.g. João Silva"
+        },
+        "email": {
+            "title": "Vamos continuar.",
+            "subtitle": "Configurez les identifiants d'accès.",
+            "description": "L'adresse e-mail et le mot de passe sont utiles pour se connecter à votre compte et recevoir des notifications.",
+            "label": "Endereço de e-mail",
+            "placeholder": "e.g. [EMAIL_ADDRESS]"
+        },
+        "password": {
+            "label": "Senha",
+            "placeholder": "e.g. *********"
+        },
+        "terms": {
+            "title": "Presque terminé.",
+            "subtitle": "Termes et conditions.",
+            "description": "Veuillez lire et accepter les termes et conditions.",
+            "label": "Termes et conditions",
+            "labelDescription": "J'ai lu et accepté les termes et conditions de notre service."
+        },
+        "newsLetter": {
+            "label": "Nouvelles et mises à jour",
+            "labelDescription": "Je veux recevoir des nouvelles et mises à jour sur Yimall."
+        }
+    },
+    "SignIn": {
+        "title": "Bienvenue",
+        "description": "Connectez-vous à votre compte pour accéder à votre tableau de bord, effectuer des achats et gérer vos commandes.",
+        "loading": "Connexion en cours...",
+        "email": {
+            "label": "Adresse e-mail",
+            "placeholder": "e.g. john.doe@mail.com"
+        },
+        "password": {
+            "label": "Mot de passe",
+            "placeholder": "e.g. *********"
+        },
+        "rememberMe": {
+            "label": "Se souvenir de moi",
+            "labelDescription": "Garder ma session ouverte"
+        },
+        "forgotPassword": "Mot de passe oublié?",
+        "alreadyHaveAccount": "Vous n'avez pas de compte?",
+        "signUp": "S'inscrire",
+        "submit": "Se connecter"
+    },
+    "Dashboard": {
+        "settings": {
+            "title": "Configuração",
+            "description": "Administra la configuración de tu cuenta.",
+            "displayLanguage": "Idioma de visualización",
+            "appearance": "Apariencia"
         }
     }
 }

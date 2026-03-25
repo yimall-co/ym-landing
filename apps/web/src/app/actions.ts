@@ -56,3 +56,18 @@ export async function setConsent() {
         });
     }
 }
+
+export async function getSession() {
+    'use server'
+    const cookieStore = await cookies();
+    const session = cookieStore.get('session');
+    if (!session?.value) return null;
+
+    return JSON.parse(session.value);
+}
+
+export async function getAccessToken() {
+    'use server'
+    const session = await getSession();
+    return session?.accessToken;
+}
