@@ -1,15 +1,155 @@
 'use client'
 
-import type { ComponentProps } from 'react'
+import type { ComponentProps, JSX } from 'react';
+import type { VariantProps } from 'tailwind-variants';
 
-import { cn } from 'tailwind-variants';
+import {
+    createContext,
+    useContext,
+} from 'react';
+import { cn, tv } from 'tailwind-variants';
 import { Menu as BaseMenu } from '@base-ui/react/menu'
 import { ChevronRightIcon, CheckIcon } from 'lucide-react'
 
-type DropdownMenuProps = BaseMenu.Root.Props;
+const dropdown = tv({
+    slots: {
+        positioner: [
+            'isolate',
+            'z-50',
+            'outline-none'
+        ],
+        popup: [
+            'data-open:animate-in',
+            'data-closed:animate-out',
+            'data-closed:fade-out-0',
+            'data-open:fade-in-0',
+            'data-closed:zoom-out-95',
+            'data-open:zoom-in-95',
+            'data-[side=bottom]:slide-in-from-top-2',
+            'data-[side=left]:slide-in-from-right-2',
+            'data-[side=right]:slide-in-from-left-2',
+            'data-[side=top]:slide-in-from-bottom-2',
+            'ring-foreground/10',
+            'bg-background',
+            'text-popover-foreground',
+            'min-w-32',
+            'rounded-lg',
+            'p-2',
+            'shadow-md',
+            'ring-1',
+            'ring-neutral-800',
+            'duration-100',
+            'data-[side=inline-start]:slide-in-from-right-2',
+            'data-[side=inline-end]:slide-in-from-left-2',
+            'z-50',
+            'md:min-w-32',
+            'max-h-(--available-height)',
+            'w-(--anchor-width)',
+            'origin-(--transform-origin)',
+            'overflow-x-hidden',
+            'overflow-y-auto',
+            'outline-none',
+            'data-closed:overflow-hidden',
+        ],
+        label: [
+            'text-muted-foreground',
+            'px-1.5',
+            'py-1',
+            'text-xs',
+            'font-medium',
+            'data-inset:pl-7',
+        ],
+        item: [
+            'focus:bg-accent',
+            'focus:text-accent-foreground',
+            'data-[variant=destructive]:text-destructive',
+            'data-[variant=destructive]:focus:bg-destructive/10',
+            'dark:data-[variant=destructive]:focus:bg-destructive/20',
+            'data-[variant=destructive]:focus:text-destructive',
+            'data-[variant=destructive]:*:[svg]:text-destructive',
+            'not-data-[variant=destructive]:focus:**:text-accent-foreground',
+            'gap-1.5',
+            'rounded-md',
+            'px-2.5',
+            'py-2',
+            'text-sm',
+            'data-inset:pl-7',
+            '[&_svg:not([class*="size-"])]:size-4',
+            'group/dropdown-menu-item',
+            'relative',
+            'flex',
+            'items-center',
+            'outline-hidden',
+            'select-none',
+            'data-disabled:pointer-events-none',
+            'data-disabled:opacity-50',
+            '[&_svg]:pointer-events-none',
+            '[&_svg]:shrink-0',
+        ]
+    },
+    variants: {
+        variant: {
+            default: {
+                item: [
+                    'hover:bg-foreground/10',
+                    'hover:cursor-pointer',
+                ],
+            },
+            destructive: {
+                item: [],
+            },
+        },
+    },
+    defaultVariants: {
+        variant: 'default',
+    },
+});
 
-function DropdownMenu({ ...props }: DropdownMenuProps) {
-    return <BaseMenu.Root data-slot="dropdown-menu" {...props} />
+type DropdownVariants = VariantProps<typeof dropdown>;
+
+type DropdownContextProps = Pick<BaseMenu.Positioner.Props, "align" | "alignOffset" | "side" | "sideOffset"> & {
+    Component: any | null;
+};
+
+const DropdownContext = createContext<DropdownContextProps>({
+    align: 'center',
+    side: 'right',
+    Component: null,
+});
+
+function useDropdown() {
+    const context = useContext(DropdownContext);
+    if (!context) {
+        throw new Error('useDropdown must be used within a Dropdown');
+    }
+
+    return context;
+}
+
+function createDropdownHandler() {
+    return BaseMenu.createHandle<DropdownContextProps>();
+}
+
+type DropdownMenuProps = BaseMenu.Root.Props<DropdownContextProps> & Omit<DropdownContextProps, 'Component'>;
+
+function DropdownMenu({
+    align = "center",
+    alignOffset = 0,
+    side = "right",
+    sideOffset = 4,
+    ...props
+}: DropdownMenuProps) {
+    return (
+        <DropdownContext.Provider value={{
+            align,
+            alignOffset,
+            side,
+            sideOffset,
+            Component: null,
+        }}>
+            <BaseMenu.Root data-slot="dropdown-menu" {...props} />
+        </DropdownContext.Provider>
+    );
 }
 
 type DropdownMenuPortalProps = BaseMenu.Portal.Props;
@@ -24,8 +164,9 @@ function DropdownMenuTrigger({ ...props }: DropdownMenuTriggerProps) {
     return <BaseMenu.Trigger data-slot="dropdown-menu-trigger" {...props} />
 }
 
-type DropdownMenuContentProps = BaseMenu.Popup.Props
-    & Pick<BaseMenu.Positioner.Props, "align" | "alignOffset" | "side" | "sideOffset">;
+type DropdownMenuContentProps = DropdownVariants
+    & BaseMenu.Popup.Props
+    & Omit<DropdownContextProps, 'Component'>;
 
 function DropdownMenuContent({
     align = "start",
@@ -35,18 +176,29 @@ function DropdownMenuContent({
     className,
     ...props
 }: DropdownMenuContentProps) {
+    const {
+        align: ctxAlign,
+        alignOffset: ctxAlignOffset,
+        side: ctxSide,
+        sideOffset: ctxSideOffset
+    } = useDropdown();
+
+    const { positioner, popup } = dropdown();
+
     return (
         <BaseMenu.Portal>
             <BaseMenu.Positioner
-                className="isolate z-50 outline-none"
-                align={align}
-                alignOffset={alignOffset}
-                side={side}
-                sideOffset={sideOffset}
+                className={positioner()}
+                align={align ?? ctxAlign}
+                alignOffset={alignOffset ?? ctxAlignOffset}
+                side={side ?? ctxSide}
+                sideOffset={sideOffset ?? ctxSideOffset}
             >
                 <BaseMenu.Popup
                     data-slot="dropdown-menu-content"
-                    className={cn("data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 ring-foreground/10 bg-background text-popover-foreground min-w-32 rounded-lg p-1 shadow-md ring-1 duration-100 data-[side=inline-start]:slide-in-from-right-2 data-[side=inline-end]:slide-in-from-left-2 z-50 max-h-(--available-height) w-(--anchor-width) origin-(--transform-origin) overflow-x-hidden overflow-y-auto outline-none data-closed:overflow-hidden", className)}
+                    className={popup({
+                        className: className as string,
+                    })}
                     {...props}
                 />
             </BaseMenu.Positioner>
@@ -69,25 +221,21 @@ function DropdownMenuLabel({
     inset,
     ...props
 }: DropdownMenuLabelProps) {
+    const { label } = dropdown();
+
     return (
         <BaseMenu.GroupLabel
             data-slot="dropdown-menu-label"
             data-inset={inset}
-            className={cn(
-                'text-muted-foreground',
-                'px-1.5',
-                'py-1',
-                'text-xs',
-                'font-medium',
-                'data-inset:pl-7',
-                className
-            )}
+            className={label({
+                className: className as string
+            })}
             {...props}
         />
     )
 }
 
-type DropdownMenuItemProps = BaseMenu.Item.Props & {
+type DropdownMenuItemProps = DropdownVariants & BaseMenu.Item.Props & {
     inset?: boolean
     variant?: "default" | "destructive"
 };
@@ -98,40 +246,17 @@ function DropdownMenuItem({
     variant = "default",
     ...props
 }: DropdownMenuItemProps) {
+    const { item } = dropdown();
+
     return (
         <BaseMenu.Item
             data-slot="dropdown-menu-item"
             data-inset={inset}
             data-variant={variant}
-            className={cn(
-                'focus:bg-accent',
-                'focus:text-accent-foreground',
-                'data-[variant=destructive]:text-destructive',
-                'data-[variant=destructive]:focus:bg-destructive/10',
-                'dark:data-[variant=destructive]:focus:bg-destructive/20',
-                'data-[variant=destructive]:focus:text-destructive',
-                'data-[variant=destructive]:*:[svg]:text-destructive',
-                'not-data-[variant=destructive]:focus:**:text-accent-foreground',
-                'gap-1.5',
-                'rounded-md',
-                'px-2.5',
-                'py-2',
-                'text-sm',
-                'data-inset:pl-7',
-                '[&_svg:not([class*="size-"])]:size-4',
-                'group/dropdown-menu-item',
-                'relative',
-                'flex',
-                'cursor-pointer',
-                'items-center',
-                'outline-hidden',
-                'select-none',
-                'data-disabled:pointer-events-none',
-                'data-disabled:opacity-50',
-                '[&_svg]:pointer-events-none',
-                '[&_svg]:shrink-0',
-                className
-            )}
+            className={item({
+                className: className as string,
+                variant,
+            })}
             {...props}
         />
     )
@@ -254,7 +379,22 @@ function DropdownMenuRadioItem({
             data-slot="dropdown-menu-radio-item"
             data-inset={inset}
             className={cn(
-                "focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground gap-1.5 rounded-md py-1 pr-8 pl-1.5 text-sm data-inset:pl-7 [&_svg:not([class*='size-'])]:size-4 relative flex cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+                'focus:bg-accent',
+                'focus:text-accent-foreground',
+                'focus:**:text-accent-foreground',
+                'gap-1.5',
+                'rounded-md',
+                'py-1',
+                'pr-8',
+                'pl-1.5',
+                'text-sm',
+                'data-inset:pl-7',
+                "[&_svg:not([class*='size-'])]:size-4",
+                'relative flex cursor-default items-center outline-hidden select-none',
+                'data-disabled:pointer-events-none',
+                'data-disabled:opacity-50',
+                '[&_svg]:pointer-events-none',
+                '[&_svg]:shrink-0',
                 className
             )}
             {...props}
@@ -304,6 +444,7 @@ function DropdownMenuShortcut({
 }
 
 export {
+    createDropdownHandler,
     DropdownMenu,
     DropdownMenuPortal,
     DropdownMenuTrigger,

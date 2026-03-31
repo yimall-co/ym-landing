@@ -1,27 +1,87 @@
 'use client'
 
 import type { ComponentProps } from 'react';
+import type { VariantProps } from 'tailwind-variants';
 
-import { cn } from 'tailwind-variants';
+import { cn, tv } from 'tailwind-variants';
 import { Avatar as BaseAvatar } from '@base-ui/react/avatar';
 
-type AvatarProps = BaseAvatar.Root.Props & {
-    size?: 'default' | 'sm' | 'lg';
-}
+const avatar = tv({
+    slots: {
+        root: [
+            'rounded-full',
+            'after:rounded-full',
+            'group/avatar',
+            'relative',
+            'flex',
+            'shrink-0',
+            'select-none',
+            'after:absolute',
+            'after:inset-0',
+            'after:border',
+            'after:border-(--foreground)/10',
+            'after:mix-blend-darken',
+            'dark:after:mix-blend-lighten',
+        ],
+        image: [
+            'rounded-full',
+            'aspect-square',
+            'size-full',
+            'object-contain',
+        ]
+    },
+    variants: {
+        size: {
+            default: {
+                root: 'size-8',
+            },
+            lg: {
+                root: 'size-10',
+            },
+            sm: {
+                root: 'size-6',
+            },
+        },
+        shape: {
+            square: {
+                root: 'rounded-none',
+            },
+            rounded: {
+                root: 'rounded-md',
+            },
+            circle: {
+                root: 'rounded-full',
+            },
+        }
+    },
+    defaultVariants: {
+        size: 'default',
+        shape: 'circle',
+    },
+});
+
+type AvatarVariants = VariantProps<typeof avatar>;
+
+type AvatarProps = AvatarVariants & BaseAvatar.Root.Props;
 
 function Avatar({
     className,
     size = "default",
+    shape = "circle",
     ...props
 }: AvatarProps) {
+    const { root } = avatar();
+
     return (
         <BaseAvatar.Root
             data-slot="avatar"
             data-size={size}
-            className={cn(
-                "size-8 rounded-full after:rounded-full data-[size=lg]:size-10 data-[size=sm]:size-6 group/avatar relative flex shrink-0 select-none after:absolute after:inset-0 after:border after:border-border after:mix-blend-darken dark:after:mix-blend-lighten",
-                className
-            )}
+            data-shape={shape}
+            className={root({
+                className: className as string,
+                size,
+                shape,
+            })}
             {...props}
         />
     )
@@ -30,13 +90,14 @@ function Avatar({
 type AvatarImageProps = BaseAvatar.Image.Props;
 
 function AvatarImage({ className, ...props }: AvatarImageProps) {
+    const { image } = avatar();
+
     return (
         <BaseAvatar.Image
             data-slot="avatar-image"
-            className={cn(
-                "rounded-full aspect-square size-full object-cover",
-                className
-            )}
+            className={image({
+                className: className as string,
+            })}
             {...props}
         />
     )

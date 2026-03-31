@@ -111,7 +111,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     return {
         title: {
             default: t('name'),
-            template: `% | ${t('shortName')}`,
+            template: `%s | ${t('shortName')}`,
         },
         description: t('description'),
         other: {

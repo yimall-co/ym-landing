@@ -14,7 +14,7 @@ import {
     Header as BaseHeader,
 } from '@yimall/ui';
 
-import { Logo } from 'components/ui/logo';
+import { Logo } from 'ui/logo';
 
 type Props = Readonly<{
     onResize?: (size: Size) => void;

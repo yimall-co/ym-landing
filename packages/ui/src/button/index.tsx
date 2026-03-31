@@ -5,6 +5,7 @@ import type { VariantProps, ClassValue } from 'tailwind-variants'
 import { tv } from 'tailwind-variants';
 import { motion } from 'motion/react';
 import { Button as BaseButton } from '@base-ui/react/button'
+import { Spinner } from '../spinner';
 
 const buttonVariants = tv({
     base: [
@@ -38,6 +39,9 @@ const buttonVariants = tv({
         'cursor-pointer',
     ],
     variants: {
+        loading: {
+            true: 'relative',
+        },
         block: {
             true: 'w-full',
         },
@@ -95,6 +99,8 @@ type Props = ButtonVariants & BaseButton.Props;
 
 export function Button({
     className,
+    loading,
+    children,
     shape = 'rounded',
     variant = "default",
     size = "default",
@@ -111,6 +117,8 @@ export function Button({
                 className: className as ClassValue
             })}
             render={<motion.button />}
-        />
+        >
+            {loading ? <Spinner /> : children}
+        </BaseButton>
     );
 }

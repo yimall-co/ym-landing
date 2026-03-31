@@ -48,7 +48,6 @@ export default function SignUpMobile({
                 hideStepIndicator
                 disableStepIndicators
                 stepContainerClassName='p-0'
-                // stepCircleContainerClassName='flex-1 h-full max-w-[none] shadow-none flex flex-col'
                 contentClassName='flex-1'
                 completeButtonProps={{
                     type: 'submit',

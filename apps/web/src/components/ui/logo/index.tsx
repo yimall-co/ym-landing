@@ -16,6 +16,8 @@ export type LogoVariant = 'horizontal' | 'vertical' | 'element';
 type Props = Readonly<{
     variant?: LogoVariant;
     className?: string;
+    fill?: string;
+    logoClassName?: string;
 }>;
 
 const logoMap: Record<LogoVariant, ComponentType<SVGProps<SVGSVGElement>>> = {
@@ -27,6 +29,8 @@ const logoMap: Record<LogoVariant, ComponentType<SVGProps<SVGSVGElement>>> = {
 export function Logo({
     variant = 'horizontal',
     className,
+    fill,
+    logoClassName,
 }: Props) {
     'use memo'
 
@@ -34,12 +38,12 @@ export function Logo({
 
     const shouldReducedMotion = useReducedMotion();
 
-    const fill = resolvedTheme === 'light'
+    const innerFill = fill ?? resolvedTheme === 'light'
         ? 'fill-(--color-primary)'
         : 'fill-(--color-light)';
 
     const Wrapper = logoMap?.[variant];
-    if (!Wrapper) return <LogoHorizontal fill={fill} />
+    if (!Wrapper) return <LogoHorizontal fill={innerFill} />
 
     const transition = {
         duration: shouldReducedMotion ? 0 : 0.20,
@@ -54,9 +58,13 @@ export function Logo({
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -6, scale: 0.985 }}
                 transition={transition as any}
-                className={cn('h-full w-full', className)}
+                className={cn('size-full', className)}
             >
-                <Wrapper fill={fill} className={cn('block h-full w-auto', fill)} />
+                <Wrapper
+                    id='logo'
+                    fill={innerFill}
+                    className={cn('block h-full! w-auto!', innerFill, logoClassName)}
+                />
             </motion.div>
         </AnimatePresence>
     );

@@ -39,26 +39,27 @@ export default function StepName({
             <Controller
                 control={control}
                 name='name'
-                defaultValue='Yito'
                 render={({ field, fieldState, }) => {
-                    const isInvalid = fieldState.invalid && (fieldState.isDirty || fieldState.isTouched);
-
                     const errorMessage = fieldState.error?.message;
                     const errors = Array.of({ message: errorMessage ? t(errorMessage, { maxLength: 100 }) : '' });
 
                     return (
                         <Field
+                            data-invalid={fieldState.invalid}
                             required={!(signUpSchema.shape.name instanceof ZodOptional)}
-                            data-invalid={isInvalid}
                         >
                             <FieldLabel htmlFor='name'>{t('SignUp.name.label')}</FieldLabel>
                             <Input
                                 {...field}
                                 id='name'
                                 type='text'
+                                aria-invalid={fieldState.invalid}
+                                autoComplete='off'
                                 placeholder={t('SignUp.name.placeholder')}
                             />
-                            <FieldError errors={errors} />
+                            {fieldState.invalid && errors.length > 0 && (
+                                <FieldError errors={errors} />
+                            )}
                         </Field>
                     );
                 }}

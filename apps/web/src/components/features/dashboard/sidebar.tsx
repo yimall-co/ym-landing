@@ -1,41 +1,53 @@
 'use client';
 
-import { Settings, User2 } from 'lucide-react';
+import { useEffect } from 'react';
+import { useParams } from 'next/navigation';
+import { useShallow } from 'zustand/shallow';
 
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuGroup,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-    PopoverTrigger,
     Sidebar,
     SidebarContent,
     SidebarFooter,
     SidebarGroup,
     SidebarHeader,
     SidebarMenu,
-    SidebarMenuButton,
     SidebarMenuItem,
     SidebarRail
 } from '@yimall/ui';
 
-import { appPopoverHandler } from 'features/app/popover';
+import { useLightweightUser } from 'features/user/hooks';
 
-import SettingsPanel from 'features/settings/panel';
+import { useDashboardStore } from './store';
+
+import UserSelector from 'features/user/selector';
+import WorkspaceSelector from 'features/workspace/selector';
+import SettingsSelector from 'features/settings/selector';
 
 type Props = Readonly<{}>;
 
 export default function DashboardSidebar({ }: Props) {
+    'use memo'
+    const params = useParams();
+
+    const workspaceSlug = params.workspaceSlug as string;
+
+    const { data: user, isLoading: isLoadingUser } = useLightweightUser();
+
+    const [selectedWorkspace, setSelectedWorkspace] = useDashboardStore(
+        useShallow((state) => [state.selectedWorkspace, state.setSelectedWorkspace])
+    );
+
+    // Unselect workspace if the workspace slug is not present
+    useEffect(() => {
+        if (!workspaceSlug) setSelectedWorkspace(null);
+    }, [workspaceSlug, setSelectedWorkspace])
 
     return (
-        <Sidebar className='bg-primary text-light' collapsible='icon' variant='sidebar'>
+        <Sidebar className='bg-background/80' collapsible='offcanvas' variant='sidebar'>
             <SidebarHeader>
                 <SidebarMenu>
                     <SidebarMenuItem>
-
+                        <WorkspaceSelector workspace={selectedWorkspace} isLoading={false} />
                     </SidebarMenuItem>
                 </SidebarMenu>
             </SidebarHeader>
@@ -46,44 +58,10 @@ export default function DashboardSidebar({ }: Props) {
             <SidebarFooter>
                 <SidebarMenu>
                     <SidebarMenuItem>
-                        <DropdownMenu>
-                            <DropdownMenuTrigger
-                                nativeButton={false}
-                                render={<div />}
-                                className='w-full'
-                            >
-                                <SidebarMenuButton>
-                                    <User2 /> Username
-                                </SidebarMenuButton>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent>
-                                <DropdownMenuGroup>
-                                    <DropdownMenuLabel>Navigation</DropdownMenuLabel>
-                                    <DropdownMenuItem>
-                                        Marketplace
-                                    </DropdownMenuItem>
-                                </DropdownMenuGroup>
-                                <DropdownMenuSeparator />
-                                <DropdownMenuGroup>
-                                    <DropdownMenuLabel>Account</DropdownMenuLabel>
-                                    <DropdownMenuItem>
-                                        Logout
-                                    </DropdownMenuItem>
-                                </DropdownMenuGroup>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
+                        <SettingsSelector />
                     </SidebarMenuItem>
                     <SidebarMenuItem>
-                        <PopoverTrigger
-                            handle={appPopoverHandler}
-                            payload={SettingsPanel}
-                            nativeButton={false}
-                            render={<div />}
-                        >
-                            <SidebarMenuButton>
-                                <Settings /> Settings
-                            </SidebarMenuButton>
-                        </PopoverTrigger>
+                        <UserSelector user={user ?? null} isLoading={isLoadingUser} />
                     </SidebarMenuItem>
                 </SidebarMenu>
             </SidebarFooter>

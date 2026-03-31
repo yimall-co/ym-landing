@@ -2,7 +2,7 @@ type Props = Readonly<{
     params: Promise<{ locale: string }>;
 }>;
 
-export default async function Page({ params }: Props) {
+export default async function MePage({ params }: Props) {
     const locale = (await params).locale;
 
     return (

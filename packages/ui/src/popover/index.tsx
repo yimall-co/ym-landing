@@ -1,6 +1,6 @@
 'use client';
 
-import type { ComponentProps, ReactNode } from 'react';
+import type { ComponentProps } from 'react';
 import type { VariantProps } from 'tailwind-variants';
 
 import { cn, tv } from 'tailwind-variants';
@@ -23,7 +23,7 @@ const popover = tv({
             'data-[side=top]:slide-in-from-bottom-2',
             'flex flex-col gap-2.5',
             'rounded-xl',
-            'p-2.5',
+            'p-2',
             'text-sm',
             'shadow-md',
             'ring-1',
@@ -51,13 +51,23 @@ const popover = tv({
 
 type PopoverVariants = VariantProps<typeof popover>;
 
-type PopoverProps = PopoverVariants & BasePopover.Root.Props<any>;
+type PopoverContextProps = Pick<BasePopover.Positioner.Props, "align" | "alignOffset" | "side" | "sideOffset"> & {
+    Component: any | null;
+};
 
-function Popover({ ...props }: PopoverProps) {
+function createPopoverHandler() {
+    return BasePopover.createHandle<PopoverContextProps>();
+}
+
+type PopoverProps = BasePopover.Root.Props<PopoverContextProps>;
+
+function Popover({
+    ...props
+}: PopoverProps) {
     return <BasePopover.Root data-slot="popover" {...props} />
 }
 
-type PopoverTriggerProps = PopoverVariants & BasePopover.Trigger.Props;
+type PopoverTriggerProps = BasePopover.Trigger.Props;
 
 function PopoverTrigger({ ...props }: PopoverTriggerProps) {
     return <BasePopover.Trigger data-slot="popover-trigger" {...props} />
@@ -69,10 +79,9 @@ function PopoverViewport({ ...props }: PopoverViewportProps) {
     return <BasePopover.Viewport data-slot="popover-viewport" {...props} />
 }
 
-type PopoverContentProps = PopoverVariants & BasePopover.Popup.Props & Pick<
-    BasePopover.Positioner.Props,
-    "align" | "alignOffset" | "side" | "sideOffset"
->;
+type PopoverContentProps = PopoverVariants
+    & BasePopover.Popup.Props
+    & Omit<PopoverContextProps, 'Component'>;
 
 function PopoverContent({
     className,
@@ -149,6 +158,7 @@ function PopoverDescription({
 }
 
 export {
+    createPopoverHandler,
     Popover,
     PopoverContent,
     PopoverDescription,
@@ -157,4 +167,3 @@ export {
     PopoverTrigger,
     PopoverViewport,
 }
-export { Popover as BasePopover } from '@base-ui/react/popover';

@@ -5,6 +5,10 @@
         "description": "Crea un catálogo digital profesional para tu negocio. Muestra productos o servicios, comparte un solo enlace y actualiza tu menú fácilmente con Yimall. Ideal para restaurantes, emprendimientos y negocios de servicios que necesitan mostrar su oferta de forma clara, moderna y fácil de compartir.",
         "keywords": "Yimall, catálogo digital, menú digital, productos, servicios, negocio"
     },
+    "breadcrumb": {
+        "root": "Inicio",
+        "dashboard": "Panel de control"
+    },
     "common": {
         "back": "Volver",
         "next": "Siguiente",
@@ -18,10 +22,13 @@
             "en": "Inglés",
             "fr": "Francés",
             "pt": "Portugués"
-        }
+        },
+        "successfully": "Exitoso"
     },
     "errors": {
         "required": "Es necesario rellenar este campo.",
+        "notValid": "Por favor asegurate de llenar todos los campos correctamente.",
+        "invalidCredentials": "Credenciales inválidas.",
         "mustBeAlphanumeric": "Solo se permiten letras, números y espacios",
         "mustBeComplex": "Debe tener al menos {minLength} caracteres, una mayúscula, una minúscula y un número",
         "mustBeAnEmail": "El correo electrónico no es válido",
@@ -103,12 +110,25 @@
         "submit": "Iniciar sesión"
     },
     "Dashboard": {
-        "sidebar": {},
+        "sidebar": {
+            "title": "Panel de control"
+        },
         "settings": {
             "title": "Configuración",
-            "description": "Administra la configuración de tu cuenta.",
+            "description": "Gestiona la configuración del idioma, la apariencia, entre otros.",
             "displayLanguage": "Idioma de visualización",
             "appearance": "Apariencia"
         }
+    },
+    "Workspace": {
+        "availableWorkspaces": "Espacios de trabajo",
+        "create": "Crear espacio de trabajo",
+        "selectYourWorkspace": "Selecciona tu espacio",
+        "noWorkspaceSelected": "No se ha seleccionado ningún espacio de trabajo"
+    },
+    "User": {
+        "profile": "Perfil",
+        "account": "Cuenta",
+        "logout": "Cerrar sesión"
     }
 }

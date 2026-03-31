@@ -1,5 +1,8 @@
 export * from './avatar';
 export * from './accordion';
+export * from './badge';
+export * from './breadcrumb';
+export * from './button';
 export * from './text';
 export * from './layout';
 export * from './webgl';
@@ -7,8 +10,6 @@ export * from './split-text';
 export * from './rotating-text';
 export * from './cubes';
 export * from './gradient-text';
-export * from './badge';
-export * from './button';
 export * from './curved-loop';
 export * from './drawer';
 export * from './dock';

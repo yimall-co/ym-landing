@@ -39,27 +39,31 @@ export default function StepTerms({
                 control={control}
                 name='termsAndConditions'
                 render={({ field, fieldState }) => {
-                    const isInvalid = fieldState.invalid && (fieldState.isDirty || fieldState.isTouched);
-
                     const errorMessage = fieldState.error?.message;
                     const errors = Array.of({ message: errorMessage ? t(errorMessage) : '' });
 
                     return (
-                        <Field orientation='horizontal' data-invalid={isInvalid}>
+                        <Field
+                            orientation='horizontal'
+                            data-invalid={fieldState.invalid}
+                        >
                             <Checkbox
                                 {...field}
+                                id='termsAndConditions'
                                 checked={field.value}
                                 value={String(field.value)}
                                 onCheckedChange={(value) => field.onChange(value)}
                                 onBlur={field.onBlur}
-                                id='termsAndConditions'
+                                aria-invalid={fieldState.invalid}
                             />
                             <FieldContent>
                                 <FieldLabel htmlFor='termsAndConditions'>{t('SignUp.terms.label')}</FieldLabel>
                                 <FieldDescription>
                                     {t('SignUp.terms.labelDescription')}
                                 </FieldDescription>
-                                <FieldError errors={errors} />
+                                {fieldState.invalid && errors.length > 0 && (
+                                    <FieldError errors={errors} />
+                                )}
                             </FieldContent>
                         </Field>
                     );
@@ -69,27 +73,31 @@ export default function StepTerms({
                 control={control}
                 name='newsLetter'
                 render={({ field, fieldState }) => {
-                    const isInvalid = fieldState.invalid && (fieldState.isDirty || fieldState.isTouched);
-
                     const errorMessage = fieldState.error?.message;
                     const errors = Array.of({ message: errorMessage ? t(errorMessage) : '' });
 
                     return (
-                        <Field orientation='horizontal' data-invalid={isInvalid}>
+                        <Field
+                            orientation='horizontal'
+                            data-invalid={fieldState.invalid}
+                        >
                             <Checkbox
                                 {...field}
+                                id='newsLetter'
                                 checked={field.value}
                                 value={String(field.value)}
                                 onCheckedChange={(value) => field.onChange(value)}
                                 onBlur={field.onBlur}
-                                id='newsLetter'
+                                aria-invalid={fieldState.invalid}
                             />
                             <FieldContent>
                                 <FieldLabel htmlFor='newsLetter'>{t('SignUp.newsLetter.label')}</FieldLabel>
                                 <FieldDescription>
                                     {t('SignUp.newsLetter.labelDescription')}
                                 </FieldDescription>
-                                <FieldError errors={errors} />
+                                {fieldState.invalid && errors.length > 0 && (
+                                    <FieldError errors={errors} />
+                                )}
                             </FieldContent>
                         </Field>
                     );

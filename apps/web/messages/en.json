@@ -5,6 +5,10 @@
         "description": "Create a professional digital catalog for your business. Showcase products or services, share a single link, and update your menu easily with Yimall. Ideal for restaurants, startups and service businesses that need to showcase their offer in a clear, modern and easy-to-share way.",
         "keywords": "Yimall, digital catalog, digital menu, products, services, business"
     },
+    "breadcrumb": {
+        "root": "Home",
+        "dashboard": "Dashboard"
+    },
     "common": {
         "back": "Back",
         "next": "Next",
@@ -18,10 +22,13 @@
             "en": "English",
             "fr": "French",
             "pt": "Portuguese"
-        }
+        },
+        "successfully": "Successful"
     },
     "errors": {
         "required": "This field is required.",
+        "notValid": "Please fill in all the fields correctly.",
+        "invalidCredentials": "Invalid credentials.",
         "mustBeAlphanumeric": "Only letters, numbers and spaces are allowed.",
         "mustBeComplex": "",
         "mustBeAnEmail": "The email address is not valid.",
@@ -103,12 +110,25 @@
         "submit": "Sign in"
     },
     "Dashboard": {
-        "sidebar": {},
+        "sidebar": {
+            "title": "Dashboard"
+        },
         "settings": {
             "title": "Settings",
             "description": "Manage your account settings.",
             "displayLanguage": "Display language",
             "appearance": "Appearance"
         }
+    },
+    "Workspace": {
+        "availableWorkspaces": "Available workspaces",
+        "create": "Create workspace",
+        "selectYourWorkspace": "Select your workspace",
+        "noWorkspaceSelected": "No workspace selected"
+    },
+    "User": {
+        "profile": "Profile",
+        "account": "Account",
+        "logout": "Logout"
     }
 }

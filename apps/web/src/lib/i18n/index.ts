@@ -15,13 +15,29 @@ const routing = defineRouting({
         '/': '/',
         '/sign-up': {
             es: '/registrarse',
+            fr: '/inscription',
+            pt: '/cadastro'
         },
         '/sign-in': {
             es: '/iniciar-sesion',
+            fr: '/connexion',
+            pt: '/login'
         },
         '/intro': {
             es: '/introduccion',
+            fr: '/introduction',
+            pt: '/introducao'
         },
+        '/dashboard': {
+            es: '/panel-de-control',
+            fr: '/tableau-de-bord',
+            pt: '/painel-de-controle'
+        },
+        '/dashboard/[workspaceSlug]': {
+            es: '/panel-de-control/[workspaceSlug]',
+            fr: '/tableau-de-bord/[workspaceSlug]',
+            pt: '/painel-de-controle/[workspaceSlug]'
+        }
     },
 });
 

@@ -50,13 +50,14 @@ const sidebar = tv({
             'data-open:hover:bg-sidebar-accent data-open:hover:text-sidebar-accent-foreground',
             'gap-2 rounded-md p-2 text-left text-sm transition-[width,height,padding]',
             'group-has-data-[sidebar=menu-action]/menu-item:pr-8',
-            'group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2!',
+            'group-data-[collapsible=icon]:size-6! group-data-[collapsible=icon]:p-0!',
             'focus-visible:ring-2',
             'data-active:font-medium',
             'peer/menu-button group/menu-button flex w-full items-center overflow-hidden outline-hidden',
             'disabled:pointer-events-none disabled:opacity-50',
             'aria-disabled:pointer-events-none aria-disabled:opacity-50',
             '[&_svg]:size-4 [&_svg]:shrink-0 [&>span:last-child]:truncate'
+            // '[&_svg]:size-6 [&_svg]:shrink-0 [&>span:last-child]:truncate'
         ],
     },
     variants: {
@@ -559,7 +560,7 @@ function SidebarMenu({ className, ...props }: SidebarMenuProps) {
         <ul
             data-slot="sidebar-menu"
             data-sidebar="menu"
-            className={cn("gap-0 flex w-full min-w-0 flex-col", className)}
+            className={cn("gap-0 flex w-full min-w-0 flex-col gap-y-2", className)}
             {...props}
         />
     )

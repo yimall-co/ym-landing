@@ -10,12 +10,12 @@ import {
     PopoverTitle,
 } from '@yimall/ui';
 
-import ThemeSwitcher from 'features/app/theme-switcher';
-import LanguageSelector from 'features/app/language-selector';
+import ThemeSwitcher from './theme-switcher';
+import LanguageSelector from './language-selector';
 
 type Props = Readonly<{}>;
 
-export default function SettingsPanel({ }: Props) {
+export default function SettingsMenu({ }: Props) {
     const t = useTranslations();
 
     return (
@@ -26,13 +26,13 @@ export default function SettingsPanel({ }: Props) {
             </div>
             <Field className='justify-between' orientation='horizontal'>
                 <FieldTitle>
-                    <Globe className='size-4 text-foreground/50' /> {t('Dashboard.settings.displayLanguage')}
+                    <Globe className='size-4 text-foreground/50' />{t('Dashboard.settings.displayLanguage')}
                 </FieldTitle>
                 <LanguageSelector />
             </Field>
             <Field className='justify-between' orientation='horizontal'>
                 <FieldTitle>
-                    <Palette className='size-4 text-foreground/50' /> {t('Dashboard.settings.appearance')}
+                    <Palette className='size-4 text-foreground/50' />{t('Dashboard.settings.appearance')}
                 </FieldTitle>
                 <ThemeSwitcher />
             </Field>

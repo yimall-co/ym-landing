@@ -7,8 +7,6 @@ import { useDevice } from 'shared/contexts/device';
 
 import { SidebarTrigger } from '@yimall/ui';
 
-import LanguageSelector from 'features/app/language-selector';
-
 type Props = Readonly<{}>;
 
 export default function DashboardToolbar({ }: Props) {
@@ -40,7 +38,6 @@ export default function DashboardToolbar({ }: Props) {
             <div className='size-full p-4 flex items-center'>
                 <SidebarTrigger />
                 <div className='ml-auto'>
-                    <LanguageSelector />
                 </div>
             </div>
         </div>

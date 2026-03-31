@@ -19,5 +19,11 @@ export async function signIn(payload: SignInSchema) {
     });
 
     const response = await request.json();
+
+    const { data } = response;
+    if (!data) {
+        throw new Error('No data');
+    }
+
     return response;
 }

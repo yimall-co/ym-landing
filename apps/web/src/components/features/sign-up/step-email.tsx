@@ -40,24 +40,25 @@ export default function StepEmail({
                 control={control}
                 name='email'
                 render={({ field, fieldState, }) => {
-                    const isInvalid = fieldState.invalid && (fieldState.isDirty || fieldState.isTouched);
-
                     const errorMessage = fieldState.error?.message;
                     const errors = Array.of({ message: errorMessage ? t(errorMessage) : '' });
 
                     return (
                         <Field
+                            data-invalid={fieldState.invalid}
                             required={!(signUpSchema.shape.email instanceof ZodOptional)}
-                            data-invalid={isInvalid}
                         >
                             <FieldLabel htmlFor='email'>{t('SignUp.email.label')}</FieldLabel>
                             <Input
                                 {...field}
                                 id='email'
                                 type='email'
+                                aria-invalid={fieldState.invalid}
                                 placeholder={t('SignUp.email.placeholder')}
                             />
-                            <FieldError errors={errors} />
+                            {fieldState.invalid && errors.length > 0 && (
+                                <FieldError errors={errors} />
+                            )}
                         </Field>
                     );
                 }}
@@ -66,24 +67,25 @@ export default function StepEmail({
                 control={control}
                 name='password'
                 render={({ field, fieldState, }) => {
-                    const isInvalid = fieldState.invalid && (fieldState.isDirty || fieldState.isTouched);
-
                     const errorMessage = fieldState.error?.message;
                     const errors = Array.of({ message: errorMessage ? t(errorMessage, { minLength: 6 }) : '' });
 
                     return (
                         <Field
+                            data-invalid={fieldState.invalid}
                             required={!(signUpSchema.shape.password instanceof ZodOptional)}
-                            data-invalid={isInvalid}
                         >
                             <FieldLabel htmlFor='password'>{t('SignUp.password.label')}</FieldLabel>
                             <Input
                                 {...field}
                                 id='password'
                                 type='password'
+                                aria-invalid={fieldState.invalid}
                                 placeholder={t('SignUp.password.placeholder')}
                             />
-                            <FieldError errors={errors} />
+                            {fieldState.invalid && errors.length > 0 && (
+                                <FieldError errors={errors} />
+                            )}
                         </Field>
                     );
                 }}

@@ -13,7 +13,7 @@ export function Skeleton({
     return (
         <div
             data-slot="skeleton"
-            className={cn("bg-muted rounded-md animate-pulse", className)}
+            className={cn("bg-neutral-500 rounded-md animate-pulse", className)}
             {...props}
         />
     )

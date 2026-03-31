@@ -33,6 +33,7 @@ export default function SignInMobile({
     formState: {
         isValid,
     },
+    mutation,
     onSubmit,
     onRecaptcha,
 }: Props) {
@@ -53,15 +54,14 @@ export default function SignInMobile({
                     control={control}
                     name='email'
                     render={({ field, fieldState }) => {
-                        const isInvalid = fieldState.invalid && (fieldState.isDirty || fieldState.isTouched);
-
                         const errorMessage = fieldState.error?.message;
                         const errors = Array.of({ message: errorMessage ? t(errorMessage) : '' });
 
                         return (
                             <Field
+                                data-invalid={fieldState.invalid}
+                                data-disabled={mutation.isPending}
                                 required={!(signInSchema.shape.email instanceof ZodOptional)}
-                                data-invalid={isInvalid}
                             >
                                 <FieldLabel htmlFor='email'>
                                     {t('SignIn.email.label')}
@@ -70,9 +70,13 @@ export default function SignInMobile({
                                     {...field}
                                     id='email'
                                     type='email'
+                                    aria-invalid={fieldState.invalid}
+                                    disabled={mutation.isPending}
                                     placeholder={t('SignIn.email.placeholder')}
                                 />
-                                <FieldError errors={errors} />
+                                {fieldState.invalid && errors.length > 0 && (
+                                    <FieldError errors={errors} />
+                                )}
                             </Field>
                         );
                     }}
@@ -81,15 +85,14 @@ export default function SignInMobile({
                     control={control}
                     name='password'
                     render={({ field, fieldState }) => {
-                        const isInvalid = fieldState.invalid && (fieldState.isDirty || fieldState.isTouched);
-
                         const errorMessage = fieldState.error?.message;
                         const errors = Array.of({ message: errorMessage ? t(errorMessage) : '' });
 
                         return (
                             <Field
+                                data-invalid={fieldState.invalid}
+                                data-disabled={mutation.isPending}
                                 required={!(signInSchema.shape.password instanceof ZodOptional)}
-                                data-invalid={isInvalid}
                             >
                                 <FieldLabel htmlFor='password'>
                                     {t('SignIn.password.label')}
@@ -98,9 +101,13 @@ export default function SignInMobile({
                                     {...field}
                                     id='password'
                                     type='password'
+                                    aria-invalid={fieldState.invalid}
+                                    disabled={mutation.isPending}
                                     placeholder={t('SignIn.password.placeholder')}
                                 />
-                                <FieldError errors={errors} />
+                                {fieldState.invalid && errors.length > 0 && (
+                                    <FieldError errors={errors} />
+                                )}
                             </Field>
                         );
                     }}
@@ -110,12 +117,11 @@ export default function SignInMobile({
                         control={control}
                         name='rememberMe'
                         render={({ field, fieldState }) => {
-                            const isInvalid = fieldState.invalid && (fieldState.isDirty || fieldState.isTouched);
-
                             return (
                                 <Field
+                                    data-invalid={fieldState.invalid}
+                                    data-disabled={mutation.isPending}
                                     required={!(signInSchema.shape.rememberMe instanceof ZodOptional)}
-                                    data-invalid={isInvalid}
                                     orientation='horizontal'
                                     className='w-fit'
                                 >
@@ -124,6 +130,7 @@ export default function SignInMobile({
                                         checked={field.value}
                                         value={String(field.value)}
                                         onCheckedChange={field.onChange}
+                                        disabled={mutation.isPending}
                                     />
                                     <FieldLabel htmlFor='rememberMe' className='ml-0'>
                                         {t('SignIn.rememberMe.label')}
@@ -137,7 +144,13 @@ export default function SignInMobile({
                     </Link>
                 </div>
                 <Recaptcha action='signin' onRecaptcha={onRecaptcha} />
-                <Button shape='pill' size='xl' type='submit' disabled={!isValid}>
+                <Button
+                    shape='pill'
+                    size='xl'
+                    type='submit'
+                    loading={mutation.isPending}
+                    disabled={!isValid || mutation.isPending}
+                >
                     {t('SignIn.submit')}
                 </Button>
                 <div className='flex items-center justify-center gap-x-2'>

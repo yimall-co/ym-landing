@@ -5,6 +5,10 @@
         "description": "Crie um catálogo digital profissional para o seu negócio. Apresente produtos ou serviços, compartilhe um único link e atualize seu menu facilmente com Yimall. Ideal para restaurantes, startups e empresas de serviços que precisam apresentar sua oferta de forma clara, moderna e fácil de compartilhar.",
         "keywords": "Yimall, catálogo digital, menu digital, produtos, serviços, negócio"
     },
+    "breadcrumb": {
+        "root": "Início",
+        "dashboard": "Painel de controle"
+    },
     "common": {
         "back": "Voltar",
         "next": "Próximo",
@@ -18,10 +22,13 @@
             "en": "Inglês",
             "fr": "Francês",
             "pt": "Português"
-        }
+        },
+        "successfully": "Sucesso"
     },
     "errors": {
         "required": "Este campo é obrigatório.",
+        "notValid": "Por favor asegurate de llenar todos los campos correctamente.",
+        "invalidCredentials": "Credenciais inválidas.",
         "mustBeAlphanumeric": "Apenas letras, números e espaços são permitidos.",
         "mustBeComplex": "",
         "mustBeAnEmail": "O endereço de e-mail não é válido.",
@@ -59,7 +66,7 @@
             "placeholder": "e.g. João Silva"
         },
         "email": {
-            "title": "Vamos continuar.",
+            "title": "",
             "subtitle": "Configurez les identifiants d'accès.",
             "description": "L'adresse e-mail et le mot de passe sont utiles pour se connecter à votre compte et recevoir des notifications.",
             "label": "Endereço de e-mail",
@@ -103,11 +110,25 @@
         "submit": "Se connecter"
     },
     "Dashboard": {
+        "sidebar": {
+            "title": "Painel"
+        },
         "settings": {
             "title": "Configuração",
             "description": "Administra la configuración de tu cuenta.",
             "displayLanguage": "Idioma de visualización",
             "appearance": "Apariencia"
         }
+    },
+    "Workspace": {
+        "availableWorkspaces": "Espaços de trabalho disponíveis",
+        "create": "Criar espaço de trabalho",
+        "selectYourWorkspace": "Selecione seu espaço de trabalho",
+        "noWorkspaceSelected": "Nenhum espaço de trabalho selecionado"
+    },
+    "User": {
+        "profile": "Perfil",
+        "account": "Conta",
+        "logout": "Sair"
     }
 }

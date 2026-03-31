@@ -19,6 +19,8 @@ type UseDeviceContext = Readonly<{
 }>;
 
 export default function useDeviceContext(): UseDeviceContext {
+    'use memo'
+
     const deviceInfo = useMemo<DeviceInfo | null>(
         () => {
             const cookie = getCookie('device-info');

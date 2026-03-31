@@ -14,18 +14,20 @@ catalog:
     '@tailwindcss/postcss': '^4'
     '@tanstack/react-query': ^5.94.5
     '@lucide/lab': '^0.1.2'
-    'framer-motion': ^12.38.0
-    'zod': '^4.1.13'
-    'vaul': '^1.1.2'
+    'autoprefixer': '^10.4.20'
+    'clsx': '^2.1.1'
+    'cookies-next': '^6.1.1'
     'date-fns': '^4.1.0'
+    'dexie': ^4.3.0
+    'dexie-react-hooks': ^4.2.0
+    'dotenv': '^17.2.3'
+    'framer-motion': ^12.38.0
+    'vaul': '^1.1.2'
     'three': '^0.182.0'
     'qrcode': '^1.5.4'
-    'cookies-next': '^6.1.1'
     'gsap': '^3.14.2'
     'motion': '^12.23.26'
-    'clsx': '^2.1.1'
     'postcss': '^8.5.3'
-    'autoprefixer': '^10.4.20'
     'sonner': ^2.0.7
     'react-hook-form': ^7.72.0
     'react-transition-progress': ^0.0.4
@@ -35,7 +37,6 @@ catalog:
     'tailwind-variants': '^3.2.2'
     'tailwind-scrollbar-hide': '^4.0.0'
     'lucide-react': '^0.561.0'
-    'dotenv': '^17.2.3'
     'eslint': '^9.39.1'
     'prettier': '^3.7.4'
     'eslint-config-next': '^16.0.10'
@@ -44,8 +45,13 @@ catalog:
     'babel-plugin-react-compiler': '^1.0.0'
     'bunchee': '^6.6.2'
     'typescript': '^5.9.3'
+    'zod': '^4.1.13'
+    'zustand': ^5.0.12
 
 catalogs:
+    jotai:
+        'jotai': ^2.19.0
+        'jotai-family': ^1.0.1
     node-20:
         '@types/node': '^20'
     react-19:

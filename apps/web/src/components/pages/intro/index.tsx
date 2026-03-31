@@ -15,7 +15,7 @@ import {
     Paragraph,
 } from '@yimall/ui';
 
-import { Logo } from 'components/ui/logo';
+import { Logo } from 'ui/logo';
 
 type Props = Readonly<{
     locale: string;

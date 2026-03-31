@@ -5,6 +5,10 @@
         "description": "Créez un catalogue numérique professionnel pour votre entreprise. Présentez vos produits ou services, partagez un seul lien et mettez à jour votre menu facilement avec Yimall. Idéal pour les restaurants, les startups et les entreprises de services qui ont besoin de présenter leur offre de manière claire, moderne et facile à partager.",
         "keywords": "Yimall, catalogue numérique, menu numérique, produits, services, entreprise"
     },
+    "breadcrumb": {
+        "root": "Accueil",
+        "dashboard": "Tableau de bord"
+    },
     "common": {
         "back": "Retour",
         "next": "Suivant",
@@ -18,10 +22,13 @@
             "en": "Anglais",
             "fr": "Français",
             "pt": "Portugais"
-        }
+        },
+        "successfully": "Succès"
     },
     "errors": {
         "required": "Ce champ est requis.",
+        "notValid": "Por favor asegurate de llenar todos los campos correctamente.",
+        "invalidCredentials": "Credenciais inválidas.",
         "mustBeAlphanumeric": "Seules les lettres, les nombres et les espaces sont autorisés.",
         "mustBeComplex": "",
         "mustBeAnEmail": "L'adresse e-mail n'est pas valide.",
@@ -103,11 +110,25 @@
         "submit": "Se connecter"
     },
     "Dashboard": {
+        "sidebar": {
+            "title": "Tableau de bord"
+        },
         "settings": {
             "title": "Paramètres",
             "description": "Gérez les paramètres de votre compte.",
             "displayLanguage": "Langue d'affichage",
             "appearance": "Apparence"
         }
+    },
+    "Workspace": {
+        "availableWorkspaces": "Espaces de travail disponibles",
+        "create": "Créer un espace de travail",
+        "selectYourWorkspace": "Sélectionnez votre espace de travail",
+        "noWorkspaceSelected": "Aucun espace de travail sélectionné"
+    },
+    "User": {
+        "profile": "Profil",
+        "account": "Compte",
+        "logout": "Déconnexion"
     }
 }
