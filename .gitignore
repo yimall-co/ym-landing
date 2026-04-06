@@ -8,7 +8,6 @@ node_modules
 .next/
 .store/
 .turbo/
-data/
 dist/
 node_modules/
 target/
@@ -36,7 +35,6 @@ artifacts
 .env*
 !.env.example
 vendor/
-data
 *.log
 todos.md
 .store

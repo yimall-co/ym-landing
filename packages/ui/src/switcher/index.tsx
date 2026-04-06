@@ -1,6 +1,6 @@
 'use client';
 
-import type { FC, JSX } from 'react';
+import type { JSX } from 'react';
 
 import { cn } from 'tailwind-variants';
 import { motion } from 'motion/react';
@@ -74,7 +74,7 @@ function Switcher({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
-            className='inline-flex items-center overflow-hidden rounded-full bg-background ring-1 ring-(--foreground) ring-inset'
+            className='inline-flex items-center overflow-hidden rounded-full bg-background ring-none ring-(--foreground) ring-inset'
             role='radiogroup'
         >
             {options?.map?.((option) => {

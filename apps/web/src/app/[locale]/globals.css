@@ -1,5 +1,5 @@
-@import 'tailwindcss';
-@import '@yimall/tailwind-config';
+@import "tailwindcss";
+@import "@yimall/tailwind-config";
 
 @custom-variant dark (&:where(.dark, .dark *));
 

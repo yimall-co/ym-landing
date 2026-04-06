@@ -10,10 +10,11 @@ catalog:
     '@icons-pack/react-simple-icons': '^13.8.0'
     '@t3-oss/env-core': '^0.13.8'
     '@t3-oss/env-nextjs': '^0.13.8'
-    '@tailwindcss/cli': '^4.1.18'
-    '@tailwindcss/postcss': '^4'
+    '@tailwindcss/cli': '^4.2.2'
+    '@tailwindcss/postcss': '^4.2.2'
     '@tanstack/react-query': ^5.94.5
     '@lucide/lab': '^0.1.2'
+    '@vis.gl/react-google-maps': ^1.5.3
     'autoprefixer': '^10.4.20'
     'clsx': '^2.1.1'
     'cookies-next': '^6.1.1'
@@ -29,9 +30,10 @@ catalog:
     'motion': '^12.23.26'
     'postcss': '^8.5.3'
     'sonner': ^2.0.7
+    'remeda': ^2.33.7
     'react-hook-form': ^7.72.0
     'react-transition-progress': ^0.0.4
-    'tailwindcss': '^4.1.5'
+    'tailwindcss': '^4.2.2'
     'tailwindcss-animate': '^1.0.7'
     'tailwind-merge': '^3.4.0'
     'tailwind-variants': '^3.2.2'
@@ -55,15 +57,19 @@ catalogs:
     node-20:
         '@types/node': '^20'
     react-19:
-        'react': '^19.2.1'
-        'react-dom': '^19.2.1'
+        'react': '^19.2.4'
+        'react-dom': '^19.2.4'
         '@types/react': '^19'
         '@types/react-dom': '^19'
     next-16:
-        'next': '^16.1.6'
-        '@next/env': '^16.1.6'
-        'next-intl': '^4.8.2'
+        'next': '^16.2.1'
+        '@next/env': '^16.2.1'
+        'next-intl': '^4.8.4'
         'next-themes': '^0.4.6'
     types:
         '@types/three': '^0.182.0'
         '@types/qrcode': '^1.5.6'
+
+ignoredBuiltDependencies:
+    - sharp
+    - unrs-resolver

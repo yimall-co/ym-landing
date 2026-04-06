@@ -27,6 +27,7 @@ export * from './skeleton';
 export * from './dropdown';
 export * from './popover';
 export * from './select';
+export * from './switch';
 export * from './switcher';
 
 export { cn } from 'tailwind-variants';

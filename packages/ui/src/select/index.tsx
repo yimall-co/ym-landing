@@ -61,7 +61,7 @@ const select = tv({
             '[&_svg]:shrink-0',
         ],
         popup: [
-            'bg-background',
+            'bg-(--background)',
             'text-popover-foreground',
             'data-open:animate-in',
             'data-closed:animate-out',

@@ -11,6 +11,7 @@ import {
 } from 'react';
 import { cn } from 'tailwind-variants';
 import { motion, AnimatePresence, Variants } from 'motion/react';
+import { MoveLeft } from 'lucide-react';
 
 import { Button } from '../button';
 
@@ -171,6 +172,7 @@ function SlideTransition({
             exit="exit"
             transition={{ duration: 0.4 }}
             style={{ position: 'absolute', left: 0, right: 0, top: 0 }}
+            className='flex-1 flex h-full'
         >
             {children}
         </motion.div>
@@ -258,6 +260,14 @@ type StepperProps = HTMLAttributes<HTMLDivElement> & {
         currentStep: number;
         onStepClick: () => void;
     }) => ReactNode;
+    renderFooter?: (props: {
+        step: number;
+        isLastStep: boolean;
+        currentStep: number;
+        onNextClick: () => void;
+        onBackClick: () => void;
+        onCompleteClick: () => void;
+    }) => ReactNode;
 }
 
 export function Stepper({
@@ -282,6 +292,7 @@ export function Stepper({
     renderStepIndicator,
     renderBackButton,
     renderNextOrCompleteButton,
+    renderFooter,
     ...rest
 }: StepperProps) {
     const [direction, setDirection] = useState<number>(0);
@@ -399,56 +410,67 @@ export function Stepper({
                 </StepContentWrapper>
 
                 {!isCompleted && (
-                    <div className={cn(`px-2 pb-2`, footerClassName)}>
-                        <div className={cn(`pt-4 flex flex-col-reverse gap-y-4`, currentStep !== 1 ? 'justify-between' : 'justify-end')}>
-                            {currentStep !== 1 && (
-                                renderBackButton ? (
-                                    renderBackButton({
-                                        step: currentStep,
-                                        currentStep,
-                                        onStepClick: handleBack
-                                    })
-                                ) : (
-                                    <Button
-                                        size='lg'
-                                        variant='link'
-                                        onClick={handleBack}
-                                        className={cn(`duration-350 rounded px-2 py-1 transition`, currentStep === 1
-                                            ? 'pointer-events-none opacity-50 text-neutral-400'
-                                            : 'text-neutral-400 hover:text-neutral-700'
-                                        )}
-                                        {...backButtonProps}
-                                    >
-                                        {backButtonText}
-                                    </Button>
-                                ))}
-                            {renderNextOrCompleteButton ? (
-                                renderNextOrCompleteButton({
-                                    step: currentStep,
-                                    currentStep,
-                                    onStepClick: isLastStep ? handleComplete : handleNext,
-                                })
-                            ) : !isLastStep ? (
-                                <Button
-                                    shape='pill'
-                                    size='xl'
-                                    onClick={handleNext}
-                                    {...nextButtonProps}
-                                >
-                                    {nextButtonText}
-                                </Button>
-                            ) : (
-                                <Button
-                                    shape='pill'
-                                    size='xl'
-                                    onClick={handleComplete}
-                                    {...completeButtonProps}
-                                >
-                                    {completeButtonText}
-                                </Button>
-                            )}
-                        </div>
-                    </div>
+                    <Fragment>
+                        {renderFooter ? renderFooter({
+                            step: currentStep,
+                            isLastStep,
+                            currentStep,
+                            onNextClick: handleNext,
+                            onBackClick: handleBack,
+                            onCompleteClick: handleComplete,
+                        }) : (
+                            <div className={cn(`px-2 pb-2`, footerClassName)}>
+                                <div className={cn(`pt-4 flex flex-col-reverse gap-y-4`, currentStep !== 1 ? 'justify-between' : 'justify-end')}>
+                                    {currentStep !== 1 && (
+                                        renderBackButton ? (
+                                            renderBackButton({
+                                                step: currentStep,
+                                                currentStep,
+                                                onStepClick: handleBack
+                                            })
+                                        ) : (
+                                            <Button
+                                                size='lg'
+                                                variant='link'
+                                                onClick={handleBack}
+                                                className={cn(`duration-350 rounded px-2 py-1 transition`, currentStep === 1
+                                                    ? 'pointer-events-none opacity-50 text-neutral-400'
+                                                    : 'text-neutral-400 hover:text-neutral-700'
+                                                )}
+                                                {...backButtonProps}
+                                            >
+                                                <MoveLeft /> {backButtonText}
+                                            </Button>
+                                        ))}
+                                    {renderNextOrCompleteButton ? (
+                                        renderNextOrCompleteButton({
+                                            step: currentStep,
+                                            currentStep,
+                                            onStepClick: isLastStep ? handleComplete : handleNext,
+                                        })
+                                    ) : !isLastStep ? (
+                                        <Button
+                                            shape='pill'
+                                            size='xl'
+                                            onClick={handleNext}
+                                            {...nextButtonProps}
+                                        >
+                                            {nextButtonText}
+                                        </Button>
+                                    ) : (
+                                        <Button
+                                            shape='pill'
+                                            size='xl'
+                                            onClick={handleComplete}
+                                            {...completeButtonProps}
+                                        >
+                                            {completeButtonText}
+                                        </Button>
+                                    )}
+                                </div>
+                            </div>
+                        )}
+                    </Fragment>
                 )}
             </div>
         </div>

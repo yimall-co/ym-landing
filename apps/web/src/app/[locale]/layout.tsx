@@ -98,9 +98,7 @@ export const viewport: Viewport = {
     ],
 };
 
-export async function generateMetadata(props: Props): Promise<Metadata> {
-    const { params } = props;
-
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const locale = (await params).locale;
 
     const t = await getTranslations({
@@ -121,8 +119,8 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 };
 
 export default async function RootLayout({
-    params,
     children,
+    params,
 }: LayoutProps) {
     const locale = (await params).locale;
 

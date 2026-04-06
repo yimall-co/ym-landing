@@ -30,7 +30,7 @@ export default function BaseLayout({ children }: Props) {
                         <ProgressBar className='fixed h-1 shadow-lg shadow-primary/20 bg-primary top-0 z-50' />
                         <Toaster
                             visibleToasts={5}
-                            position='top-center'
+                            position='bottom-center'
                         />
                         {children}
                         <AppPopover />

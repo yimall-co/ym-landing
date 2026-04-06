@@ -51,5 +51,8 @@
         "**/*.mts",
         "global.d.ts",
         "next-intl.d.ts"
+    ],
+    "exclude": [
+        "node_modules"
     ]
 }

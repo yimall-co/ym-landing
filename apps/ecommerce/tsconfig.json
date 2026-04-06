@@ -1,0 +1,55 @@
+{
+    "extends": "@yimall/typescript-config",
+    "compilerOptions": {
+        "plugins": [
+            {
+                "name": "next"
+            }
+        ],
+        "paths": {
+            "app/*": [
+                "./src/app/*"
+            ],
+            "components/*": [
+                "./src/components/*"
+            ],
+            "env/*": [
+                "./src/env/*"
+            ],
+            "features/*": [
+                "./src/components/features/*"
+            ],
+            "messages/*": [
+                "./messages/*"
+            ],
+            "lib/*": [
+                "./src/lib/*"
+            ],
+            "layouts/*": [
+                "./src/components/layouts/*"
+            ],
+            "pages/*": [
+                "./src/components/pages/*"
+            ],
+            "shared/*": [
+                "./src/shared/*"
+            ],
+            "ui/*": [
+                "./src/components/ui/*"
+            ],
+        }
+    },
+    "include": [
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        ".next/types/**/*.ts",
+        ".next/dev/types/**/*.ts",
+        "**/*.mts",
+        "global.d.ts",
+        "next-intl.d.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

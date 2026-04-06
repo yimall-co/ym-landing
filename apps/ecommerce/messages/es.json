@@ -1,0 +1,192 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "metadata": {
+        "applicationName": "",
+        "siteName": "",
+        "titleTemplate": "",
+        "description": "",
+        "keywords": "",
+        "signin": {
+            "title": "",
+            "description": ""
+        },
+        "signup": {
+            "title": "",
+            "description": ""
+        },
+        "category": {
+            "title": "",
+            "description": ""
+        },
+        "location": {
+            "title": "",
+            "description": ""
+        },
+        "privacy": {
+            "title": "",
+            "description": ""
+        },
+        "loading": {
+            "title": "",
+            "description": ""
+        },
+        "notFound": {
+            "title": "",
+            "description": ""
+        }
+    },
+    "common": {
+        "back": "Atrás",
+        "next": "Siguiente",
+        "continue": "Continuar",
+        "complete": "Finalizar",
+        "language": "Idioma",
+        "loading": "Aguarda un momento...",
+        "languages": {
+            "en": "Inglés",
+            "es": "Español"
+        },
+        "appearance": "Apariencia",
+        "appearances": {
+            "light": "Claro",
+            "dark": "Oscuro",
+            "system": "Sistema"
+        },
+        "notification": "Permitir notificaciones"
+    },
+    "Onboarding": {
+        "welcome": {
+            "title": "Te damos la bienvenida",
+            "description": "Elige el idioma y el tema de color que deseas visualizar en la tienda",
+            "note": "* Podrás cambiar la configuración mas tarde"
+        },
+        "geolocation": {
+            "title": "Ubicación",
+            "description": "Permite el acceso a tu ubicación para ver los productos disponibles en tu área"
+        },
+        "search": {
+            "title": "Probemos buscar algo...",
+            "description": "Escribe el nombre de un producto para ver si lo tenemos en nuestra tienda"
+        }
+    },
+    "jumpToCatalog": "Saltar bienvenida",
+    "sharingLocation": "Compartiendo ubicación...",
+    "discountTimeLeft": "El descuento termina en: {left}",
+    "allRightsReserved": "\u00a9 {currentYear} - www.yimall.co",
+    "privacyPolicy": "Políticas de privacidad",
+    "termsOfService": "Términos del servicio",
+    "discountPercentage": "{value}%",
+    "menu": "Menú",
+    "exploreDiscounts": "Explorar descuentos",
+    "offers": "Productos",
+    "goHome": "Ir al inicio",
+    "socialMedia": "Redes sociales",
+    "navigation": "Navegación",
+    "typing": "Buscando...",
+    "noResults": "No hay resultados",
+    "address": "Dirección",
+    "noscript": "Esta aplicación requiere JavaScript para funcionar correctamente. Por favor, habilita JavaScript en tu navegador para continuar.",
+    "open": "Abierto",
+    "close": "Cerrado",
+    "goBackError": "Ups... Algo salió al volver atr\u00e1s. Te redirigimos al inicio.",
+    "shopNotFound": "Ups... Parece que la sucursal que buscas está en construcción",
+    "headquarter": "Sucursal",
+    "test": "{min, plural, =1 {{max, plural, =1 {Selecciona {min} opción} other {Escoge mínimo {min} y máximo {max} opciones}}} =0 {{max, plural, =0 {} other {Puedes escoger hasta {max} opciones}}} other {{max, plural, =0 {Escoge mínimo {min} opciones} other {Escoge mínimo {min} opciones y máximo {max}}}}}",
+    "included": "Incluido",
+    "cart": "Carrito de compras",
+    "recents": "Productos recientes",
+    "showAll": "Ver todos",
+    "showProducts": "Ver productos",
+    "shared": {
+        "back": "Atrás",
+        "cancel": "Cancelar",
+        "close": "Cerrar",
+        "accept": "Aceptar",
+        "saveChanges": "Guardar cambios",
+        "discount": "{discount}% off",
+        "showMore": "Leer más",
+        "showLess": "Ver menos"
+    },
+    "Privacy": {
+        "content": "<h1>Política de Privacidad</h1>\n\n<p>Última actualización: {lastUpdate}</p>\n\n<h2>1. Introducción</h2>\n\n<p>Esta Política de Privacidad describe cómo <b>{workspace}</b> (en adelante, “la Plataforma”, “nosotros” o “nuestro”) recopila, usa, almacena, protege y trata los datos personales de los usuarios (en adelante, “el Usuario” o “los Usuarios”) que acceden y utilizan nuestra aplicación web.</p>\n\n<p>La Plataforma opera desde Colombia y presta servicios a usuarios y negocios ubicados tanto en Colombia como en otros países, incluidos territorios de la Unión Europea. Por ello, cumplimos con:</p>\n\n<p>- La Ley 1581 de 2012 y el Decreto 1377 de 2013 de Colombia.</p>\n<p>- El Reglamento General de Protección de Datos (GDPR – UE 2016/679).</p>\n\n<b>Al utilizar la Plataforma, el Usuario acepta las prácticas descritas en esta Política.</b>\n\n\n\n<h2>2. Responsable del Tratamiento de Datos</h2>\n\n<p>- Responsable: Brian Castro Bedoya</p>\n<p>- Correo de contacto: contact@yimall.co</p>\n<p>- País: Colombia</p>\n\n<p>Cuando la Plataforma actúe como intermediaria entre Usuarios y negocios de terceros, podrá actuar como Encargado del Tratamiento, siendo el negocio el Responsable de los datos que gestione.</p>\n\n\n\n<h2>3. Datos Personales que Recopilamos</h2>\n\n<h3>3.1 Datos de identificación</h3>\n<p>- Nombre y apellidos</p>\n<p>- Correo electrónico</p>\n<p>- Número de teléfono</p>\n<p>- Identificadores de usuario</p>\n\n<h3>3.2 Datos de uso</h3>\n<p>- Dirección IP</p>\n<p>- Tipo de dispositivo y navegador</p>\n<p>- Páginas visitadas y acciones dentro de la Plataforma</p>\n<p>- Fecha y hora de acceso</p>\n\n<h3>3.3 Datos de negocios de terceros</h3>\n\n<p>Cuando el Usuario interactúa con negocios registrados en la Plataforma, dichos negocios pueden recopilar información adicional necesaria para la prestación de sus servicios.</p>\n\n\n\n<h2>4. Finalidades del Tratamiento</h2>\n\n<p>Los datos personales serán tratados para:</p>\n\n<p>- Permitir el registro y autenticación de Usuarios.</p>\n<p>- Facilitar la interacción entre Usuarios y negocios de terceros.</p>\n<p>- Gestionar reservas, pedidos, servicios o productos.</p>\n<p>- Mejorar la experiencia del Usuario.</p>\n<p>- Enviar comunicaciones relacionadas con el servicio.</p>\n<p>- Cumplir obligaciones legales.</p>\n\n\n\n<h2>5. Base Legal del Tratamiento</h2>\n\n<h3>Colombia</h3>\n<p>- Consentimiento del titular.</p>\n<p>- Relación contractual.</p>\n<p>- Obligación legal.</p>\n\n<h3>Unión Europea (GDPR)</h3>\n<p>- Consentimiento.</p>\n<p>- Ejecución de contrato.</p>\n<p>- Obligación legal.</p>\n<p>- Interés legítimo.</p>\n\n\n\n<h2>6. Compartición de Datos con Terceros</h2>\n\n<p>Los datos personales podrán compartirse únicamente con:</p>\n\n<p>- Negocios de terceros que presten servicios al Usuario.</p>\n<p>- Proveedores tecnológicos.</p>\n<p>- Autoridades cuando la ley lo exija.</p>\n\n\n\n<h2>7. Transferencias Internacionales de Datos</h2>\n\n<p>Los datos pueden ser tratados fuera de Colombia. Garantizamos el cumplimiento de las normas colombianas y del GDPR.</p>\n\n\n\n<h2>8. Derechos de los Titulares</h2>\n\n<h3>Colombia</h3>\n<p>- Conocer, actualizar y rectificar los datos.</p>\n<p>- Solicitar prueba de autorización.</p>\n<p>- Revocar la autorización.</p>\n<p>- Solicitar supresión del dato.</p>\n\n<h3>GDPR</h3>\n<p>- Acceso</p>\n<p>- Rectificación</p>\n<p>- Supresión</p>\n<p>- Limitación</p>\n<p>- Portabilidad</p>\n<p>- Oposición</p>\n\n\n\n<h2>9. Seguridad de la Información</h2>\n\n<p>Implementamos medidas técnicas y organizativas razonables para proteger los datos personales.</p>\n\n\n\n<h2>10. Cookies</h2>\n\n<p>La Plataforma utiliza cookies para mejorar la experiencia del Usuario. El Usuario puede deshabilitarlas desde su navegador.</p>\n\n\n\n<h2>11. Menores de Edad</h2>\n\n<p>La Plataforma no está dirigida a menores de edad.</p>\n\n\n\n<h2>12. Modificaciones</h2>\n\n<p>Esta Política puede ser modificada en cualquier momento. Los cambios serán publicados en la Plataforma.</p>\n\n\n\n<h2>13. Contacto</h2>\n\n<p>Correo: contact@yimall.co</p>\n\n<b>Al utilizar la Plataforma, el Usuario declara haber leído y aceptado esta Política.</b>"
+    },
+    "Loading": {
+        "message": "Cargando...",
+        "messages": {
+            "0": "Aguarda un momento",
+            "1": "<p>Tip: puedes cambiar el tema de la aplicación en el menu de opciones en la esquina superior derecha.</p>",
+            "2": "<p>Tip: puedes encontrar nuestras redes sociales al darle tap a nuestro logo.</p>",
+            "3": "<p>Consejo: utiliza el buscador para encontrar lo que deseas.</p>",
+            "4": "<p>Sabias que: puedes compartir nuestros servicios al darle tap al botón de la esquina superior derecha.</p>"
+        }
+    },
+    "Platform": {},
+    "Location": {},
+    "Cart": {
+        "items": "{count} items",
+        "total": "Total: ",
+        "action": "Adquirir productos",
+        "emptyCart": "El carrito de compras está vacío"
+    },
+    "theme": {
+        "tooltip": "Cambiar tema",
+        "dialog": {
+            "title": "Configuración de apariencia",
+            "description": "Selecciona el tema que mas se adecue a tus gustos",
+            "system": {
+                "title": "Sistema",
+                "label": "Por defecto",
+                "description": ""
+            },
+            "dark": {
+                "title": "Oscuro",
+                "label": "Modo oscuro",
+                "description": ""
+            },
+            "light": {
+                "title": "Claro",
+                "label": "Modo claro",
+                "description": ""
+            }
+        }
+    },
+    "location": {
+        "tooltip": "Nuestra ubicación",
+        "dialog": {
+            "title": "Ubicación",
+            "description": "Para saber que tan cerca estas de nosotros, permitenos conocer tu ubicaci\u00f3n y te daremos un punto de referencia.",
+            "button": "Compartir ubicación"
+        }
+    },
+    "language": {
+        "tooltip": "Cambiar idioma",
+        "dialog": {
+            "title": "Configuración del idioma",
+            "description": "",
+            "es": {
+                "title": "Español"
+            },
+            "en": {
+                "title": "Ingl\u00e9s"
+            }
+        }
+    },
+    "search": {
+        "tooltip": "Buscar",
+        "placeholder": "Buscar productos",
+        "recents": "Recientes"
+    },
+    "OfferDetail": {
+        "title": "Detalles del producto",
+        "availableOptions": "Opciones disponibles",
+        "description": "Descripción",
+        "notProvided": "Oops... No se ha proporcionado una descripción.",
+        "button": "Agregar al carrito",
+        "message": "Hola! Quiero recibir m\u00e1s informaci\u00f3n del producto: {name}"
+    },
+    "notFound": {
+        "title": "Ups... No pudimos encontrar lo que buscabas.",
+        "description": "Parece que esta página se perdi\u00f3 en el camino. Revisa la URL o vuelve al inicio.",
+        "home": "Regresar al catálogo"
+    }
+}

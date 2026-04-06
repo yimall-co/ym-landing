@@ -1,0 +1,50 @@
+{
+    "name": "ecommerce",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev -p 3005",
+        "build": "next build",
+        "start": "next start -p 3005",
+        "lint": "eslint",
+        "lint:fix": "eslint . --fix"
+    },
+    "dependencies": {
+        "@hookform/resolvers": "catalog:",
+        "@next/env": "catalog:next-16",
+        "@t3-oss/env-nextjs": "catalog:",
+        "@tanstack/react-query": "catalog:",
+        "@tailwindcss/postcss": "catalog:",
+        "cookies-next": "catalog:",
+        "date-fns": "catalog:",
+        "dexie": "catalog:",
+        "dexie-react-hooks": "catalog:",
+        "motion": "catalog:",
+        "next": "catalog:next-16",
+        "next-intl": "catalog:next-16",
+        "next-themes": "catalog:next-16",
+        "lucide-react": "catalog:",
+        "postcss": "catalog:",
+        "remeda": "catalog:",
+        "react": "catalog:react-19",
+        "react-dom": "catalog:react-19",
+        "react-hook-form": "catalog:",
+        "react-transition-progress": "catalog:",
+        "sonner": "catalog:",
+        "tailwindcss": "catalog:",
+        "zod": "catalog:",
+        "zustand": "catalog:"
+    },
+    "devDependencies": {
+        "@types/node": "catalog:node-20",
+        "@types/react": "catalog:react-19",
+        "@types/react-dom": "catalog:react-19",
+        "@yimall/ui": "workspace:*",
+        "@yimall/typescript-config": "workspace:*",
+        "@yimall/tailwind-config": "workspace:*",
+        "babel-plugin-react-compiler": "catalog:",
+        "eslint": "catalog:",
+        "eslint-config-next": "catalog:",
+        "typescript": "catalog:"
+    }
+}
