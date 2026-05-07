@@ -4,8 +4,8 @@ import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 
 import { clientEnv } from 'env/client';
 import { cachedQueryClient } from 'lib/query-client';
-import { getCustomization } from 'lib/data/customization';
 
+import { getCustomizationData } from 'features/onboarding/actions';
 import { onboardingKeys } from 'features/onboarding/hooks/keys';
 
 import Onboarding from 'pages/onboarding';
@@ -27,9 +27,9 @@ export default async function OnboardingPage({ params }: Props) {
 
     const workspaceId = clientEnv.NEXT_PUBLIC_WORKSPACE_ID;
 
-    await queryClient.prefetchQuery({
+    queryClient.prefetchQuery({
         queryKey: onboardingKeys.customization(workspaceId),
-        queryFn: () => getCustomization(workspaceId),
+        queryFn: getCustomizationData,
     });
 
     return (

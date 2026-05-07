@@ -2,6 +2,7 @@
 
 import type { OnboardingProps } from 'pages/onboarding';
 
+import { Fragment } from 'react';
 import {
     Check,
     MoveLeft,
@@ -16,9 +17,13 @@ import {
 
 import OnboardingStepWelcome from 'features/onboarding/step-welcome';
 import OnboardingStepGeolocation from 'features/onboarding/step-geolocation';
-import OnboardingStepSearch from 'features/onboarding/step-search';
 
 type Props = OnboardingProps;
+
+const onboardingSteps = {
+    'welcome': <OnboardingStepWelcome />,
+    'geolocation': <OnboardingStepGeolocation />,
+} as const;
 
 export default function OnboardingMobile({
     t,
@@ -70,16 +75,18 @@ export default function OnboardingMobile({
                     <Button
                         variant='link'
                         className='text-sm'
-                        onClick={onFinalStepCompleted}
+                        onClick={() => onFinalStepCompleted({ currentStep, isLastStep })}
                     >
                         {t('jumpToCatalog')}
                     </Button>
                 </ div>
             )}
         >
-            <OnboardingStepWelcome />
-            <OnboardingStepGeolocation />
-            <OnboardingStepSearch />
+            {Object.entries(onboardingSteps).map(([key, content]) => (
+                <Fragment key={key}>
+                    {content}
+                </Fragment>
+            ))}
         </Stepper >
     );
 }

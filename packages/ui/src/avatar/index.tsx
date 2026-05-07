@@ -19,7 +19,7 @@ const avatar = tv({
             'after:absolute',
             'after:inset-0',
             'after:border',
-            'after:border-(--foreground)/10',
+            'after:border-(--foreground)/20',
             'after:mix-blend-darken',
             'dark:after:mix-blend-lighten',
         ],
@@ -28,7 +28,42 @@ const avatar = tv({
             'aspect-square',
             'size-full',
             'object-contain',
-        ]
+        ],
+        fallback: [
+            'bg-muted',
+            'text-muted-foreground',
+            'rounded-full',
+            'flex',
+            'size-full',
+            'items-center',
+            'justify-center',
+            'text-sm',
+            'focus:outline-none',
+            'focus-visible:outline-none',
+            'group-data-[size=sm]/avatar:text-xs',
+        ],
+        badge: [
+            'bg-primary',
+            'text-primary-foreground',
+            'ring-background',
+            'absolute',
+            'right-0',
+            'bottom-0',
+            'z-10',
+            'inline-flex',
+            'items-center',
+            'justify-center',
+            'rounded-full',
+            'bg-blend-color',
+            'ring-2',
+            'select-none',
+            'group-data-[size=sm]/avatar:size-2',
+            'group-data-[size=sm]/avatar:[&>svg]:hidden',
+            'group-data-[size=default]/avatar:size-2.5',
+            'group-data-[size=default]/avatar:[&>svg]:size-2',
+            'group-data-[size=lg]/avatar:size-3',
+            'group-data-[size=lg]/avatar:[&>svg]:size-2',
+        ],
     },
     variants: {
         size: {
@@ -109,13 +144,14 @@ function AvatarFallback({
     className,
     ...props
 }: AvatarFallbackProps) {
+    const { fallback } = avatar();
+
     return (
         <BaseAvatar.Fallback
             data-slot="avatar-fallback"
-            className={cn(
-                "bg-muted text-muted-foreground rounded-full flex size-full items-center justify-center text-sm group-data-[size=sm]/avatar:text-xs",
-                className
-            )}
+            className={fallback({
+                className: className as string,
+            })}
             {...props}
         />
     )
@@ -124,16 +160,14 @@ function AvatarFallback({
 type AvatarBadgeProps = ComponentProps<"span">;
 
 function AvatarBadge({ className, ...props }: AvatarBadgeProps) {
+    const { badge } = avatar();
+
     return (
         <span
             data-slot="avatar-badge"
-            className={cn(
-                "bg-primary text-primary-foreground ring-background absolute right-0 bottom-0 z-10 inline-flex items-center justify-center rounded-full bg-blend-color ring-2 select-none",
-                "group-data-[size=sm]/avatar:size-2 group-data-[size=sm]/avatar:[&>svg]:hidden",
-                "group-data-[size=default]/avatar:size-2.5 group-data-[size=default]/avatar:[&>svg]:size-2",
-                "group-data-[size=lg]/avatar:size-3 group-data-[size=lg]/avatar:[&>svg]:size-2",
-                className
-            )}
+            className={badge({
+                className: className as string,
+            })}
             {...props}
         />
     )

@@ -5,7 +5,7 @@ import type { VariantProps } from 'tailwind-variants';
 import { tv } from 'tailwind-variants';
 import { mergeProps, useRender } from '@base-ui/react';
 
-const badge = tv({
+const badgeVariants = tv({
     base: [
         'w-fit',
         'items-center',
@@ -24,8 +24,8 @@ const badge = tv({
             flex: 'flex',
         },
         color: {
-            default: 'bg-[var(--background)]',
-            primary: 'text-primary bg-[var(--color-primary-400)]/5 border border-(--color-primary)',
+            default: 'bg-(--background)',
+            primary: 'text-primary bg-(--color-primary-400)/5 border border-(--color-primary)',
         },
         variant: {
             bubble: 'rounded-[35px_25px_35px_25px]',
@@ -72,9 +72,9 @@ const badge = tv({
     },
 });
 
-type BadgeVariants = VariantProps<typeof badge>;
+type BadgeVariants = VariantProps<typeof badgeVariants>;
 
-type BadgeProps = BadgeVariants & useRender.ComponentProps<'span'>;
+type Props = BadgeVariants & useRender.ComponentProps<'span'>;
 
 export function Badge({
     className,
@@ -84,14 +84,14 @@ export function Badge({
     position = 'default',
     render,
     ...props
-}: BadgeProps) {
+}: Props) {
     'use memo'
 
     return useRender({
         defaultTagName: 'span',
         props: mergeProps<'span'>(
             {
-                className: badge({
+                className: badgeVariants({
                     variant,
                     position,
                     color,

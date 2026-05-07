@@ -16,7 +16,7 @@ export default function OnboardingStepWelcome({ }: Props) {
             title={t('title')}
             description={t('description')}
         >
-            <Configuration />
+            <Configuration showNotification={false} />
             <span className='text-xs mt-auto'>{t('note')}</span>
         </OnboardingStepContainer>
     );

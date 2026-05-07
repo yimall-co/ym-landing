@@ -1,11 +1,15 @@
 'use client'
 
+import type { ComponentProps } from 'react';
 import type { VariantProps, ClassValue } from 'tailwind-variants'
 
+import { mergeProps, useRender } from '@base-ui/react';
+import { Button as BaseButton } from '@base-ui/react/button'
 import { tv } from 'tailwind-variants';
 import { motion } from 'motion/react';
-import { Button as BaseButton } from '@base-ui/react/button'
+
 import { Spinner } from '../spinner';
+import { Tooltip, TooltipContent, TooltipTrigger } from '../tooltip';
 
 const buttonVariants = tv({
     base: [
@@ -22,7 +26,6 @@ const buttonVariants = tv({
         'font-medium',
         'focus-visible:ring-3',
         'aria-invalid:ring-3',
-        "[&_svg:not([class*='size - '])]:size-4",
         'inline-flex',
         'items-center',
         'justify-center',
@@ -30,13 +33,16 @@ const buttonVariants = tv({
         'transition-all',
         'disabled:pointer-events-none',
         'disabled:opacity-50',
-        '[&_svg]:pointer-events-none',
         'shrink-0',
-        '[&_svg]:shrink-0',
         'outline-none',
         'group/button',
         'select-none',
         'cursor-pointer',
+
+        // Icon
+        '[&_svg]:pointer-events-none',
+        '[&_svg]:shrink-0',
+        "[&_svg:not([class*='size-'])]:size-6",
     ],
     variants: {
         loading: {
@@ -52,25 +58,55 @@ const buttonVariants = tv({
         },
         variant: {
             default: [
-                'border-border border-primary bg-primary text-primary-foreground [a]:hover:bg-primary/80',
+                'border-border',
+                'border-primary',
+                'bg-primary',
+                'text-primary-foreground',
+                '[a]:hover:bg-primary/80',
             ],
             outline: [
-                'border-border bg-transparent hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground',
+                'border-border',
+                'bg-transparent',
+                'hover:bg-muted',
+                'hover:text-foreground',
+                'aria-expanded:bg-muted',
+                'aria-expanded:text-foreground',
             ],
             secondary: [
-                'bg-secondary text-secondary-foreground hover:bg-secondary/80 aria-expanded:bg-secondary aria-expanded:text-secondary-foreground',
+                'bg-secondary',
+                'text-secondary-foreground',
+                'hover:bg-secondary/80',
+                'aria-expanded:bg-secondary',
+                'aria-expanded:text-secondary-foreground',
             ],
             ghost: [
-                'hover:bg-muted hover:text-foreground dark:hover:bg-muted/50 aria-expanded:bg-muted aria-expanded:text-foreground',
+                'hover:bg-muted',
+                'hover:text-foreground',
+                'dark:hover:bg-muted/50',
+                'aria-expanded:bg-muted',
+                'aria-expanded:text-foreground',
             ],
             destructive: [
-                'bg-destructive/10 hover:bg-destructive/20 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/20 text-destructive focus-visible:border-destructive/40 dark:hover:bg-destructive/30',
+                'bg-destructive/10',
+                'hover:bg-destructive/20',
+                'focus-visible:ring-destructive/20',
+                'dark:focus-visible:ring-destructive/40',
+                'dark:bg-destructive/20',
+                'text-destructive',
+                'focus-visible:border-destructive/40',
+                'dark:hover:bg-destructive/30',
             ],
             link: [
-                'underline underline-offset-4 hover:underline',
+                'underline',
+                'underline-offset-4',
+                'hover:underline',
             ],
             text: [
-                'hover:bg-muted hover:text-foreground dark:hover:bg-muted/50 aria-expanded:bg-muted aria-expanded:text-foreground',
+                'hover:bg-muted',
+                'hover:text-foreground',
+                'dark:hover:bg-muted/50',
+                'aria-expanded:bg-muted',
+                'aria-expanded:text-foreground',
             ],
         },
         size: {
@@ -83,6 +119,7 @@ const buttonVariants = tv({
             icon: "size-16",
             "icon-xs": "size-6 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-lg [&_svg:not([class*='size-'])]:size-3",
             "icon-sm": "size-7 rounded-[min(var(--radius-md),12px)] in-data-[slot=button-group]:rounded-lg",
+            'icon-md': "size-10",
             "icon-lg": "size-9",
         },
     },
@@ -95,30 +132,79 @@ const buttonVariants = tv({
 
 type ButtonVariants = VariantProps<typeof buttonVariants>;
 
-type Props = ButtonVariants & BaseButton.Props;
+type Props = ButtonVariants & useRender.ComponentProps<'button'> & BaseButton.Props & {
+    tooltip?: string | ComponentProps<typeof TooltipContent>
+};
 
 export function Button({
     className,
     loading,
-    children,
+    block,
     shape = 'rounded',
     variant = "default",
     size = "default",
+    tooltip,
+    render,
     ...props
 }: Props) {
+    'use memo'
+
+    const rendered = useRender({
+        defaultTagName: 'button',
+        props: mergeProps(
+            {
+                className: buttonVariants({
+                    size,
+                    shape,
+                    variant,
+                    block,
+                    className: className as ClassValue
+                }),
+            },
+            props,
+        ),
+        render: !tooltip ? <BaseButton /> : <TooltipTrigger render={render} />,
+        state: {
+            slot: 'button',
+            size,
+            shape,
+            variant,
+            block,
+            loading,
+        },
+    });
+
+    if (!tooltip) {
+        return rendered;
+    }
+
+    if (typeof tooltip === 'string') {
+        tooltip = { children: tooltip };
+    }
+
     return (
-        <BaseButton
-            {...props}
-            data-slot='button'
-            className={buttonVariants({
-                size,
-                shape,
-                variant,
-                className: className as ClassValue
-            })}
-            render={<motion.button />}
-        >
-            {loading ? <Spinner /> : children}
-        </BaseButton>
-    );
+        <Tooltip>
+            {rendered}
+            <TooltipContent
+                side='bottom'
+                align='center'
+                {...tooltip}
+            />
+        </Tooltip>
+    )
+    // return (
+    //     <BaseButton
+    //         {...props}
+    //         data-slot='button'
+    //         className={buttonVariants({
+    //             size,
+    //             shape,
+    //             variant,
+    //             block,
+    //             className: className as ClassValue
+    //         })}
+    //     >
+    //         {loading ? <Spinner /> : children}
+    //     </BaseButton>
+    // );
 }

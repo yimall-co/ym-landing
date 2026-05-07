@@ -8,6 +8,8 @@ import {
 export type Size = Readonly<{
     width: number;
     height: number;
+    offsetTop?: number;
+    offsetLeft?: number;
 }>;
 
 export function useElementSize<T extends HTMLElement>() {
@@ -16,6 +18,8 @@ export function useElementSize<T extends HTMLElement>() {
     const [size, setSize] = useState<Size>({
         width: 0,
         height: 0,
+        offsetTop: 0,
+        offsetLeft: 0,
     });
 
     const handleResize: ResizeObserverCallback = useCallback(
@@ -25,6 +29,8 @@ export function useElementSize<T extends HTMLElement>() {
             setSize({
                 width: width ?? 0,
                 height: height ?? 0,
+                offsetTop: (entry?.target as HTMLElement).offsetTop ?? 0,
+                offsetLeft: (entry?.target as HTMLElement).offsetLeft ?? 0,
             });
         },
         [],

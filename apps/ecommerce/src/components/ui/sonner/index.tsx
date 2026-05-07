@@ -44,13 +44,13 @@ export function Toaster({
                 {
                     '--normal-bg': 'var(--background)',
                     '--normal-text': 'var(--foreground)',
-                    '--normal-border': 'var(--border)',
-                    '--border-radius': 'var(--radius)',
+                    // '--normal-border': 'var(--border)',
+                    // '--border-radius': 'var(--radius)',
                 } as React.CSSProperties
             }
             toastOptions={{
                 classNames: {
-                    toast: 'cn-toast z-50',
+                    toast: 'cn-toast z-50 border border-foreground/5 rounded-4xl',
                 },
             }}
             {...props}

@@ -12,33 +12,45 @@ import LanguageSelector from './language-selector';
 import ThemeSwitcher from './theme-switcher';
 import NotificationSwitcher from './notification-switcher';
 
-type Props = Readonly<object>;
+type Props = Readonly<{
+    showLanguage?: boolean;
+    showTheme?: boolean;
+    showNotification?: boolean;
+}>;
 
-export default function Configuration({ }: Props) {
+export default function Configuration({
+    showLanguage = true,
+    showTheme = true,
+    showNotification = true
+}: Props) {
     const t = useTranslations();
-
-    const options = []
 
     return (
         <div className='flex flex-col gap-6'>
-            <Field className='justify-between' orientation='horizontal'>
-                <FieldTitle>
-                    <Globe className='size-4 text-foreground/50' /> {t('common.language')}
-                </FieldTitle>
-                <LanguageSelector />
-            </Field>
-            <Field className='justify-between' orientation='horizontal'>
-                <FieldTitle>
-                    <Palette className='size-4 text-foreground/50' /> {t('common.appearance')}
-                </FieldTitle>
-                <ThemeSwitcher />
-            </Field>
-            <Field className='justify-between' orientation='horizontal'>
-                <FieldTitle>
-                    <Bell className='size-4 text-foreground/50' /> {t('common.notification')}
-                </FieldTitle>
-                <NotificationSwitcher />
-            </Field>
+            {showLanguage && (
+                <Field className='justify-between' orientation='horizontal'>
+                    <FieldTitle>
+                        <Globe className='size-4 text-foreground/50' /> {t('common.language')}
+                    </FieldTitle>
+                    <LanguageSelector />
+                </Field>
+            )}
+            {showTheme && (
+                <Field className='justify-between' orientation='horizontal'>
+                    <FieldTitle>
+                        <Palette className='size-4 text-foreground/50' /> {t('common.appearance')}
+                    </FieldTitle>
+                    <ThemeSwitcher />
+                </Field>
+            )}
+            {showNotification && (
+                <Field className='justify-between' orientation='horizontal'>
+                    <FieldTitle>
+                        <Bell className='size-4 text-foreground/50' /> {t('common.notification')}
+                    </FieldTitle>
+                    <NotificationSwitcher />
+                </Field>
+            )}
         </div>
     );
 }

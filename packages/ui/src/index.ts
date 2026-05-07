@@ -25,9 +25,13 @@ export * from './sheet';
 export * from './sidebar';
 export * from './skeleton';
 export * from './dropdown';
+export * from './dialog';
 export * from './popover';
 export * from './select';
 export * from './switch';
 export * from './switcher';
+export * from './map';
+export * from './tooltip';
+export * from './toggle';
 
 export { cn } from 'tailwind-variants';

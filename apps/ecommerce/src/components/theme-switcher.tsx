@@ -2,6 +2,8 @@
 
 import type { SwitcherOpts } from '@yimall/ui';
 
+import dynamic from 'next/dynamic';
+
 import { useTheme } from 'next-themes';
 import {
     MonitorIcon,
@@ -9,7 +11,12 @@ import {
     SunIcon,
 } from 'lucide-react';
 
-import { Switcher } from '@yimall/ui';
+const Switcher = dynamic(
+    () => import('@yimall/ui').then((module) => module.Switcher),
+    {
+        ssr: false,
+    },
+);
 
 type Props = Readonly<object>;
 

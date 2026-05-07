@@ -10,6 +10,8 @@ import { Drawer as BaseDrawer } from 'vaul';
 const drawer = tv({
     slots: {
         overlay: [
+            'z-40',
+            'bg-black/60',
             'data-[state=open]:animate-in',
             'data-[state=closed]:animate-out',
             'data-[state=closed]:fade-out-0',
@@ -18,19 +20,23 @@ const drawer = tv({
         ],
         content: [
             'group/drawer-content',
-            'fixed z-50',
-            'flex h-auto flex-col',
-            'border-[var(--mui-palette-grey-100)]',
+            'fixed',
+            'z-50',
+            'flex',
+            'h-auto',
+            'flex-col',
+            'bg-(--background)',
+            'border-(--foreground)/10',
             'data-[vaul-drawer-direction=top]:inset-x-0',
             'data-[vaul-drawer-direction=top]:top-0',
             'data-[vaul-drawer-direction=top]:mb-24',
-            'data-[vaul-drawer-direction=top]:max-h-[80vh]',
+            'data-[vaul-drawer-direction=top]:max-h-[90dvh]',
             'data-[vaul-drawer-direction=top]:rounded-b-lg',
             'data-[vaul-drawer-direction=top]:border-b',
             'data-[vaul-drawer-direction=bottom]:inset-x-0',
             'data-[vaul-drawer-direction=bottom]:bottom-0',
             'data-[vaul-drawer-direction=bottom]:mt-8',
-            'data-[vaul-drawer-direction=bottom]:max-h-[85dvh]',
+            'data-[vaul-drawer-direction=bottom]:max-h-[95dvh]',
             'data-[vaul-drawer-direction=bottom]:rounded-t-2xl',
             'data-[vaul-drawer-direction=bottom]:border-t',
             'data-[vaul-drawer-direction=right]:inset-y-0',
@@ -48,6 +54,7 @@ const drawer = tv({
             'bg-neutral-200',
             'mx-auto',
             'mt-2',
+            'mb-2',
             'hidden',
             'h-2',
             'w-[100px]',
@@ -56,21 +63,22 @@ const drawer = tv({
             'group-data-[vaul-drawer-direction=bottom]/drawer-content:block',
         ],
         trigger: ['outline-none'],
-        header: ['flex flex-col gap-1.5 p-4'],
+        header: ['flex flex-row gap-1.5 p-4'],
         footer: ['mt-auto flex flex-col gap-2 p-4'],
         title: [
             'text-lg text-foreground font-semibold',
             'md:text-xl'
         ],
+        close: ['cursor-pointer'],
         description: ['text-muted-foreground text-sm'],
     },
     variants: {
         selected: {
             true: {
-                trigger: 'text-[var(--mui-palette-primary-main)]',
+                // trigger: 'text-(--mui-palette-primary-main)',
             },
             false: {
-                trigger: 'text-dark-600 dark:text-light-400',
+                // trigger: 'text-dark-600 dark:text-light-400',
             },
         },
     },
@@ -134,14 +142,19 @@ function DrawerPortal({
 type DrawerCloseProps = DrawerVariants & ComponentProps<typeof BaseDrawer.Close>;
 
 function DrawerClose({
+    className,
     ...props
 }: DrawerCloseProps) {
     'use memo'
+    const { close } = drawer();
 
     return (
         <BaseDrawer.Close
             {...props}
             data-slot='drawer-close'
+            className={close({
+                className,
+            })}
         />
     );
 }
@@ -166,11 +179,14 @@ function DrawerOverlay({
     );
 }
 
-type DrawerContentProps = DrawerVariants & ComponentProps<typeof BaseDrawer.Content>;
+type DrawerContentProps = DrawerVariants & ComponentProps<typeof BaseDrawer.Content> & {
+    showToggle?: boolean;
+};
 
 function DrawerContent({
     className,
     children,
+    showToggle = true,
     ...props
 }: DrawerContentProps) {
     'use memo'
@@ -192,7 +208,7 @@ function DrawerContent({
                 <BaseDrawer.Description className='sr-only'>
                     Dynamic menu for mobile devices
                 </BaseDrawer.Description>
-                <div className={contentToggle()} />
+                {showToggle && <div className={contentToggle()} />}
                 {children}
             </BaseDrawer.Content>
         </DrawerPortal>

@@ -23,9 +23,14 @@ type Props = Readonly<{
     locale: string;
 }>;
 
+type FinalStepCompletedProps = {
+    currentStep: number;
+    isLastStep: boolean;
+};
+
 export type OnboardingProps = Props & Readonly<{
     t: ReturnType<typeof useTranslations>;
-    onFinalStepCompleted: () => void;
+    onFinalStepCompleted: (props: FinalStepCompletedProps) => void;
 }>;
 
 export default function Onboarding({ locale }: Props) {
@@ -34,30 +39,33 @@ export default function Onboarding({ locale }: Props) {
     const router = useRouter();
     const startProgress = useProgress();
 
-    const handleFinalStepCompleted = useCallback(() => {
-        const onSuccess = () => {
-            return 'Completed';
-        }
+    const handleFinalStepCompleted = useCallback(
+        ({ currentStep, isLastStep }: FinalStepCompletedProps) => {
+            const onSuccess = () => t('Onboarding.completed');
+            const onFinally = () => router.push({ pathname: '/', });
 
-        const onFinally = () => {
-            router.push({
-                pathname: '/',
+            startTransition(async () => {
+                startProgress();
+
+                toast.promise(
+                    visited({
+                        onboardingStepReached: currentStep,
+                        completeOnboarding: isLastStep,
+                    }),
+                    {
+                        loading: t('common.loading'),
+                        success: onSuccess,
+                        finally: onFinally,
+                    }
+                );
             });
-        }
-
-        startTransition(async () => {
-            startProgress();
-
-            toast.promise(
-                visited,
-                {
-                    loading: t('common.loading'),
-                    success: onSuccess,
-                    finally: onFinally,
-                }
-            );
-        });
-    }, [t, startProgress, router]);
+        },
+        [
+            t,
+            startProgress,
+            router,
+        ]
+    );
 
     useEffect(() => {
         const handleBeforeUnload = (event: BeforeUnloadEvent) => {
@@ -81,9 +89,8 @@ export default function Onboarding({ locale }: Props) {
         <DeviceDetector>
             {(isMobile, isDesktop, isTablet) => (
                 <Fragment>
-                    {isMobile && <OnboardingMobile {...childProps} />}
-                    {isTablet && <OnboardingMobile {...childProps} />}
                     {isDesktop && <OnboardingDesktop {...childProps} />}
+                    {(isMobile || isTablet) && <OnboardingMobile {...childProps} />}
                 </Fragment>
             )}
         </DeviceDetector>

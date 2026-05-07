@@ -14,8 +14,9 @@ catalog:
     '@tailwindcss/postcss': '^4.2.2'
     '@tanstack/react-query': ^5.94.5
     '@lucide/lab': '^0.1.2'
-    '@vis.gl/react-google-maps': ^1.5.3
+    '@vis.gl/react-google-maps': ^1.8.2
     'autoprefixer': '^10.4.20'
+    'better-all': ^0.0.7
     'clsx': '^2.1.1'
     'cookies-next': '^6.1.1'
     'date-fns': '^4.1.0'
@@ -27,6 +28,7 @@ catalog:
     'three': '^0.182.0'
     'qrcode': '^1.5.4'
     'gsap': '^3.14.2'
+    'js.foresight': ^3.5.0
     'motion': '^12.23.26'
     'postcss': '^8.5.3'
     'sonner': ^2.0.7

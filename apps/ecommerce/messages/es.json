@@ -54,6 +54,11 @@
         },
         "notification": "Permitir notificaciones"
     },
+    "Header": {
+        "search": "Buscar aquí...",
+        "location": "Ubicación",
+        "settings": "Configuración"
+    },
     "Onboarding": {
         "welcome": {
             "title": "Te damos la bienvenida",
@@ -62,11 +67,19 @@
         },
         "geolocation": {
             "title": "Ubicación",
-            "description": "Permite el acceso a tu ubicación para ver los productos disponibles en tu área"
+            "description": "Permite el acceso a tu ubicación para ver los productos disponibles en tu área",
+            "button": "Permitir ubicación"
         },
         "search": {
             "title": "Probemos buscar algo...",
             "description": "Escribe el nombre de un producto para ver si lo tenemos en nuestra tienda"
+        },
+        "completed": "¡Es hora de explorar nuestro catálogo!"
+    },
+    "Catalog": {
+        "categories": {
+            "title": "Categorías",
+            "all": "Todas"
         }
     },
     "jumpToCatalog": "Saltar bienvenida",
@@ -121,7 +134,10 @@
         }
     },
     "Platform": {},
-    "Location": {},
+    "Location": {
+        "title": "Ubicación",
+        "description": "Permite el acceso a tu ubicación para ver los productos disponibles en tu área"
+    },
     "Cart": {
         "items": "{count} items",
         "total": "Total: ",

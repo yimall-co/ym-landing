@@ -232,7 +232,10 @@ type StepperProps = HTMLAttributes<HTMLDivElement> & {
     canNext?: boolean;
     canComplete?: boolean;
     onStepChange?: (step: number) => void;
-    onFinalStepCompleted?: () => void;
+    onFinalStepCompleted?: (props: {
+        currentStep: number;
+        isLastStep: boolean;
+    }) => void;
     stepCircleContainerClassName?: string;
     stepContainerClassName?: string;
     contentClassName?: string;
@@ -276,7 +279,7 @@ export function Stepper({
     canNext = false,
     canComplete = false,
     onStepChange = () => { },
-    onFinalStepCompleted = () => { },
+    onFinalStepCompleted,
     stepCircleContainerClassName = '',
     stepContainerClassName = '',
     contentClassName = '',
@@ -306,7 +309,7 @@ export function Stepper({
     const updateStep = (newStep: number) => {
         setCurrentStep(newStep);
         if (newStep > totalSteps) {
-            onFinalStepCompleted();
+            if (onFinalStepCompleted) onFinalStepCompleted({ currentStep, isLastStep });
         } else {
             onStepChange(newStep);
         }

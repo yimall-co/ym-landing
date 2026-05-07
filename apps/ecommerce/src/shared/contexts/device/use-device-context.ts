@@ -60,7 +60,7 @@ export default function useDeviceContext(): UseDeviceContext {
 
     const isMobile = device === 'mobile' || size.width <= 648;
     const isTablet = device === 'tablet' || (size.width > 648 && size.width <= 1024);
-    const isDesktop = device === 'desktop' && size.width > 1024;
+    const isDesktop = device === 'desktop' || size.width > 1024;
 
     return {
         device,

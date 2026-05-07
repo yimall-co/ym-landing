@@ -54,15 +54,32 @@
         },
         "notification": "Allow notifications"
     },
+    "Header": {
+        "search": "Search here...",
+        "location": "Location",
+        "settings": "Settings"
+    },
     "Onboarding": {
         "welcome": {
             "title": "Welcome",
             "description": "Configure the language and theme you want to use in the store",
             "note": "* You can change the configuration later in the settings menu"
         },
+        "geolocation": {
+            "title": "Location",
+            "description": "Allow access to your location to see the products available in your area",
+            "button": "Allow location"
+        },
         "search": {
             "title": "Let's try searching for something...",
             "description": "Type the name of a product to see if we have it in our store"
+        },
+        "completed": "It's time to explore our catalog!"
+    },
+    "Catalog": {
+        "categories": {
+            "title": "Categories",
+            "all": "All"
         }
     },
     "jumpToCatalog": "Skip for now",
@@ -117,7 +134,10 @@
         }
     },
     "Platform": {},
-    "Location": {},
+    "Location": {
+        "title": "Location",
+        "description": "Allow access to your location to see the products available in your area"
+    },
     "Cart": {
         "items": "{count} items",
         "total": "Total: ",

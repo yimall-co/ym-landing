@@ -23,6 +23,17 @@
                 "default": "./dist/index.js"
             }
         },
+        "./hooks": {
+            "default": "./src/hooks/index.ts",
+            "import": {
+                "types": "./dist/hooks/index.d.mts",
+                "default": "./dist/hooks/index.mjs"
+            },
+            "require": {
+                "types": "./dist/hooks/index.d.ts",
+                "default": "./dist/hooks/index.js"
+            }
+        },
         "./text": {
             "development": "./src/text/index.tsx",
             "import": {
@@ -56,6 +67,9 @@
         "lint:fix": "eslint . --fix"
     },
     "dependencies": {
+        "@base-ui/react": "catalog:",
+        "@gsap/react": "catalog:",
+        "@vis.gl/react-google-maps": "catalog:",
         "clsx": "catalog:",
         "three": "catalog:",
         "motion": "catalog:",
@@ -63,9 +77,7 @@
         "vaul": "catalog:",
         "lucide-react": "catalog:",
         "tailwind-merge": "catalog:",
-        "tailwind-variants": "catalog:",
-        "@base-ui/react": "catalog:",
-        "@gsap/react": "catalog:"
+        "tailwind-variants": "catalog:"
     },
     "peerDependencies": {
         "react": "catalog:react-19",

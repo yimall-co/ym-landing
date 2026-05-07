@@ -30,8 +30,7 @@ export default function LanguageSelector({ }: Props) {
         startTransition(() => {
             startProgress();
 
-            // router.replace({ pathname, params } as any, { locale })
-            router.replace(pathname, { locale });
+            router.replace({ pathname: pathname as any }, { locale });
         });
     }
 

@@ -13,9 +13,26 @@ const routing = defineRouting({
     defaultLocale: fallbackLocale,
     pathnames: {
         '/': '/',
-        // '/onboarding': {
-        //     es: '/bienvenida',
-        // },
+        '/location': {
+            es: '/ubicacion',
+            en: '/location',
+        },
+        '/cart': {
+            es: '/carrito',
+            en: '/cart',
+        },
+        '/search': {
+            es: '/buscar',
+            en: '/search',
+        },
+        '/categories/[categorySlug]': {
+            es: '/categorias/[categorySlug]',
+            en: '/categories/[categorySlug]',
+        },
+        '/offers/[offerSlug]': {
+            es: '/ofertas/[offerSlug]',
+            en: '/offers/[offerSlug]',
+        }
     },
 });
 
@@ -27,6 +44,16 @@ const {
     redirect,
     permanentRedirect,
 } = createNavigation(routing);
+
+function useResolvedPathname(params: Record<string, any>) {
+    const pathname = usePathname();
+
+    const resolvedPathname = Object.entries(params).reduce<string>((acc, [key, value]) => {
+        return acc.replace(`[${key}]`, value as string);
+    }, pathname);
+
+    return resolvedPathname;
+}
 
 export {
     routing,
@@ -40,4 +67,5 @@ export {
     redirect,
     permanentRedirect,
     usePathname,
+    useResolvedPathname,
 };

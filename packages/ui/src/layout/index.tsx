@@ -157,7 +157,7 @@ const SECTION_ANIMATION: MotionNodeAnimationOptions = {
         type: 'spring',
         stiffness: 180,
         damping: 22,
-        mass: 0.8,
+        mass: 0.15,
     },
 } as const;
 
@@ -195,12 +195,12 @@ const ARTICLE_ANIMATION: MotionNodeAnimationOptions = {
     },
     transition: {
         scale: {
-            duration: 0.25,
+            duration: 0.15,
             type: 'spring',
         },
         x: {
-            duration: 0.5,
-            delay: 0.25,
+            duration: 0.35,
+            delay: 0.20,
             type: 'spring',
         },
     },
@@ -244,24 +244,24 @@ const WRAPPER_ANIMATION: MotionNodeAnimationOptions = {
     transition: {
         opacity: {
             type: 'spring',
-            duration: 0.25,
-            delay: 0.35,
+            duration: 0.20,
+            delay: 0.25,
         },
         scale: {
             type: 'spring',
             duration: 0.15,
-            delay: 0.35,
+            delay: 0.25,
             stiffness: 500,
         },
     },
 } as const;
 
-const Wrapper: FC<WrapperProps> = ({
+function Wrapper({
     className,
     position,
     direction,
     ...props
-}) => {
+}: WrapperProps) {
     'use memo'
     const { wrapper } = layout();
 

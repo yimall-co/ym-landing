@@ -1,9 +1,11 @@
 import './globals.css';
+
 import '@yimall/ui/styles.css';
 
 import type { ReactNode } from 'react';
 import type { Metadata, Viewport } from 'next';
 
+import { notFound } from 'next/navigation';
 import {
     Geist,
     Geist_Mono,
@@ -12,7 +14,9 @@ import {
     Poppins,
     Raleway,
 } from 'next/font/google';
-import { NextIntlClientProvider } from 'next-intl';
+import { hasLocale, NextIntlClientProvider } from 'next-intl';
+
+import { routing } from 'lib/i18n';
 
 import { cn } from '@yimall/ui';
 
@@ -62,6 +66,7 @@ type Props = Readonly<{
 
 type LayoutProps = Props & Readonly<{
     children: ReactNode;
+    modal: ReactNode;
 }>;
 
 export const viewport: Viewport = {
@@ -96,8 +101,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function LocaleLayout({
     children,
     params,
+    modal,
 }: LayoutProps) {
     const locale = (await params).locale;
+
+    const supportsLocale = hasLocale(routing.locales, locale);
+    if (!supportsLocale) {
+        return notFound();
+    }
 
     return (
         <html
@@ -123,10 +134,11 @@ export default async function LocaleLayout({
                 suppressContentEditableWarning
                 className='relative min-h-full flex flex-col'
             >
-                <noscript></noscript>
+                <noscript>Please enable javascript</noscript>
                 <NextIntlClientProvider locale={locale}>
                     <BaseLayout>
                         {children}
+                        {modal}
                     </BaseLayout>
                 </NextIntlClientProvider>
             </body>
